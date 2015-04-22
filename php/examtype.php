@@ -49,12 +49,12 @@ if(isset($_POST['user_name']) && isset($_POST['saved_form_no']) && isset($_POST[
 
 //insert user data
 if(isset($_POST['insert_data']) &&  isset($_POST['insert_marks']) && isset($_POST['total']) ){
-    
     $username = htmlspecialchars($_POST['insert_data']['user_name']);
     $form_no = htmlspecialchars($_POST['insert_data']['form']);
     $marks = $_POST['insert_marks'];
     $total = htmlspecialchars($_POST['total']);
     $validate_user_data = $call_function->validate_user_form_data($marks,$form_no);
+    //echo $validate_user_data;
     if($validate_user_data == "success"){
         $insert_user_record = $call_function->insert_user_record($username,$form_no,$marks, $total);
         if($insert_user_record == 'success'){
@@ -69,7 +69,7 @@ if(isset($_POST['insert_data']) &&  isset($_POST['insert_marks']) && isset($_POS
         }    
     }else{
         echo "failure";    
-    }
+    }  
 }
 
 
@@ -827,13 +827,35 @@ public function delete_analytic_record($username,$form_no){
         $form_data = json_decode($form_data,true)['form_data'];
         $i =0;
         for($i; $i<$form_data['Total_Fields']; $i++){
-            $input_type = $form_data['Field_'.($i+1)]['limit'];
-            $input_length = $form_data['Field_'.($i+1)]['input_length'];
-            if(in_array(strtoupper($user_data[$i]),$input_type) && $input_length == sizeof($user_data[$i])){
-                continue;
-            }else{
-                return "failure";
-                break;
+            if($form_data['Field_'.($i+1)]['limit'] && $form_data['Field_'.($i+1)]['input_length'] && $form_data['Field_'.($i+1)]['input_type']){
+                $input_type = $form_data['Field_'.($i+1)]['limit'];
+                $input_length = $form_data['Field_'.($i+1)]['input_length'];
+                $input_format =$form_data['Field_'.($i+1)]['input_type'];
+                
+                if(gettype($input_type)=="array"){
+                    if(in_array(strtoupper($user_data[$i]),$input_type) && $input_length == sizeof($user_data[$i])){
+                        continue;
+                    }else{
+                        return "failure";
+                        break;
+                    }    
+                }else{
+                    if($input_length >= sizeof($user_data[$i])){
+                        if($input_format == "date"){
+                            if(date("m/d/Y")>=date('m/d/Y',strtotime($user_data[0]))){
+                               continue; 
+                            }else{
+                                return "failure";
+                                break;     
+                            }
+                        }else{
+                            continue;
+                        }
+                    }else{
+                        return "failure";
+                        break;
+                    }
+                }
             }
         }
         return "success";

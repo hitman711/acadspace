@@ -155,6 +155,7 @@ class querys {
         $field_name = "";
         $field_value = "";
         for($i=0; $i<sizeof($data); $i++){
+            $data[$i]= mysql_real_escape_string($data[$i]);
             $field_name = $field_name."`data_field_".($i+1)."`,";
             $field_value = $field_value."'$data[$i]',";
         }
@@ -169,6 +170,7 @@ class querys {
         $field_name = "";
         $field_value = "";
         for($i=0; $i<sizeof($data); $i++){
+            $data[$i]= mysql_real_escape_string($data[$i]);
             $field_name = $field_name."`data_field_".($i+1)."`,";
             $field_value = $field_value."'$data[$i]',";
         }
@@ -183,6 +185,7 @@ class querys {
     public function update_record($user_code, $form_code, $data){
         $update_value ="";
         for($i=0; $i<sizeof($data)-1; $i++){
+            $data[$i]= mysql_real_escape_string($data[$i]);
             $update_value = $update_value."`data_field_".($i+1)."` = '$data[$i]',";
         }
         $update_value = substr($update_value,0,-1);
@@ -195,6 +198,7 @@ class querys {
     public function update_comp_record($user_code,$form_code,$table_name, $data, $total,$attempt){
         $update_value ="";
         for($i=0; $i<sizeof($data); $i++){
+            $data[$i]= mysql_real_escape_string($data[$i]);
             $update_value = $update_value."`data_field_".($i+1)."` = '$data[$i]',";
         }
         $update_value = substr($update_value,0,-1);

@@ -55,7 +55,7 @@ function old_comp_record(data) {
 }
 
 //already fill form struct
-function get_filled_form_struct(total_field, field_content, user_filled_content,form_no, form_name,attempt) {    
+function get_filled_form_struct(total_field, field_content, user_filled_content,form_no, form_name,attempt) {
     form_data = JSON.parse(field_content);
     data = JSON.parse(user_filled_content);
     obj = form_data['form_data'];
@@ -69,7 +69,8 @@ function get_filled_form_struct(total_field, field_content, user_filled_content,
         schema +="<tr>";
         var pass = 'Field_'+i;
         for (j=0; j<obj['Field_Parameter']; j++) {
-            if (j == 1) {
+            input_type = ["text","date"];
+            if (input_type.indexOf(obj[pass][obj['field_name'][j]]) != -1) {
                 schema +="<td><input   class='form-control my-colorpicker1 colorpicker-element pull-right' id='data_field_"+i+"' type ="+obj[pass][obj['field_name'][j]]+" name='"+i+"'  value='"+data['data_field_'+i]+"'  /></td>";
             }else{
                 schema +="<td><label id='Fld_"+obj["field_name"][j]+"_"+i+"'>"+obj[pass][obj['field_name'][j]]+"</label></td>";    
@@ -102,14 +103,15 @@ function structure(data,form_no) {
             schema +="<tr>";
             var pass = 'Field_'+i;
             for (j=0; j<obj['Field_Parameter']; j++) {
-                if (j == 1) {
+                input_type = ["text","date"];
+                if (input_type.indexOf(obj[pass][obj['field_name'][j]]) != -1) {
                     schema +="<td><input   class='form-control my-colorpicker1 colorpicker-element pull-right' id='data_field_"+i+"' type ="+obj[pass][obj['field_name'][j]]+" name='"+i+"'/></td>";
                 }else{
                     schema +="<td><label id='Fld_"+obj["field_name"][j]+"_"+i+"'>"+obj[pass][obj['field_name'][j]]+"</label></td>";    
                 }
             }
             if (i==obj['Total_Fields']) {
-                schema +="</tr><tr><td id='final' colspan ="+obj['Field_Parameter']+" style='text-align:center'><p>TOTAL</p></td>";
+                schema +="</tr><tr><td id='final' colspan ="+obj['Field_Parameter']+" style='text-align:center'><p>0</p></td>";
             }
             schema +="</tr>";
         }
@@ -240,7 +242,6 @@ $(document).ready( function(){
         $('#form_box').append("<div class='overlay'><i class='fa fa-refresh fa-spin'></i></div>");
         text = {user_name:$('#users').attr('name'), form:$(this).attr('name')};
         $.post('php/examtype.php',{insert_data:text, insert_marks:data_field, total:total},function(result){
-
                 if (result == "success") {
                     success_box("data Added Successfully");
                     $('#form_box .overlay').remove();
