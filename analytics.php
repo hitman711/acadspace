@@ -68,20 +68,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Main content -->
         <section class="content">
           
-          <div class="row">
+          <!--div class="row">
             <div class="col-md-12">
               <div class="box box-warning">
                 <div class="box-header with-border">
                   <h3 class="box-title">Collapsable</h3>
                   <div class="box-tools pull-right">
                     <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                  </div><!-- /.box-tools -->
-                </div><!-- /.box-header -->
+                  </div>
+                </div>
                 <div class="box-body" id='rank_list'>
-                </div><!-- /.box-body -->
-              </div><!-- /.box -->
-            </div><!-- /.col -->
-          </div>
+                </div>
+              </div>
+            </div>
+          </div-->
           
           <div>
           <div class="row">
