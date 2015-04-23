@@ -89,7 +89,7 @@ class querys {
     
     //get user record
     public function get_user_record($user_code,$table_name,$form_code, $attempt){
-        $get_user_record = "SELECT `data_field_1`, `data_field_2`, `data_field_3`, `data_field_4`, `data_field_5`, `data_field_6`, `data_field_7`, `data_field_8`, `data_field_9`, `data_field_10`, `data_field_11`, `data_field_12` FROM `$table_name` WHERE `user_code`='$user_code' AND `form_code`='$form_code' AND `attempt`='$attempt'";
+        $get_user_record = "SELECT `data_field_1`, `data_field_2`, `data_field_3`, `data_field_4`, `data_field_5`, `data_field_6`, `data_field_7`, `data_field_8`, `data_field_9`, `data_field_10`, `data_field_11`, `data_field_12`,total FROM `$table_name` WHERE `user_code`='$user_code' AND `form_code`='$form_code' AND `attempt`='$attempt'";
         return $get_user_record;
     }
     
@@ -219,7 +219,7 @@ class querys {
     }
     
     
-    //deleter user record
+    //delete user record
     public function delete_record($table_name, $user_code, $form_no,$attempt){
         $delete_user_record = "DELETE FROM `$table_name` WHERE `user_code`='$user_code' AND `form_code`='$form_no' AND `attempt`='$attempt'";
         return $delete_user_record;

@@ -71,13 +71,13 @@ function get_filled_form_struct(total_field, field_content, user_filled_content,
         for (j=0; j<obj['Field_Parameter']; j++) {
             input_type = ["text","date"];
             if (input_type.indexOf(obj[pass][obj['field_name'][j]]) != -1) {
-                schema +="<td><input   class='form-control my-colorpicker1 colorpicker-element pull-right' id='data_field_"+i+"' type ="+obj[pass][obj['field_name'][j]]+" name='"+i+"'  value='"+data['data_field_'+i]+"'  /></td>";
+                schema +="<td><input class='form-control my-colorpicker1 colorpicker-element pull-right' id='data_field_"+i+"' type ="+obj[pass][obj['field_name'][j]]+" name='"+i+"'  value='"+data['data_field_'+i]+"'  /></td>";
             }else{
                 schema +="<td><label id='Fld_"+obj["field_name"][j]+"_"+i+"'>"+obj[pass][obj['field_name'][j]]+"</label></td>";    
             }
         }
         if (i==obj['Total_Fields']) {
-            schema +="</tr><tr><td id='final' colspan ="+obj['Field_Parameter']+" style='text-align:center'><p>TOTAL</p></td>";
+            schema +="</tr><tr><td id='final' colspan ="+obj['Field_Parameter']+" style='text-align:center'><p>"+data['total']+"</p></td>";
         }
         schema +="</tr>";
     }
