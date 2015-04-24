@@ -1,8 +1,7 @@
 import json
 def operation(db,unique_code):
 	graph_data =[]
-	#form_code = ['50101%']
-	sql = "SELECT `attempt`,`total` FROM `comp_gre` WHERE `user_code`='%s' AND `form_code` LIKE '%s'" %(unique_code,'50101%')
+	sql = "SELECT `attempt`,`total` FROM `comp_gre` WHERE `user_code`='%s' AND `form_code` LIKE '%s'" %(unique_code,'50102%')
 	try:
 		results = db.RunQueryOnAcadspace(sql)
 		if results:
@@ -13,11 +12,11 @@ def operation(db,unique_code):
 		print "Error: unable to fecth data"
 	graph_data.sort()	
 	related_data = {
-	"Question": "How am i performing in my GRE Normal exam?",
+	"Question": "How am i performing in my GRE Technical exam?",
 	"Answer_Type": "line_chart",
 	"Description": "Description of chart",
 	"Related_Data": [
-		"#2A",
+		"#2B",
 		[
                            {
 			"data": graph_data,
@@ -60,16 +59,16 @@ def operation(db,unique_code):
 	
 def dependancies():
 	dependent_forms = []
-	dependent_forms.append("5010*")
+	dependent_forms.append("50102*")
 	return dependent_forms
 
 def execute(db,user_code):
-    print "Engineering Rule 1 Running"+user_code
+    print "Engineering Rule 3 Running"+user_code
     stat = "Partial"
     stat = "Failed"
     stat = "Success"
     data = operation(db,user_code)
-    result = {'2A':data}
+    result = {'2B':data}
     return [stat,result]
 
 
