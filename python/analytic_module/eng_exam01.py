@@ -2,6 +2,7 @@ import json
 
 def operation(db,unique_code):
     graph_data =[]
+    total =0
     sql = "SELECT `form_code`,`total` FROM `user_record` WHERE `user_code`='%s' AND `form_code` LIKE '%s'"%(unique_code,'301010%')
     try:
         # Execute the SQL command
@@ -12,8 +13,10 @@ def operation(db,unique_code):
             for form_title in result2:
                 exam_name = form_title['form_title'].split(' ',1)
             marks = row['total']
+	    total += float(marks)
             graph_data.append([float(exam_name[1]),float(marks)])
             graph_data.sort()
+	total = round(total / len(results),2)
     except:
         print "Error: unable to fecth data"
 
@@ -31,7 +34,7 @@ def operation(db,unique_code):
 			],
 			{
 			"grid": {
-				"markings": [ { "yaxis": { "from":  6, "to": 6 }, "color": "#000" }],
+				"markings": [ { "yaxis": { "from":  total, "to": total }, "color": "#000" }],
 				"hoverable": "true",
 				"borderColor": "#f3f3f3",
 				"borderWidth": 1,
