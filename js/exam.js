@@ -245,14 +245,14 @@ $(document).ready( function(){
                 if (result == "success") {
                     success_box("data Added Successfully");
                     $('#form_box .overlay').remove();
-                    $('#add_data').html("Add Data");
+                    $('#add_data').html("Data Added Successfully");
                 }else{
                     $('#form_box .overlay').remove();
                     warning_box("Something wrong");
+					$(this).removeAttr('disabled');
                     $('#add_data').html("Add Data again");
                 }
             });
-        $(this).attr('enabled');
     }else{
         alert("please field all requierd field");
     }
@@ -303,11 +303,10 @@ $(document).ready( function(){
                     else{
                         $('#form_box .overlay').remove();
                         $('#form_box').append("<h1>Something wrong</h1>");
+						$(this).removeAttr('disabled');
                         $('#update_data').html("Add Data again");
                     }
                 });
-                
-            $(this).attr('disabled','false');
             $.post('php/examtype.php',{saved_user_name:$('#users').attr('name')},function(result){
                 var obj = JSON.parse(result);
                 old_simple_record(obj['simple']);
@@ -318,12 +317,12 @@ $(document).ready( function(){
   
 //delete user data event
     $('#level1, #level2, #display_form').on('click','#delete_data', function(){
-        
         var attempt = $(this).attr('title');
         $('#display_form').css('display','block');
         $.post('php/examtype.php',{user_name:$('#users').attr('name'),delete_user_form:$(this).attr('name'),Attempt:attempt},function(result){
             if(result =='success'){
                 success_box("User Data Deleted");
+				$('#display_form #form_box').html(' ');
             }else{
                 warning_box("Data not deleted Please try again");
             }
