@@ -14,6 +14,14 @@ if(isset($_POST['profile_data'])){
     echo $user_data;
 }
 
+if(isset($_POST['educational_data'])){
+    $active_code = $_POST['educational_data'];
+    $educational_data = $call_operation->educational_data($active_code);
+    echo $educational_data;
+}
+
+
+
 
 
 class databases {
@@ -52,8 +60,14 @@ class operation {
         $data = $call_function->registration_information($unique_code);
         return $data;
     }
+    
+    public function educational_data($username){
+        $call_function = new functions();
+        $unique_code = $call_function->user_unique_code($username);
+        $data = $call_function->educational_information($unique_code);
+        return $data;
+    }
 }
-
 
 
   
@@ -81,6 +95,15 @@ class functions {
         $row = mysql_fetch_assoc($result);
         return json_encode($row,true);
         $connect->close_database();
+    }
+    
+    function educational_information($unique_code){
+        global $sample_data;
+        $connect = new databases();
+        $db_connect = $connect->select_db($database);
+        $sql = new querys();
+        $result = $sql->get_form_field();
+        return "hello";
     }
 }
 

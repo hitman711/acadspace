@@ -137,12 +137,7 @@ $(document).ready( function(){
     }  
 //get users old record event
     else{
-        
-        $.post('php/examtype.php',{saved_user_name:$('#users').attr('name')},function(result){
-            var obj = JSON.parse(result);
-            old_simple_record(obj['simple']);
-            old_comp_record(obj['comp']);
-            });    
+        saved_record($('#users').attr('name'));    
     }
 //selection box    
     for (var i=0; i<5; i++) {
@@ -246,6 +241,7 @@ $(document).ready( function(){
                     success_box("data Added Successfully");
                     $('#form_box .overlay').remove();
                     $('#add_data').html("Data Added Successfully");
+                    //saved_record($('#users').attr('name'));
                 }else{
                     $('#form_box .overlay').remove();
                     warning_box("Something wrong");
@@ -322,7 +318,8 @@ $(document).ready( function(){
         $.post('php/examtype.php',{user_name:$('#users').attr('name'),delete_user_form:$(this).attr('name'),Attempt:attempt},function(result){
             if(result =='success'){
                 success_box("User Data Deleted");
-				$('#display_form #form_box').html(' ');
+		$('#display_form #form_box').html(' ');
+                saved_record($('#users').attr('name'));
             }else{
                 warning_box("Data not deleted Please try again");
             }
@@ -338,6 +335,16 @@ $(document).ready( function(){
 
 
 });
+
+
+function saved_record(user_name) {
+    $.post('php/examtype.php',{saved_user_name:user_name},function(result){
+            var obj = JSON.parse(result);
+            old_simple_record(obj['simple']);
+            old_comp_record(obj['comp']);
+        });
+}
+
 
 function clean_form_box() {
     //alert("heelo");

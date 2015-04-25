@@ -215,6 +215,7 @@ class operation {
                 array_push($pass,array($title,$form_code)); 
             }
             $pass = array_filter($pass);
+            sort($pass);
             $simple = array("simple"=>$pass);
             $pass = array();
             for($i =0; $i<$data['Parameter']['Total_Comp_Exam_Field']; $i++){
@@ -225,6 +226,7 @@ class operation {
                 array_push($pass,array($table_name,$form_code,$attempt,$title));
             }
             $pass = array_filter($pass);
+            sort($pass);
             $comp = array("comp"=>$pass);
             echo json_encode(array_merge($simple,$comp));
             unset($pass,$simple,$comp);
