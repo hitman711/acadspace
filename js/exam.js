@@ -1,4 +1,4 @@
-//selection box options
+/*----------------------------------------------selection box structure-------------------------------------*/
 function selection_box(result,table_id) {
     var obj = JSON.parse(result);
     //alert(obj.length);
@@ -9,10 +9,12 @@ function selection_box(result,table_id) {
     }
 }
 
+
 //saved acad record layout
 function old_simple_record(data) {
     $('#level1').html(' ');
     var pass ='';
+    /*
     for (var i=0; i<data.length; i++) {
         pass =pass+'<div class="col-md-3 col-sm-6 col-xs-12">'+
         '<div class="info-box"><span class="info-box-icon bg-aqua">'+
@@ -24,18 +26,50 @@ function old_simple_record(data) {
             '<span class="info-box-text">'+"Dummy college"+'</span></div></div></div>';
     }
     $('#level1').append(pass);
+    */
+    //var pass='<div><div class="col-md-3"><div class="box-header with-border bg-blue">';
+    list =[];
+    //alert($.isEmptyObject(list));
+    for( i=0; i<data.length; i++){
+        if (!$.isEmptyObject(list)) {
+            if (list.indexOf(data[i][0])==0) {
+                //alert("available");
+                //alert($("#body_undergraduate li").html());
+                //$('#'+data[i][0]+" #body_"+data[i][0]).append('hello');
+            }else{
+                list.push(data[i][0]);
+            }
+        }else{
+                list.push(data[i][0]);
+                //alert("not available");
+                pass +='<div><div class="col-md-3" id="'+data[i][0]+'"><div class="box-header with-border bg-blue">'+
+                    '<h3 class="box-title">'+data[i][0]+'</h3>'+
+                    '<div class="box-tools pull-right">'+
+                    '<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>'+
+                    '</div></div>';
+                    pass +='<div class="box-header with-body" id="body_'+data[i][0]+'">';
+                    pass +='</div></div></div>';
+            }
+    }
+    $('#level1').append(pass);
+    
+    for (i=0; i<data.length; i++) {
+        if (list.indexOf(data[i][0])==0) {
+            $('#'+data[i][0]+" #body_"+data[i][0]).append('<center><p><a id="available" class="0" title="'+data[i][1]+'" name="'+data[i][2]+'">'+data[i][1]+'</a></p></center>');
+        }
+    }
     if (pass) {
         $('#level_1').css('display','block');
     }else{
         $('#level_1').css('display','none');
     }
-    
 }
 
 //exitring comp record layout
 function old_comp_record(data) {
     $('#level2').html(' ');
     var pass ='';
+    /*
     for (var i=0; i<data.length; i++) {
         pass =pass+'<div class="col-md-3 col-sm-6 col-xs-12">'+
         '<div class="info-box">'+
@@ -45,20 +79,48 @@ function old_comp_record(data) {
             '<span class="info-box-number"><a href="#" id="available" class="'+data[i][2]+'" title="'+data[i][0]+'" name='+data[i][1]+'>'+data[i][3]+'</a></span>'+
             '<span class="info-box-text">Attempt :'+data[i][2]+'</span></div></div></div>';
     }
+    */
+    
+    list =[];
+    //alert($.isEmptyObject(list));
+    for( i=0; i<data.length; i++){
+        if (!$.isEmptyObject(list)) {
+            if (list.indexOf(data[i][0])==0) {
+                //alert("available");
+                //alert($("#body_undergraduate li").html());
+                //$('#'+data[i][0]+" #body_"+data[i][0]).append('hello');
+            }else{
+                list.push(data[i][0]);
+            }
+        }else{
+                list.push(data[i][0]);
+                //alert("not available");
+                pass +='<div><div class="col-md-3" id="'+data[i][0]+'"><div class="box-header with-border bg-blue">'+
+                    '<h3 class="box-title">'+data[i][0]+'</h3>'+
+                    '<div class="box-tools pull-right">'+
+                    '<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>'+
+                    '</div></div>';
+                    pass +='<div class="box-header with-body" id="body_'+data[i][0]+'">';
+                    pass +='</div></div></div>';
+            }
+    }
     $('#level2').append(pass);
+    for (i=0; i<data.length; i++) {
+        if (list.indexOf(data[i][0])==0) {
+            $('#'+data[i][0]+" #body_"+data[i][0]).append('<center><p><a id="available" class="'+data[i][4]+'" title="'+data[i][1]+'" name='+data[i][2]+'>'+data[i][1]+'    Attempt:'+data[i][4]+'</a></p></center>');
+        }
+    }
     if (pass) {
         $('#level_2').css('display','block');
     }else{
         $('#level_2').css('display','none');
     }
-    
 }
 
 //already fill form struct
-function get_filled_form_struct(total_field, field_content, user_filled_content,form_no, form_name,attempt) {
-    form_data = JSON.parse(field_content);
-    data = JSON.parse(user_filled_content);
-    obj = form_data['form_data'];
+function get_filled_form_struct(form_name,form_data, javascript , form_no,user_data,attempt) {
+    obj = JSON.parse(form_data);
+    data = JSON.parse(user_data);
     $('#selected .box-title').html('<span>'+form_name+'</span>');
     var schema = "<table class='table' id="+obj['form_name']+"><tr>";
     for (i=0; i<Object.keys(obj['header_field']).length; i++) {
@@ -77,23 +139,23 @@ function get_filled_form_struct(total_field, field_content, user_filled_content,
             }
         }
         if (i==obj['Total_Fields']) {
-            schema +="</tr><tr><td id='final' colspan ="+obj['Field_Parameter']+" style='text-align:center'><p>"+data['total']+"</p></td>";
-        }
+            schema +="</tr><tr><td id='final' colspan ="+obj['Field_Parameter']+" style='text-align:center; font-size:35px'><p>"+data['total']+"</p></td>";
+        } 
         schema +="</tr>";
     }
     schema += "</table>";
     schema += "</table><br><center><button id='update_data' name='"+form_no+"' title='"+attempt+"' class='btn btn-primary btn-lg'>Update Data</button>&nbsp;";
     schema += "<button id='delete_data' title='"+attempt+"' name='"+form_no+"'class='btn btn-primary btn-lg'>Delete Data</button></center>";
+    schema +="<span style='text-align:right'><a href='analytics.php'>For more detail analytics</a></span>";
     $('#form_box').append(schema);
-    $('#form_box').append("<script>"+form_data['Append']+"</\script>");
-
+    $('#form_box').append("<script>"+javascript+"</\script>");
 }
 
 
 
 //form structure
-function structure(data,form_no) {
-        obj = data['form_data'];
+function structure(data,javascript,form_no) {
+        obj = JSON.parse(data);
         var schema = "<table class='table' id="+obj['form_name']+"><tr>";
         for (i=0; i<Object.keys(obj['header_field']).length; i++) {
             schema +="<th name="+obj['header_field'][i]+">"+obj['header_field'][i]+"</th>";
@@ -111,25 +173,21 @@ function structure(data,form_no) {
                 }
             }
             if (i==obj['Total_Fields']) {
-                schema +="</tr><tr><td id='final' colspan ="+obj['Field_Parameter']+" style='text-align:center'><p>0</p></td>";
+                schema +="</tr><tr><td id='final' colspan ="+obj['Field_Parameter']+" style='text-align:center; font-size:35px'><p>0</p></td>";
             }
             schema +="</tr>";
         }
         schema += "</table>";
         schema +="<center><button id='add_data' name='"+form_no+"' class='btn btn-primary btn-lg'>Add Data</button></center>";
         $('#form_box').append(schema);
-        $('#form_box').append("<script>"+data['Append']+"</\script>");
+        $('#form_box').append("<script>"+javascript+"</\script>");
     }  
 
 
-//alert type
-
-
-//------------------------------------------------javascript event starts from here -------------------------------------------------------------------------------//
+/*------------------------------------------------javascript event starts from here -------------------------------------------------------------------------------*/
 
 //on document ready load old user data and new fields
 $(document).ready( function(){
-//alert($('#users').attr('name'));
     $('#display_form').css('display','none');
 //if user not set 
     if (!$('#users').text()) {
@@ -141,7 +199,7 @@ $(document).ready( function(){
     }
 //selection box    
     for (var i=0; i<5; i++) {
-        $('#selection_box').append('<select style="font-size:16px; margin:10px 10px;" id='+i+'></select>');
+        $('#selection_box').append('<select style="font-size:18px; margin:10px 10px;" class="col-md-3" id='+i+'></select>');
     }
     
     $('select').css('display','none');
@@ -181,7 +239,6 @@ $(document).ready( function(){
                     }  
                     get_id = get_id-1;
                     
-                    
                     $.post('php/examtype.php',{get_form_to_display:value,user_name:$('#users').attr('name')}, function(form_field){
                         //form already filled
                             if (form_field =="filled") {
@@ -191,8 +248,7 @@ $(document).ready( function(){
                                 $.post('php/examtype.php',{user_name:$('#users').attr('name'), saved_form_no:form_no,Attempt:'0'},function(result){
                                 if (result !="failure") {
                                     var obj = JSON.parse(result);
-                                    //alert(obj['total_field']+" "+obj['form_data']+" "+obj['user_data']+" "+form_no+" "+obj['title']+" "+obj['attempt_no']);
-                                    $('#form_box').append(get_filled_form_struct(obj['total_field'],obj['form_data'],obj['user_data'],form_no,obj['title'],obj['attempt_no']));
+                                    $('#form_box').append(get_filled_form_struct(obj['title'],obj['form_field'],obj['security'],form_no,obj['user_data'],obj['attempt_no']));
                                 }else{
                                     alert("failure");
                                 }
@@ -202,7 +258,7 @@ $(document).ready( function(){
                             else{
                                 $('#form_box').html(' ');
                                 var obj = JSON.parse(form_field);
-                                structure(obj['form_field'],obj['form_no']);
+                                structure(obj['form_field'],obj['security'],obj['form_no']);
                             }    
                         });
                         
@@ -223,7 +279,7 @@ $(document).ready( function(){
 //insert user data event
     $('#form_box').on('click','#add_data', function(){
     clean_form_box();
-    if (!$('#form_box table tr td input').val() =="") {
+    if ($.trim($('#form_box table tr td input').val())) {
         $(this).attr('disabled','true');
         $(this).html("<i class='fa fa-circle-o-notch fa-spin'></i><span>processing.......</span>");
         var field_name ="";
@@ -241,7 +297,6 @@ $(document).ready( function(){
                     success_box("data Added Successfully");
                     $('#form_box .overlay').remove();
                     $('#add_data').html("Data Added Successfully");
-                    //saved_record($('#users').attr('name'));
                 }else{
                     $('#form_box .overlay').remove();
                     warning_box("Something wrong");
@@ -250,7 +305,7 @@ $(document).ready( function(){
                 }
             });
     }else{
-        alert("please field all requierd field");
+        warning_box("please fill all requierd field");
     }
     });
  
@@ -267,11 +322,12 @@ $(document).ready( function(){
         var form_no = $(this).attr('name');
         var form_name =$(this).attr('title');
         $.post('php/examtype.php',{user_name:$('#users').attr('name'), saved_form_no:$(this).attr('name'),Attempt:attempt},function(result){
-            //alert(result);
+            var obj = JSON.parse(result);
             if (result !="failure") {
                 $('#form_box').html(' ');
                 var obj = JSON.parse(result);
-                $('#form_box').append(get_filled_form_struct(obj['total_field'],obj['form_data'],obj['user_data'],form_no,obj['title'],obj['attempt_no']));
+                $('#form_box').append(get_filled_form_struct(                               
+                obj['title'],obj['form_field'],obj['security'],form_no,obj['user_data'],obj['attempt_no']));
             }else{
                 alert("failure");
             }
@@ -280,7 +336,8 @@ $(document).ready( function(){
 
 //update user data event    
     $('#form_box').on('click', '#update_data', function(){
-        if ($('#form_box table tr td input').val() ==""){
+        clean_form_box();
+        if (!$.trim($('#form_box table tr td input').val())){
             alert("please field all requierd field");
         }else{
             var data_field =[];
@@ -298,16 +355,11 @@ $(document).ready( function(){
                     }
                     else{
                         $('#form_box .overlay').remove();
-                        $('#form_box').append("<h1>Something wrong</h1>");
-						$(this).removeAttr('disabled');
-                        $('#update_data').html("Add Data again");
+                        warning_box("Data not updated please check your input data");
+			$(this).removeAttr('disabled');
+                        $('#add_data').html("Add Data again");
                     }
                 });
-            $.post('php/examtype.php',{saved_user_name:$('#users').attr('name')},function(result){
-                var obj = JSON.parse(result);
-                old_simple_record(obj['simple']);
-                old_comp_record(obj['comp']);
-            });
         }
         });
   
@@ -330,36 +382,38 @@ $(document).ready( function(){
                 old_simple_record(obj['simple']);
                 old_comp_record(obj['comp']);
             });
-        
         });
-
-
 });
 
 
 function saved_record(user_name) {
     $.post('php/examtype.php',{saved_user_name:user_name},function(result){
-            var obj = JSON.parse(result);
-            old_simple_record(obj['simple']);
-            old_comp_record(obj['comp']);
+            if (result) {
+                //alert(result);
+                var obj = JSON.parse(result);
+                old_simple_record(obj['simple']);
+                old_comp_record(obj['comp']);
+            }
         });
 }
 
 
+//CLEAR form Box
 function clean_form_box() {
-    //alert("heelo");
     $('#display_form #success').slideUp('slow');
     $('#display_form #success').html(' ');
     $('#display_form #warning').slideUp('slow');
     $('#display_form #warning').html(' ');
 }
 
+//Respose Success
 function success_box(msg) {
     $('#display_form #success').slideUp('slow');
     $('#display_form #success').html('<p style="font-size:20px" class="pager"><i class="fa fa-check-circle"></i>  '+msg+'</p>');
     $('#display_form #success').slideDown('slow');
 }
 
+///Respose failure
 function warning_box(msg) {
     $('#display_form #warning').slideUp('slow');
     $('#display_form #warning').html('<p style="font-size:20px" class="pager"><i class="fa fa-times-circle"></i>  '+msg+'</p>');
@@ -367,11 +421,12 @@ function warning_box(msg) {
 }
 
 
+//processing operation
 function processing(location_id) {
     $('#'+location_id).html('<center><i class="fa fa-circle-o-notch fa-spin"></i></center>');
 }
 
-
+//warning to user for invalide input 
 function warning(warning_type) {
     var warning = {'length':"invalid length",'invalid':"invalid input"};
     if (warning_type in warning) {
@@ -382,6 +437,7 @@ function warning(warning_type) {
 }
 
 
+/*--------------------------------------------Types of user data ---------------------------------------*/
 function number(input_value,limit) {
             $('#display_form #warning').slideUp('slow');
             if (!isNaN(input_value)) {
@@ -410,7 +466,7 @@ function percentage(input_value, limit) {
 }
         
 
-function grade(input_value,type_list) {
+function Grade(input_value,type_list) {
     $('#display_form #warning').slideUp('slow');
             set_list = type_list.split(',');
             if (set_list.indexOf(input_value.toUpperCase()) != -1) {
@@ -419,9 +475,3 @@ function grade(input_value,type_list) {
                 return false;
             }
         }
-
-
-
-
-
-

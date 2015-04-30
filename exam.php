@@ -68,8 +68,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         <!-- Main content -->
         <section class="content" id='contents'>
-              <div class='box box-primary' id='selection_box'>
-                
+              <div class='box box-primary'>
+                <div class='box-header with-border'>
+		  <h3 class='box-title'>Select Exam Type</h3>
+		</div>
+		<div class='box-body'>
+		  <div class='row' id='selection_box'>
+		  </div>
+		</div>
               </div>
               
               <div class="box box-default" id='display_form'>
@@ -98,7 +104,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="box box-default">
                   <div class="box-header with-border">
                     <h3 class="box-title">
-                      		  Acadmic Record
+                      		  Academic Record
                     </h3>
                     <div class="box-tools pull-right">
                       <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -112,7 +118,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </div>
 	    </div>
              
-	    <div id='level_2'>  
+	    <div id='level_2' style='display: none'>  
               <div class="box-body" id="form_box">
 
                 <div class="box box-default">

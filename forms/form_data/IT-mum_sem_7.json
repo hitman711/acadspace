@@ -1,0 +1,128 @@
+{
+  "form_name":"IT-mum-semester-7",
+  "Field_Parameter": 5,
+  "Total_Fields": 11,
+  "header_field":[
+    "Subject","Grade","Grade Point","Credit Course","sum of CG"
+    ],
+  "field_name":[
+    "Subject",
+	"Grade",
+	"Grade_Point",
+	"Credit_Course",
+	"Sum_of_CG",
+	"CGPA"
+    ],
+  "Field_1":{
+    "Subject":"Software Management System",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":4,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  },
+  "Field_2":{
+    "Subject":"Cloud Computing",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":4,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  },
+  "Field_3":{
+    "Subject":"Intelligent System",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":4,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  },
+  "Field_4":{
+    "Subject":"Wireless Technology",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":4,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  },
+  "Field_5":{
+    "Subject":"Elective Subject-I",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":4,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  },
+  "Field_6":{
+    "Subject":"Software Management System (TW /P)",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":1,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  },
+  "Field_7":{
+    "Subject":"Cloud Computing (TW /P)",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":1,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  },
+  "Field_8":{
+    "Subject":"Intelligent System (TW /P)",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":1,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  },
+  "Field_9":{
+    "Subject":"Wireless Technology (TW /P)",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":1,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  },
+  "Field_10":{
+    "Subject":"Elective Subject-I (TW /P)",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":1,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  },
+  "Field_11":{
+    "Subject":"Project- I",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":1,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  }
+}
+
+	

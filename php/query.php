@@ -78,6 +78,24 @@ class querys {
         return $session;
     }
     
+/*---------------------------------------------------------------------------User Profile--------------------------------------------------------*/    
+
+//read profile data
+    public function read_profile($username){
+        $read_profile = "SELECT `primary`, `secondary`, `undergraduate`, `postgraduation`, `doctorate` FROM `user_profile` WHERE `user_code`='$username'";
+        return $read_profile;
+    }
+    
+    public function edu_form_data($username,$form_name){
+        $edu_form_data = "SELECT `$form_name` FROM `user_profile` WHERE `user_code`='$username'";
+        return $edu_form_data;
+    }
+    
+    public function update_form_data($username,$form_name,$form_data){
+        $update_form_data = "UPDATE `user_profile` SET `$form_name`='$form_data' WHERE `user_code`='$username'";
+        return $update_form_data;
+    }
+    
 
 /*--------------------------------------------------------------------------------------above function define user registration, login and session data -------------------------------------------------------------------------------- */
 //get table name
@@ -102,10 +120,17 @@ class querys {
     
     //filled information
     public function get_form_field($form_no){
-        $get_form_filed ="SELECT `total_field`,`form_field`, `form_title` FROM `form_field` WHERE `form_id`='$form_no'";
+        $get_form_filed ="SELECT `total_field`,`form_field`,`security` , `form_title` FROM `form_field` WHERE `form_id`='$form_no'";
         return $get_form_filed;
     }
     
+    //get form sub type
+    public function form_sub_type($form_no){
+        $form_sub_type = "SELECT `sub_type` FROM `sub_type` WHERE `form_no`='$form_no'"; 
+        return $form_sub_type;
+    }
+    
+
     //get field
     public function get_field($table){
         $get_field = "SELECT `Level_Data`, `Level_Code`, `Next_Level`, `Next_Table` FROM `$table`";
@@ -120,7 +145,7 @@ class querys {
     
     //get form
     public function get_form($form, $form_no){
-        $get_form = "SELECT `total_field`,`form_field` FROM `$form` where `form_id`='$form_no'";
+        $get_form = "SELECT `form_field`,`security` FROM `$form` where `form_id`='$form_no'";
         return $get_form;
     }
     
@@ -217,6 +242,12 @@ class querys {
         $update_filled_form ="UPDATE `user_filled_form` SET `form_filled`='$data' WHERE `user_code`='$username'";
         return $update_filled_form;
     }
+    
+    public function insert_user_filled_form($username, $data){
+        $update_filled_form ="INSERT INTO `user_filled_form`(`user_code`, `form_filled`) VALUES ('$username','$data')";
+        return $update_filled_form;
+    }
+    
     
     
     //delete user record

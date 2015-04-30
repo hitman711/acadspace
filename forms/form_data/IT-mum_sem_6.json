@@ -1,0 +1,118 @@
+{
+  "form_name":"IT-mum-semester-6",
+  "Field_Parameter": 5,
+  "Total_Fields": 10,
+  "header_field":[
+    "Subject","Grade","Grade Point","Credit Course","sum of CG"
+    ],
+  "field_name":[
+    "Subject",
+	"Grade",
+	"Grade_Point",
+	"Credit_Course",
+	"Sum_of_CG",
+	"CGPA"
+    ],
+  "Field_1":{
+    "Subject":"Software Engineering",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":4,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  },
+  "Field_2":{
+    "Subject":"Distributed System",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":4,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  },
+  "Field_3":{
+    "Subject":"System & Web Security",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":4,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  },
+  "Field_4":{
+    "Subject":"Data Mining & Business Intelligence",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":4,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  },
+  "Field_5":{
+    "Subject":"Advance Internet Technology",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":4,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  },
+  "Field_6":{
+    "Subject":"Software Engineering (TW /P)",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":1,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  },
+  "Field_7":{
+    "Subject":"Distributed System (TW /P)",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":1,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  },
+  "Field_8":{
+    "Subject":"System & Web Security (TW /P)",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":1,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  },
+  "Field_9":{
+    "Subject":"Data Mining & Business Intelligence (TW /P)",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":1,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  },
+  "Field_10":{
+    "Subject":"Advance Internet Technology (TW /P)",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":1,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  }
+}
+
+	

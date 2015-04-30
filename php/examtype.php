@@ -1,13 +1,6 @@
 <?php
 include('query.php');
-include('config.php');
-$host = 'localhost';
-$admin='root';
-$pass='28263506';
-$database ='acadspace';
-$sample_data= 'acadmic';
-  
-  
+include('configuration.php');
 $call_function = new operation();
 
 /*-------------------------------------------------------------------------------------the  below function take input form user and pass to specific function----------------------------------------------------------------------------*/
@@ -17,7 +10,7 @@ if(isset($_POST['saved_user_name'])){
     $get_available_record = $call_function->user_saved_record_info($username); 
     return $get_available_record;
 }
-//first selection box 
+//first selection box
 if(isset($_POST['level_1_selection_box'])){
     $level = $_POST['level_1_selection_box'];
     $level_one_record = $call_function->first_selection_box($level);
@@ -54,7 +47,6 @@ if(isset($_POST['insert_data']) &&  isset($_POST['insert_marks']) && isset($_POS
     $marks = $_POST['insert_marks'];
     $total = htmlspecialchars($_POST['total']);
     $validate_user_data = $call_function->validate_user_form_data($marks,$form_no);
-    //echo $validate_user_data;
     if($validate_user_data == "success"){
         $insert_user_record = $call_function->insert_user_record($username,$form_no,$marks, $total);
         if($insert_user_record == 'success'){
@@ -66,10 +58,10 @@ if(isset($_POST['insert_data']) &&  isset($_POST['insert_marks']) && isset($_POS
             }
         }else{
             return $insert_user_record;
-        }    
+        }
     }else{
         echo "failure";    
-    }  
+    }
 }
 
 
@@ -212,7 +204,8 @@ class operation {
             for($i =0; $i<$data['Parameter']['Total_Simple_Exam_Field']; $i++){
                 $form_code = $data['Simple_Exam'][$i]['Form_Code'];
                 $title = $this->get_form_name($form_code);
-                array_push($pass,array($title,$form_code)); 
+                $sub_type = $data['Simple_Exam'][$i]['form_type'];
+                array_push($pass,array($sub_type,$title,$form_code)); 
             }
             $pass = array_filter($pass);
             sort($pass);
@@ -223,7 +216,8 @@ class operation {
                 $title = $this->get_form_name($form_code);
                 $attempt =$data['Comp_Exam'][$i]['Attempt'];
                 $table_name = $data['Comp_Exam'][$i]['Table_name'];
-                array_push($pass,array($table_name,$form_code,$attempt,$title));
+                $sub_type = $data['Comp_Exam'][$i]['form_type'];
+                array_push($pass,array($sub_type,$title,$form_code,$table_name,$attempt,));
             }
             $pass = array_filter($pass);
             sort($pass);
@@ -245,7 +239,6 @@ class operation {
             array_push($obj->{'Simple_Exam'},$new_data);
         }
         else if($type == "comp"){
-            //$new_exam = array("Form_Code"=> "$form_no","Table_name"=> "$table_name","Attempt"=>"$attempt");
             $obj->{'Parameter'}->{'Total_Comp_Exam_Field'} = $obj->{'Parameter'}->{'Total_Comp_Exam_Field'}+1; 
             array_push($obj->{'Comp_Exam'},$new_data);    
             }
@@ -274,7 +267,7 @@ class operation {
             array_push($data['Comp_Exam'],$new_data);
         }
         $data =json_encode($data,true);
-        $query = $sql->update_user_filled_form($user_code,$data);
+        $query = $sql->insert_user_filled_form($user_code,$data);
         $result = mysql_query($query,$connect->database_info());
         if($result){
             return "success";
@@ -317,7 +310,6 @@ class operation {
                           ,"level_code"=>$row['Level_Code']
                           ,"next_level"=>$row['Next_Level']
                           ,"next_table"=>$row['Next_Table']);
-            //$data =json_encode($data,true);
             array_push($pass,$data);
         }
         echo json_encode($pass);
@@ -361,12 +353,10 @@ class operation {
             $pass = array();
             for($i=0; $i<mysql_num_rows($result); $i++){
               $row = mysql_fetch_assoc($result);
-            //print_r($row);
                 $data = array("level_data"=>$row['Level_Data']
                           ,"level_code"=>$row['Level_Code']
                           ,"next_level"=>$row['Next_Level']
                           ,"next_table"=>$row['Next_Table']);
-                //$data =json_encode($data,true);
                 array_push($pass,$data);
             }
             echo json_encode($pass);
@@ -417,12 +407,13 @@ class operation {
         }
         else{
             $form_data = $this->get_form_info($next_table,$form_code);
-            $form_field = $form_data['form_field'];
-            
-            $pass_data =array("total_field"=>$form_data['total_field'],
+            $form_field = file_get_contents($form_data['form_field']);
+            $security = file_get_contents($form_data['security']);
+            $pass_data =array(
                               "form_no"=>$form_code,
-                              "form_field"=>json_decode(nl2br(stripslashes($form_field))));
-            
+                              "form_field"=>$form_field,
+                              "security"=>$security
+                              );
             echo json_encode($pass_data,true);
         }
     }
@@ -443,7 +434,17 @@ class operation {
         $connect->close_database();
     }
     
-       
+    public function form_sub_type($form_no){
+        global $sample_data;
+        $connect = new databases();
+        $db_connect = $connect->select_db($sample_data);
+        $sql = new querys();
+        $query = $sql->form_sub_type($form_no);
+        $result = mysql_query($query,$connect->database_info());
+        $row = mysql_fetch_assoc($result);
+        return $row['sub_type'];
+        $connect->close_database();
+    }
     
     
     
@@ -451,12 +452,11 @@ class operation {
     public function insert_user_record($username,$form_no,$marks, $total_user_mark){
         $user_code = $this->user_unique_code($username);
         $validate_exam_code = $this->validate_exam_code($form_no);
-        
+        $sub_type = $this->form_sub_type($form_no);
         //compatative record
         if($validate_exam_code != "failure"){
             $table_name = $validate_exam_code;
             $attempt = $this->get_attempt_record($user_code,$table_name,$form_no);
-      
             if($attempt !=0){
                 $attempt = $attempt+1;
             }else{
@@ -465,7 +465,7 @@ class operation {
             
             $insert_record = $this->insert_record($table_name,$user_code,$form_no,$marks,$total_user_mark,$attempt);
             if($insert_record == "success"){
-                $new_exam = array("Form_Code"=> "$form_no","Table_name"=> "$table_name","Attempt"=>$attempt);
+                $new_exam = array("form_type"=>$sub_type,"Form_Code"=> "$form_no","Table_name"=> "$table_name","Attempt"=>$attempt);
                 $data = $this->user_saved_record($username);
                 if(empty($data)){
                     $insert_new_record = $this->insert_new_user_saved_record($user_code,'comp',$new_exam);
@@ -475,21 +475,19 @@ class operation {
                         return "failure";
                     }
                 }else{
-                    $new_exam = array("Form_Code"=> "$form_no","Table_name"=> "$table_name","Attempt"=>$attempt);
+                    $new_exam = array("form_type"=>$sub_type,"Form_Code"=> "$form_no","Table_name"=> "$table_name","Attempt"=>$attempt);
                     $update_user_filled_form = $this->update_user_saved_record($user_code,$data,'comp',$new_exam);
                     return $update_user_filled_form;  
                 }
             }
         }
-        //Acadmic record
+        //Academic record
         else{
             $attempt = 0;
             $table_name = "user_record";
             $insert_record = $this->insert_record($table_name,$user_code,$form_no,$marks,$total_user_mark, $attempt);
-            
-            //if initial record not available
             if($insert_record =="success"){
-                $new_exam = array("Form_Code"=> "$form_no","Table_name"=> "$table_name");
+                $new_exam = array("form_type"=>$sub_type,"form_type"=>$sub_type,"Form_Code"=> "$form_no","Table_name"=> "$table_name");
                 $data = $this->user_saved_record($username);
                 if(empty($data)){
                     $insert_new_record = $this->insert_new_user_saved_record($user_code,'acadmic',$new_exam);
@@ -499,10 +497,9 @@ class operation {
                         return "failure";
                     }
                 }else{
-                    $new_exam = array("Form_Code"=> "$form_no","Table_name"=> "$table_name");
+                    $new_exam = array("form_type"=>$sub_type,"form_type"=>$sub_type,"Form_Code"=> "$form_no","Table_name"=> "$table_name");
                     $update_user_filled_form = $this->update_user_saved_record($user_code,$data,'acadmic',$new_exam);
                     return $update_user_filled_form;
-                    //echo "i am available already";  
                 }
             }
             else{
@@ -538,26 +535,23 @@ class operation {
             $table_name = "user_record";
         }
         if($form_data !="failure"){
-            $total_field = $form_data['total_field'];
-            $form_field = $form_data['form_field'];
+            $form_field = file_get_contents($form_data['form_field']);
+            $security = file_get_contents($form_data['security']);
             $form_title =$form_data['form_title'];
             
             $form_name = $this->get_form_name($form_no);
             if($form_name !="failure"){
-                //echo "$user_code,$table_name,$form_no,$attempt_no";
                 $user_data = $this->get_user_record($user_code,$table_name,$form_no,$attempt_no);
                 
                 if($user_data !="failure"){
-                    $user_data = json_encode($user_data);
-                    //print_r(json_decode(nl2br(stripslashes($form_field))));
-                    
+                    $user_data = json_encode($user_data);              
                     $pass = array("title"=>"$form_title",
-                                  "total_field"=>"$total_field",
-                                  "form_data"=>nl2br(stripslashes($form_field)),
+                                  "form_field"=>$form_field,
+                                  "security"=>$security,                                 
                                   "user_data" =>"$user_data",
                                   "attempt_no" =>"$attempt_no"
                                   );
-                    
+                    //print_r($pass);
                     echo json_encode($pass,true);
                 }
                 else{
@@ -654,7 +648,6 @@ class operation {
             }
             $data = json_encode($data,true);
             $query = $sql->update_user_filled_form($user_code, $data);
-            //echo $query;
             $result = mysql_query($query, $connect->database_info());
             if($result){
                 return "success";    
@@ -825,15 +818,13 @@ public function delete_analytic_record($username,$form_no){
 
     public function validate_user_form_data($user_data,$form_no){
         $form_data = $this->get_form_field($form_no);
-        $form_data = stripcslashes($form_data['form_field']);
-        $form_data = json_decode($form_data,true)['form_data'];
+        $form_data = json_decode(file_get_contents($form_data['form_field']),true);
         $i =0;
         for($i; $i<$form_data['Total_Fields']; $i++){
             if($form_data['Field_'.($i+1)]['limit'] && $form_data['Field_'.($i+1)]['input_length'] && $form_data['Field_'.($i+1)]['input_type']){
                 $input_type = $form_data['Field_'.($i+1)]['limit'];
                 $input_length = $form_data['Field_'.($i+1)]['input_length'];
                 $input_format =$form_data['Field_'.($i+1)]['input_type'];
-                
                 if(gettype($input_type)=="array"){
                     if(in_array(strtoupper($user_data[$i]),$input_type) && $input_length == sizeof($user_data[$i])){
                         continue;
@@ -862,11 +853,6 @@ public function delete_analytic_record($username,$form_no){
         }
         return "success";
     }
-
-
-
-
-
 }
 
 

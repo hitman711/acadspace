@@ -1,0 +1,78 @@
+{
+  "form_name":"IT-mum-semester-3",
+  "Field_Parameter": 5,
+  "Total_Fields": 6,
+  "header_field":[
+    "Subject","Grade","Grade Point","Credit Course","sum of CG"
+    ],
+  "field_name":[
+    "Subject",
+	"Grade",
+	"Grade_Point",
+	"Credit_Course",
+	"Sum_of_CG",
+	"CGPA"
+    ],
+  "Field_1":{
+    "Subject":"Applied Mathematics III",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":5,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  },
+  "Field_2":{
+    "Subject":"Data Structure & Algorithm Analysis",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":5,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  },
+  "Field_3":{
+    "Subject":"Object Oriented Programming Methodology",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":5,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  },
+  "Field_4":{
+    "Subject":"Analog & Digital Circuits",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":5,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  },
+  "Field_5":{
+    "Subject":"Database Management Systems",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":4,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  },
+  "Field_6":{
+    "Subject":"Principle of Analog & Digital Communication",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":4,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  }
+}
+
+	

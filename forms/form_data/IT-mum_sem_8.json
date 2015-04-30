@@ -1,0 +1,191 @@
+{
+  "form_name": "IT-mum-semester-8",
+  "Field_Parameter": 5,
+  "Total_Fields": 9,
+  "header_field": [
+    "Subject",
+    "Grade",
+    "Grade Point",
+    "Credit Course",
+    "sum of CG"
+  ],
+  "field_name": [
+    "Subject",
+    "Grade",
+    "Grade_Point",
+    "Credit_Course",
+    "Sum_of_CG",
+    "CGPA"
+  ],
+  "Field_1": {
+    "Subject": "Storage Network Management & Retrival",
+    "Grade": "text",
+    "Grade_Point": 0,
+    "Credit_Course": 4,
+    "Sum_of_CG": 0,
+    "input_length": 1,
+    "input_type": "Grade",
+    "limit": [
+      "O",
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "P"
+    ]
+  },
+  "Field_2": {
+    "Subject": "Big Data Analytics",
+    "Grade": "text",
+    "Grade_Point": 0,
+    "Credit_Course": 4,
+    "Sum_of_CG": 0,
+    "input_length": 1,
+    "input_type": "Grade",
+    "limit": [
+      "O",
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "P"
+    ]
+  },
+  "Field_3": {
+    "Subject": "Computer Simulation & Modeling",
+    "Grade": "text",
+    "Grade_Point": 0,
+    "Credit_Course": 4,
+    "Sum_of_CG": 0,
+    "input_length": 1,
+    "input_type": "Grade",
+    "limit": [
+      "O",
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "P"
+    ]
+  },
+  "Field_4": {
+    "Subject": "Elective - II",
+    "Grade": "text",
+    "Grade_Point": 0,
+    "Credit_Course": 4,
+    "Sum_of_CG": 0,
+    "input_length": 1,
+    "input_type": "Grade",
+    "limit": [
+      "O",
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "P"
+    ]
+  },
+  "Field_5": {
+    "Subject": "Storage Network Management & Retrival (TW /P)",
+    "Grade": "text",
+    "Grade_Point": 0,
+    "Credit_Course": 1,
+    "Sum_of_CG": 0,
+    "input_length": 1,
+    "input_type": "Grade",
+    "limit": [
+      "O",
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "P"
+    ]
+  },
+  "Field_6": {
+    "Subject": "Big Data Analytics (TW /P)",
+    "Grade": "text",
+    "Grade_Point": 0,
+    "Credit_Course": 1,
+    "Sum_of_CG": 0,
+    "input_length": 1,
+    "input_type": "Grade",
+    "limit": [
+      "O",
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "P"
+    ]
+  },
+  "Field_7": {
+    "Subject": "Computer Simulation & Modeling (TW /P)",
+    "Grade": "text",
+    "Grade_Point": 0,
+    "Credit_Course": 1,
+    "Sum_of_CG": 0,
+    "input_length": 1,
+    "input_type": "Grade",
+    "limit": [
+      "O",
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "P"
+    ]
+  },
+  "Field_8": {
+    "Subject": "Elective Subject-II (TW /P)",
+    "Grade": "text",
+    "Grade_Point": 0,
+    "Credit_Course": 1,
+    "Sum_of_CG": 0,
+    "input_length": 1,
+    "input_type": "Grade",
+    "limit": [
+      "O",
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "P"
+    ]
+  },
+  "Field_9": {
+    "Subject": "Project - II",
+    "Grade": "text",
+    "Grade_Point": 0,
+    "Credit_Course": 6,
+    "Sum_of_CG": 0,
+    "input_length": 1,
+    "input_type": "Grade",
+    "limit": [
+      "O",
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "P"
+    ]
+  }
+}

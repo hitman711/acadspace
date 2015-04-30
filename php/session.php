@@ -1,6 +1,7 @@
 <?php
-include('database.php');
+include('configuration.php');
 include('query.php');
+$conn = mysql_connect($host, $admin,$pass) or Die("database connectivity failed");
 session_start();
 if(isset($_SESSION['login_user'])){
     //echo $_SESSION['login_user'];     

@@ -1,12 +1,13 @@
 <?php
 include('query.php');
-include('config.php');
+include('configuration.php');
+/*
 $host = 'localhost';
 $admin='root';
 $pass='28263506';
 $database ='acadspace';
 $sample_data= 'acadmic';
-
+*/
 
 //load user analytic stats
 

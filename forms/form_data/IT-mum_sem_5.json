@@ -1,0 +1,130 @@
+{
+  "sub_field":"undergraduate",
+  "form_name":"IT-mum-semester-5",
+  "Field_Parameter": 5,
+  "Total_Fields": 11,
+  "header_field":[
+    "Subject","Grade","Grade Point","Credit Course","sum of CG"
+    ],
+  "field_name":[
+    "Subject",
+	"Grade",
+	"Grade_Point",
+	"Credit_Course",
+	"Sum_of_CG",
+	"CGPA"
+    ],
+  "Field_1":{
+    "Subject":"Computer Graphics and virtual Reality",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":4,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  },
+  "Field_2":{
+    "Subject":"Operating Systems",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":4,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  },
+  "Field_3":{
+    "Subject":"MicroController & Embedded Systems",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":4,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  },
+  "Field_4":{
+    "Subject":"Advanced Database Management Systems",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":4,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  },
+  "Field_5":{
+    "Subject":"Open Source Technologies",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":3,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  },
+  "Field_6":{
+    "Subject":"Business communication and Ethics",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":2,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  },
+  "Field_7":{
+    "Subject":"Computer Graphics and Virtual Reality (TW / P)",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":1,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  },
+  "Field_8":{
+    "Subject":"Operating Systems (TW / P)",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":1,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  },
+  "Field_9":{
+    "Subject":"Microcontroller and Embedded (TW / P)",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":1,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  },
+  "Field_10":{
+    "Subject":"Advanced Database Management Systems (TW / P)",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":1,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  },
+  "Field_11":{
+    "Subject":"Open Source Technologies (TW / P)",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":5,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  }
+  
+}
+
+	

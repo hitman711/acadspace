@@ -75,12 +75,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     <div class='row'>
-                    <div class='col-md-6' id='form_data'>
+                    <div class='col-md-12' id='form_data'>
                             
                     </div>
-                    
-                    
-                
                     </div>
                   </div><!-- /.box-body -->
               </div>

@@ -1,0 +1,134 @@
+{
+  "form_name": "COMP-mum-semester-7",
+  "Field_Parameter": 5,
+  "Total_Fields": 6,
+  "header_field": [
+    "Subject",
+    "Grade",
+    "Grade Point",
+    "Credit Course",
+    "sum of CG"
+  ],
+  "field_name": [
+    "Subject",
+    "Grade",
+    "Grade_Point",
+    "Credit_Course",
+    "Sum_of_CG",
+    "CGPA"
+  ],
+  "Field_1": {
+    "Grade": "text",
+    "Grade_Point": "0",
+    "Credit_Course": 5,
+    "Subject": "Digital SIgnal Processing",
+    "Sum_of_CG": 0,
+    "input_length": "1",
+    "input_type": "Grade",
+    "limit": [
+      "O",
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "P"
+    ]
+  },
+  "Field_2": {
+    "Grade": "text",
+    "Grade_Point": "0",
+    "Credit_Course": 5,
+    "Subject": "Cryptography $ System Security",
+    "Sum_of_CG": 0,
+    "input_length": "1",
+    "input_type": "Grade",
+    "limit": [
+      "O",
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "P"
+    ]
+  },
+  "Field_3": {
+    "Grade": "text",
+    "Grade_Point": "0",
+    "Credit_Course": 5,
+    "Subject": "Artificial Intelligence",
+    "Sum_of_CG": 0,
+    "input_length": "1",
+    "input_type": "Grade",
+    "limit": [
+      "O",
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "P"
+    ]
+  },
+  "Field_4": {
+    "Grade": "text",
+    "Grade_Point": "0",
+    "Credit_Course": 5,
+    "Subject": "Elective II",
+    "Sum_of_CG": 0,
+    "input_length": "1",
+    "input_type": "Grade",
+    "limit": [
+      "O",
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "P"
+    ]
+  },
+  "Field_5": {
+    "Grade": "text",
+    "Grade_Point": "0",
+    "Credit_Course": 3,
+    "Subject": "Project I",
+    "Sum_of_CG": 0,
+    "input_length": "1",
+    "input_type": "Grade",
+    "limit": [
+      "O",
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "P"
+    ]
+  },
+  "Field_6": {
+    "Grade": "text",
+    "Grade_Point": "0",
+    "Credit_Course": 2,
+    "Subject": "Network Threats & Attacks Laboratory",
+    "Sum_of_CG": 0,
+    "input_length": "1",
+    "input_type": "Grade",
+    "limit": [
+      "O",
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "P"
+    ]
+  }
+}

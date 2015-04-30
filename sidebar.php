@@ -1,6 +1,6 @@
 <div class="user-panel">
             <div class="pull-left image">
-              <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
+              <img src="img/blank-profile.jpg" class="img-circle" alt="User Image" id='user_profile'/>
             </div>
             <div class="pull-left info">
               <p><?php if(isset($user_valid)){echo $user_valid;}?></p>
@@ -24,7 +24,12 @@
           <ul class="sidebar-menu">
             <li class="header">HEADER</li>
             <!-- Optionally, you can add icons to the links -->
-            <li id='exam'><a href="exam.php"><span>Exam</span></a></li>
+            <li id='exam'><a href="exam.php"><i class="fa fa-file-text-o"></i><span>Exam</span></a></li>
+            <li><a href="analytics.php"><i class="fa fa-pie-chart"></i><span> Analytics</span></a></li>
+            <li><a href="analytics.php"><i class="fa fa-user"></i><span> Friends</span></a></li>
+            <li><a href="analytics.php"><i class="fa fa-trophy"></i><span> Record</span></a></li>
+            <li><a href="analytics.php"><i class="fa fa-users"></i><span> About Us</span></a></li>
+            <!--
             <li><a href="#"><span>Another Link</span></a></li>
             <li class="treeview">
               <a href="#"><span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
@@ -33,5 +38,6 @@
                 <li><a href="#">Link in level 2</a></li>
               </ul>
             </li>
-            <li><a href="analytics.php"><i class="fa fa-pie-chart"></i><span> Analytics</span></a></li>
+            -->
+          
           </ul>

@@ -1,0 +1,89 @@
+{
+  "sub_field":"undergraduate",
+  "form_name":"mum-semester-1",
+  "Field_Parameter": 5,
+  "Total_Fields": 7,
+  "header_field":[
+    "Subject","Grade","Grade Point","Credit Course","sum of CG"
+    ],
+  "field_name":[
+    "Subject",
+	"Grade",
+	"Grade_Point",
+	"Credit_Course",
+	"Sum_of_CG",
+	"CGPA"
+    ],
+  "Field_1":{
+    "Subject":"Applied Mathematics I",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":5,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  },
+  "Field_2":{
+    "Subject":"Applied Physics I",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":3.5,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  },
+  "Field_3":{
+    "Subject":"Applied Chemistry I",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":3.5,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  },
+  "Field_4":{
+    "Subject":"Engineering Mechanics",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":6,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  },
+  "Field_5":{
+    "Subject":"Basic Electrical & Electronic Engineering",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":5,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  },
+  "Field_6":{
+    "Subject":"Environmental Studies",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":2,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  },
+  "Field_7":{
+    "Subject":"Basic Workshop practice",
+    "Grade":"text",
+    "Grade_Point":0,
+    "Credit_Course":2,
+    "Sum_of_CG":0,
+    "input_length":1,
+    "input_type":"Grade",
+    "limit":["O","A","B","C","D","E","F","P"]
+  }
+}
+
+	

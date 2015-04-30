@@ -1,5 +1,5 @@
 <?php
-include('database.php');
+include('configuration.php');
 include('query.php');
 include('mail.php');
 
@@ -9,7 +9,7 @@ include('mail.php');
       isset($_POST['user']) &&
       isset($_POST['pass'])) 
     {
-    
+		$conn = mysql_connect($host, $admin,$pass) or Die("database connectivity failed");
          $fname =strip_tags($_POST['first']);
          $lname =strip_tags($_POST['last']);
          $email =strip_tags($_POST['email']);
@@ -33,6 +33,7 @@ include('mail.php');
             click below to redirect login page<br><a href='index.php'>Login<a>";
             }
           }
+		mysql_close($conn);
      }
 
 ?>

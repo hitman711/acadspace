@@ -1,9 +1,9 @@
 <?php
-include('database.php');
+include('configuration.php');
 include('query.php');
 session_start();
 $active_code =$_SESSION['login_user'];
-
+$conn = mysql_connect($host, $admin,$pass) or Die("database connectivity failed");
 $db = mysql_select_db($database, $conn);   
 $user_check =$_SESSION['login_user'];
 $sql = new querys();

@@ -5,7 +5,6 @@ $(document).ready( function(){
         $.getJSON(result,function(data){
         schema ='';
         total_records = Object.keys(data['Suceeded_Analytic']);
-        
         for (i=0; i<total_records.length; i++) {
             pass = data['Suceeded_Analytic'][total_records[i]];
             //alert(pass['Question']);

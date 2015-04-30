@@ -1,0 +1,134 @@
+{
+  "form_name": "COMP-mum-semester-4",
+  "Field_Parameter": 5,
+  "Total_Fields": 6,
+  "header_field": [
+    "Subject",
+    "Grade",
+    "Grade Point",
+    "Credit Course",
+    "sum of CG"
+  ],
+  "field_name": [
+    "Subject",
+    "Grade",
+    "Grade_Point",
+    "Credit_Course",
+    "Sum_of_CG",
+    "CGPA"
+  ],
+  "Field_1": {
+    "Grade": "text",
+    "Grade_Point": "0",
+    "Credit_Course": 5,
+    "Subject": "Applied Mathematics IV",
+    "Sum_of_CG": 0,
+    "input_length": "1",
+    "input_type": "Grade",
+    "limit": [
+      "O",
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "P"
+    ]
+  },
+  "Field_2": {
+    "Grade": "text",
+    "Grade_Point": "0",
+    "Credit_Course": 5,
+    "Subject": "Analysis of Algorithms",
+    "Sum_of_CG": 0,
+    "input_length": "1",
+    "input_type": "Grade",
+    "limit": [
+      "O",
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "P"
+    ]
+  },
+  "Field_3": {
+    "Grade": "text",
+    "Grade_Point": "0",
+    "Credit_Course": 5,
+    "Subject": "Computer Organization & Architecture",
+    "Sum_of_CG": 0,
+    "input_length": "1",
+    "input_type": "Grade",
+    "limit": [
+      "O",
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "P"
+    ]
+  },
+  "Field_4": {
+    "Grade": "text",
+    "Grade_Point": "0",
+    "Credit_Course": 5,
+    "Subject": "Database Management Systems",
+    "Sum_of_CG": 0,
+    "input_length": "1",
+    "input_type": "Grade",
+    "limit": [
+      "O",
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "P"
+    ]
+  },
+  "Field_5": {
+    "Grade": "text",
+    "Grade_Point": "0",
+    "Credit_Course": 4,
+    "Subject": "Theoretical Computer Science",
+    "Sum_of_CG": 0,
+    "input_length": "1",
+    "input_type": "Grade",
+    "limit": [
+      "O",
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "P"
+    ]
+  },
+  "Field_6": {
+    "Grade": "text",
+    "Grade_Point": "0",
+    "Credit_Course": 4,
+    "Subject": "Computer Graphics",
+    "Sum_of_CG": 0,
+    "input_length": "1",
+    "input_type": "Grade",
+    "limit": [
+      "O",
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "P"
+    ]
+  }
+}

@@ -1,8 +1,9 @@
 <?php
-include('database.php');
+include('configuration.php');
 include('query.php');
 if(isset($_POST['username']))
 {
+    $conn = mysql_connect($host, $admin,$pass) or Die("database connectivity failed");
     $db = mysql_select_db($database,$conn) or Die('Database not selected');
     $username = $_POST['username'];
     $sql = new querys();
@@ -36,9 +37,4 @@ if(isset($_POST['email']))
         mysql_close();
     }
 }
-
-
-
-
-
 ?>
