@@ -8,6 +8,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html>
   <head>
+      <title>User Analytics</title>
       <?php include('import.php');?>
     </head>
   <!--
@@ -53,7 +54,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="content-wrapper">
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
-			<h1>
+			<h1 style='margin-top: 20px'>
 				Analytics
 				<small>your analytics</small>
 			</h1>
@@ -98,5 +99,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="plugins/flot/jquery.flot.pie.min.js" type="text/javascript"></script>
     <!-- FLOT CATEGORIES PLUGIN - Used to draw bar charts -->
     <script src="plugins/flot/jquery.flot.categories.min.js" type="text/javascript"></script>
+	
+	
+	<script src="chart/knockout-3.0.0.js"></script>
+	<script src="chart/globalize.min.js"></script>
+	<script src="chart/jChart.js"></script>
+	<script src="chart/dx.chartjs.js"></script>
+	
+
 	</body>
+	
+	
+	
 </html>

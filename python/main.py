@@ -116,7 +116,6 @@ for i in range(0,len(data)):            # Iterating over resulted records (users
     open(Cfile_name,'w').write(json.dumps(Completed_Analytics))
     open(Pfile_name,'w').write(json.dumps(Partial_Analytics))
 
-
     # If record updated store it back to database
     if Data_Update_Flag == True:
         record_update_info = str(MySQLdb.escape_string('{"Total_Edited_Forms":"0","Edited_Form_List":[]}'))

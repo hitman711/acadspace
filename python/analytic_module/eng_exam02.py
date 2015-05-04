@@ -1,7 +1,7 @@
 import json
 def operation(db,unique_code):
 	graph_data =[]
-	#form_code = ['50101%']
+	#form_code = ['50102%']
 	sql = "SELECT `attempt`,`total` FROM `comp_gre` WHERE `user_code`='%s' AND `form_code` LIKE '%s'" %(unique_code,'50101%')
 	try:
 		results = db.RunQueryOnAcadspace(sql)
@@ -60,7 +60,7 @@ def operation(db,unique_code):
 	
 def dependancies():
 	dependent_forms = []
-	dependent_forms.append("5010*")
+	dependent_forms.append("50102*")
 	return dependent_forms
 
 def execute(db,user_code):

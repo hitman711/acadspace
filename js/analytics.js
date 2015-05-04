@@ -12,7 +12,7 @@ $(document).ready( function(){
             schema +="<div class='col-md-6'>";
             schema +="<div class='box box-primary'><div class='box-header'>";
             schema +="<i class='fa fa-bar-chart-o'></i>";
-            schema +="<h3 class='box-title'>"+pass['Question']+"</h3>";
+            schema +="<p class='box-title'>"+pass['Question']+"</p>";
             schema +="<div class='box-tools pull-right'>";
             schema +="<button class='btn btn-box-tool' data-widget='collapse'><i class='fa fa-minus'></i></button></div>";
             schema +="</div><div class='box-body' id='id_"+i+"'style='display:block'><div id='"+total_records[i]+"' style='height: 300px; padding: 0px; position: relative;'></div>";

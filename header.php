@@ -1,16 +1,20 @@
-
         <!-- Logo -->
-        <a href="index.php" class="logo"><img src="img/acadspace.jpg" width="150px" height="50px"></a>
+        <a href="index.php" class="logo" style='height: 70px'>
+         <!-- <i class="fa fa-graduation-cap"></i> Acadspace -->
+          <img src="<?php echo $logo;?>" width="170px" height="70px">
+        </a>
 
         <!-- Header Navbar -->
         <nav class="navbar navbar-static-top" role="navigation">
           <!-- Sidebar toggle button-->
-          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button" style='height: inherit'>
             <span class="sr-only">Toggle navigation</span>
           </a>
           <!-- Navbar Right Menu -->
-          <div class="navbar-custom-menu">
+          <div class="navbar-custom-menu" >
             <ul class="nav navbar-nav">
+<?php
+/*
               <!-- Messages: style can be found in dropdown.less-->
               <li class="dropdown messages-menu">
                 <!-- Menu toggle button -->
@@ -102,25 +106,28 @@
                   </li>
                 </ul>
               </li>
+*/
+?>
               <!-- User Account Menu -->
               <li class="dropdown user user-menu">
                 <!-- Menu Toggle Button -->
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <!-- The user image in the navbar-->
-                  <img src="img/blank-profile.jpg" class="user-image" alt="User Image" id='user_profile'/>
-                  <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                  <img src="<?php echo $profile;?>" class="user-image" alt="User Image" id='user_profile'/>
+                  
+				  <!-- hidden-xs hides the username on small devices so only the image appears. -->
                   <span class="hidden-xs" id='users' name='<?php echo $_SESSION['login_user'];?>'><?php if(isset($user_valid)){echo "$user_valid";}?></span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- The user image in the menu -->
                   <li class="user-header">
-                    <img src="img/blank-profile.jpg" class="img-circle" alt="User Image" id='user_profile' />
+                    <img src="<?php echo $profile;?>" class="img-circle" alt="User Image" id='user_profile' />
                     <p>
                       <?php if(isset($user_valid)){echo $user_valid;}?>
                       <!--<small>Member since Nov. 2012</small>-->
                     </p>
                   </li>
-                  <!-- Menu Body -->
+                  <!-- Menu Body
                   <li class="user-body">
                     <div class="col-xs-4 text-center">
                       <a href="#">Followers</a>
@@ -132,6 +139,7 @@
                       <a href="#">Friends</a>
                     </div>
                   </li>
+                  -->
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-left">

@@ -5,6 +5,10 @@ if(isset($_SESSION['login_user'])){
     header('Location: dashboard.php');
 }
 ?>
+<?php 
+	include ('php/configuration.php');
+?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -30,7 +34,7 @@ if(isset($_SESSION['login_user'])){
   <body class="login-page">
     <div class="login-box">
       <div class="login-logo">
-        <a href="index.php"><b><img src="img/acadspace.jpg" width="300px" height="150px"></a>
+        <a href="index.php"><b><img src="<?php echo $logo;?>" width="300px" height="150px"></a>
       </div><!-- /.login-logo -->
       <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session</p>

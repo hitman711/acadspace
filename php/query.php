@@ -74,7 +74,8 @@ class querys {
     
 //session
     public function session($active_key){
-        $session = "SELECT `id`, `username` FROM `active_user` WHERE `active_code`='$active_key'";
+        $session = "SELECT CONCAT(`fname`,' ',`lname`) AS `username` FROM `register` WHERE `username`=(SELECT `username` from `active_user` where active_code='$active_key')";
+        //$session = "SELECT `id`, `username` FROM `active_user` WHERE `active_code`='$active_key'";
         return $session;
     }
     

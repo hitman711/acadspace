@@ -14,34 +14,17 @@ function selection_box(result,table_id) {
 function old_simple_record(data) {
     $('#level1').html(' ');
     var pass ='';
-    /*
-    for (var i=0; i<data.length; i++) {
-        pass =pass+'<div class="col-md-3 col-sm-6 col-xs-12">'+
-        '<div class="info-box"><span class="info-box-icon bg-aqua">'+
-        '<i class="fa fa-book"></i></span>'+
-        '<span style="float:right" id="delete_data" title="'+data[i][0]+'" name='+data[i][1]+'><i class="fa fa-times"></i></span>'+
-        '<div class="info-box-content">'+
-            '<span class="info-box-number"><a href="#" id="available" class="0" title="'+data[i][0]+'" name='+data[i][1]+'>'+data[i][0]+'</a></span>'+
-            '<span class="info-box-text">'+data[i][1]+'</span>'+
-            '<span class="info-box-text">'+"Dummy college"+'</span></div></div></div>';
-    }
-    $('#level1').append(pass);
-    */
-    //var pass='<div><div class="col-md-3"><div class="box-header with-border bg-blue">';
+    
     list =[];
-    //alert($.isEmptyObject(list));
     for( i=0; i<data.length; i++){
         if (!$.isEmptyObject(list)) {
             if (list.indexOf(data[i][0])==0) {
-                //alert("available");
-                //alert($("#body_undergraduate li").html());
-                //$('#'+data[i][0]+" #body_"+data[i][0]).append('hello');
+              
             }else{
                 list.push(data[i][0]);
             }
         }else{
                 list.push(data[i][0]);
-                //alert("not available");
                 pass +='<div><div class="col-md-3" id="'+data[i][0]+'"><div class="box-header with-border bg-blue">'+
                     '<h3 class="box-title">'+data[i][0]+'</h3>'+
                     '<div class="box-tools pull-right">'+
@@ -69,32 +52,19 @@ function old_simple_record(data) {
 function old_comp_record(data) {
     $('#level2').html(' ');
     var pass ='';
-    /*
-    for (var i=0; i<data.length; i++) {
-        pass =pass+'<div class="col-md-3 col-sm-6 col-xs-12">'+
-        '<div class="info-box">'+
-        '<span class="info-box-icon bg-aqua"><i class="fa fa-book"></i></span>'+
-        '<span style="float:right" id="delete_data" title="'+data[i][2]+'" name="'+data[i][1]+'"><i class="fa fa-times"></i></span>'+
-        '<div class="info-box-content">'+
-            '<span class="info-box-number"><a href="#" id="available" class="'+data[i][2]+'" title="'+data[i][0]+'" name='+data[i][1]+'>'+data[i][3]+'</a></span>'+
-            '<span class="info-box-text">Attempt :'+data[i][2]+'</span></div></div></div>';
-    }
-    */
-    
+
     list =[];
-    //alert($.isEmptyObject(list));
+
     for( i=0; i<data.length; i++){
         if (!$.isEmptyObject(list)) {
             if (list.indexOf(data[i][0])==0) {
-                //alert("available");
-                //alert($("#body_undergraduate li").html());
-                //$('#'+data[i][0]+" #body_"+data[i][0]).append('hello');
+                
             }else{
                 list.push(data[i][0]);
             }
         }else{
                 list.push(data[i][0]);
-                //alert("not available");
+                
                 pass +='<div><div class="col-md-3" id="'+data[i][0]+'"><div class="box-header with-border bg-blue">'+
                     '<h3 class="box-title">'+data[i][0]+'</h3>'+
                     '<div class="box-tools pull-right">'+
@@ -139,14 +109,14 @@ function get_filled_form_struct(form_name,form_data, javascript , form_no,user_d
             }
         }
         if (i==obj['Total_Fields']) {
-            schema +="</tr><tr><td id='final' colspan ="+obj['Field_Parameter']+" style='text-align:center; font-size:35px'><p>"+data['total']+"</p></td>";
+            schema +="</tr><tr><td  colspan ="+obj['Field_Parameter']+" style='text-align:center;'><span style='font-size:25px'>"+obj["field_name"][obj['Field_Parameter']]+"</span><br><span style='font-size:35px' id='final'>"+data['total']+"</span></td>";
         } 
         schema +="</tr>";
     }
     schema += "</table>";
-    schema += "</table><br><center><button id='update_data' name='"+form_no+"' title='"+attempt+"' class='btn btn-primary btn-lg'>Update Data</button>&nbsp;";
+    schema += "</table><center><button id='update_data' name='"+form_no+"' title='"+attempt+"' class='btn btn-primary btn-lg'>Update Data</button>&nbsp;";
     schema += "<button id='delete_data' title='"+attempt+"' name='"+form_no+"'class='btn btn-primary btn-lg'>Delete Data</button></center>";
-    schema +="<span style='text-align:right'><a href='analytics.php'>For more detail analytics</a></span>";
+    schema +="<span style='text-align:right'>To view Analytics click <a href='analytics.php'> Here</a></span>";
     $('#form_box').append(schema);
     $('#form_box').append("<script>"+javascript+"</\script>");
 }

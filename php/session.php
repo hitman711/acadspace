@@ -11,7 +11,7 @@ if(isset($_SESSION['login_user'])){
     $sql = mysql_query($query->session($user_check),$conn);
     $row = mysql_fetch_assoc($sql);
     if($row){
-        $username =$row['username'];
+        $username =ucwords($row['username']);
         $user_valid = "$username";
     }else{
         mysql_close($conn);

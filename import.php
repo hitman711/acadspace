@@ -1,5 +1,8 @@
+<?php 
+	include ('php/configuration.php');
+?>
+<link rel="icon" href="<?php echo $fevicon;?>" type="image/png" sizes="16x16">
 <meta charset="UTF-8">
-    <title>AdminLTE 2 | Dashboard</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.2 -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -16,5 +19,4 @@
     <link href="dist/css/skins/skin-blue.min.css" rel="stylesheet" type="text/css" />
 <!--<script src="bootstrap/js/bootstrap.min.js"></script>-->
 <script src="js/jquery-2.1.3.min.js"></script>
-
-
+<link rel="stylesheet" href="css/styles.css"> 

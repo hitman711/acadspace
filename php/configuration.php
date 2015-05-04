@@ -1,4 +1,9 @@
 <?php
+
+$logo = 'img/acadspace.png';
+$fevicon = 'img/fevicon.png';
+$profile = "img/blank-profile.jpg";
+
 $host = 'localhost';
 $admin='root';
 $pass='28263506';

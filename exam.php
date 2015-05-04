@@ -9,6 +9,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html>
   <head>
+      <title>Exam forms</title>
       <?php include('import.php');?>
     </head>
   <!--
@@ -56,8 +57,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-          <h1>
-            Exams
+          <h1 style='margin-top: 20px'>
+            Exam Forms
             <small></small>
           </h1>
           <ol class="breadcrumb">
@@ -70,7 +71,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <section class="content" id='contents'>
               <div class='box box-primary'>
                 <div class='box-header with-border'>
-		  <h3 class='box-title'>Select Exam Type</h3>
+		  <p class='box-title'>Select Exam Type</p>
 		</div>
 		<div class='box-body'>
 		  <div class='row' id='selection_box'>
@@ -103,9 +104,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                 <div class="box box-default">
                   <div class="box-header with-border">
-                    <h3 class="box-title">
+                    <p class="box-title">
                       		  Academic Record
-                    </h3>
+                    </p>
                     <div class="box-tools pull-right">
                       <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                     </div><!-- /.box-tools -->
@@ -123,9 +124,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                 <div class="box box-default">
                   <div class="box-header with-border">
-                    <h3 class="box-title">
+                    <p class="box-title">
                       		  Compatative Exam Record
-                    </h3>
+                    </p>
                     <div class="box-tools pull-right">
                       <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                     </div><!-- /.box-tools -->

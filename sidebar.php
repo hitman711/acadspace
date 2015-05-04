@@ -1,6 +1,9 @@
+
+
+<section class="sidebar" style='margin-top: 20px'>
 <div class="user-panel">
             <div class="pull-left image">
-              <img src="img/blank-profile.jpg" class="img-circle" alt="User Image" id='user_profile'/>
+              <img src="<?php echo $profile;?>" class="img-circle" alt="User Image" id='user_profile'/>
             </div>
             <div class="pull-left info">
               <p><?php if(isset($user_valid)){echo $user_valid;}?></p>
@@ -41,3 +44,4 @@
             -->
           
           </ul>
+</section>

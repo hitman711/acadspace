@@ -8,6 +8,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html>
   <head>
+      <title>Acadspace Dashboard</title>
       <?php include('import.php');?>
     </head>
   <!--
@@ -43,11 +44,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <aside class="main-sidebar">
 
         <!-- sidebar: style can be found in sidebar.less -->
-        <section class="sidebar">
           <?php include('sidebar.php');?>
-          <!-- Sidebar user panel (optional) -->
-          <!-- /.sidebar-menu -->
-        </section>
+
         <!-- /.sidebar -->
       </aside>
 
@@ -55,7 +53,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-          <h1>
+          <h1 style='margin-top: 20px'>
             Dashboard
             <small>your analytics</small>
           </h1>
@@ -67,8 +65,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         <!-- Main content -->
         <section class="content">
-          
-          
           <div class="box">
             <div class="box-header with-border" id="body_header">
               
