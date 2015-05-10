@@ -165,7 +165,7 @@ class querys {
     
     //validate exam form
     public function validate_exam_code($form_no){
-        $validate_exam_code ="SELECT `table_name`, `exam_name` FROM `comp_exam_mapping` WHERE `form_code`='$form_no'";
+        $validate_exam_code ="SELECT `table_name`, `exam_name`, `exam_type`, `multiple` FROM `comp_exam_mapping` WHERE `form_code`='$form_no'";
         return $validate_exam_code;
     }
     

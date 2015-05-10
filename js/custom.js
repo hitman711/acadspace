@@ -72,7 +72,7 @@ $('#email').focusout(function() {
             if (result =='valid') {
                 $('#email').after('<span id="email_test"><i class="fa fa-check"></i>valid Id</span>');
             }else{
-                $('#email').after('<span id="email_test"><i class="fa fa-times"></i>Invalid email id</span>');
+                $('#email').after('<span id="email_test"><i class="fa fa-times"></i>Email id already used</span>');
                 $('#email').val('');
             }
             });

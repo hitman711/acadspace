@@ -1,31 +1,44 @@
 <?php
+//include three file for further processing
 include('configuration.php');
 include('query.php');
 include('mail.php');
 
-   if(isset($_POST['first']) &&
+//Check all necessary data available 
+   if((isset($_POST['first']) &&
       isset($_POST['last']) &&
       isset($_POST['email']) &&
       isset($_POST['user']) &&
-      isset($_POST['pass'])) 
+      isset($_POST['pass']) &&
+      isset($_POST['rpass'])) && (isset($_POST['pass']) == isset($_POST['rpass']))) 
     {
 		$conn = mysql_connect($host, $admin,$pass) or Die("database connectivity failed");
-         $fname =strip_tags($_POST['first']);
-         $lname =strip_tags($_POST['last']);
-         $email =strip_tags($_POST['email']);
-         $username =strip_tags($_POST['user']);
-         $pass = strip_tags($_POST['pass']);
+         $fname =mysql_real_escape_string(strip_tags($_POST['first']));
+         $lname =mysql_real_escape_string(strip_tags($_POST['last']));
+         $email =mysql_real_escape_string(strip_tags($_POST['email']));
+         $username =mysql_real_escape_string(strip_tags($_POST['user']));
+         $pass = mysql_real_escape_string(strip_tags($_POST['pass']));
          $salt = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 5);
          $pass = md5($pass+$salt);
          $activation = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 12);
          $db = mysql_select_db($database,$conn);
          $sql = new querys();
          $unique_code = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 15);
-         //echo "$fname $lname $email $username $pass $salt $activation $unique_code";
+         $profileImg =0;
+         
+         $target_dir = "userImg/";
+         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+         if(isset($_POST['profile_img'])){
+            move_uploaded_file($_FILES["profileImg"]["tmp_name"],$target_file);
+            $profileImg =$target_file;
+         }else{
+            $profileImg = "img/blank-profile.jpg";
+         }
+         //$profile_img = getimagesize($_FILES['profile_img']["tmp_name"]);
          $query = $sql->register($fname,$lname,$email,$username,$pass,$salt,$activation,$unique_code);
          //echo $query;
          $insert = mysql_query($query,$conn);
-         //echo $insert;
+         $insert =1;
          if($insert =='1'){
             $mail = new mails();
             if($mail->activationmail($username,$email,$activation) =='1'){
@@ -33,7 +46,7 @@ include('mail.php');
             click below to redirect login page<br><a href='index.php'>Login<a>";
             }
           }
-		mysql_close($conn);
+	    mysql_close($conn);
      }
 
 ?>

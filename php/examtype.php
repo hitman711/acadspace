@@ -84,7 +84,7 @@ if(isset($_POST['update_user_data']) &&  isset($_POST['data']) && isset($_POST['
             }
         }else{
             echo "failure";
-        }   
+        }
     }else{
         echo "failure";
     }
@@ -234,11 +234,12 @@ class operation {
         $db_connect = $connect->select_db($database);
         $sql = new querys();
         $obj = json_decode($existing_data);
-        if($type == "acadmic"){
+
+        if($type == "academic"){
             $obj->{'Parameter'}->{'Total_Simple_Exam_Field'} = $obj->{'Parameter'}->{'Total_Simple_Exam_Field'}+1; 
             array_push($obj->{'Simple_Exam'},$new_data);
         }
-        else if($type == "comp"){
+        else if($type == "competitive"){
             $obj->{'Parameter'}->{'Total_Comp_Exam_Field'} = $obj->{'Parameter'}->{'Total_Comp_Exam_Field'}+1; 
             array_push($obj->{'Comp_Exam'},$new_data);    
             }
@@ -250,6 +251,8 @@ class operation {
         }else{
             return "failure";
         }
+        $connect->close_database();
+        
     }
 //insert new user saved record
     public function insert_new_user_saved_record($user_code,$type,$new_data){
@@ -258,14 +261,15 @@ class operation {
         $db_connect = $connect->select_db($database);
         $sql = new querys();
         $data = array("Parameter"=>array("Total_Simple_Exam_Field"=>0,"Total_Comp_Exam_Field"=>0),"Simple_Exam"=>array(),"Comp_Exam"=>array());
-        if($type =="acadmic"){
+        if($type =="academic"){
             $data['Parameter']["Total_Simple_Exam_Field"] = $data['Parameter']["Total_Simple_Exam_Field"]+1;
             array_push($data['Simple_Exam'],$new_data);
     
-        }else if($type=="comp"){
+        }else if($type=="competitive"){
             $data['Parameter']["Total_Comp_Exam_Field"] = $data['Parameter']["Total_Comp_Exam_Field"]+1;
             array_push($data['Comp_Exam'],$new_data);
         }
+        
         $data =json_encode($data,true);
         $query = $sql->insert_user_filled_form($user_code,$data);
         $result = mysql_query($query,$connect->database_info());
@@ -327,7 +331,7 @@ class operation {
         $result = mysql_query($query,$connect->database_info());
         $row = mysql_fetch_assoc($result);
         if(!empty($row)){
-            return $row['table_name'];    
+            return $row;    
         }else{
             return "failure";
         }
@@ -400,7 +404,7 @@ class operation {
         $next_level =$split[1];
         $next_table = $split[2];
         $data = json_decode($this->user_saved_record($username),true);
-        if(!empty($data) && stristr(json_encode($data['Simple_Exam']),$form_code)){
+        if(!empty($data) && strstr(json_encode($data['Simple_Exam']),('"'.$form_code.'"'))){
             if(stristr(json_encode($data['Simple_Exam']),$form_code)){
                 echo "filled";
             }
@@ -453,34 +457,47 @@ class operation {
         $user_code = $this->user_unique_code($username);
         $validate_exam_code = $this->validate_exam_code($form_no);
         $sub_type = $this->form_sub_type($form_no);
-        //compatative record
+        
+        //INSERT RECORD record
         if($validate_exam_code != "failure"){
-            $table_name = $validate_exam_code;
-            $attempt = $this->get_attempt_record($user_code,$table_name,$form_no);
-            if($attempt !=0){
-                $attempt = $attempt+1;
-            }else{
-                $attempt = 1;
-            }
-            
-            $insert_record = $this->insert_record($table_name,$user_code,$form_no,$marks,$total_user_mark,$attempt);
-            if($insert_record == "success"){
-                $new_exam = array("form_type"=>$sub_type,"Form_Code"=> "$form_no","Table_name"=> "$table_name","Attempt"=>$attempt);
-                $data = $this->user_saved_record($username);
-                if(empty($data)){
-                    $insert_new_record = $this->insert_new_user_saved_record($user_code,'comp',$new_exam);
-                    if($insert_new_record =="success"){
-                        return "success";
-                    }else{
-                        return "failure";
-                    }
+            $exam_type = $validate_exam_code['exam_type'];
+            $table_name = $validate_exam_code['table_name'];
+            $multiple = $validate_exam_code['multiple'];
+        }else{
+            $exam_type = "academic";
+            $table_name = "user_record";
+            $multiple = 0;
+        }
+        
+        $attempt = $this->get_attempt_record($user_code,$table_name,$form_no);
+        if( ($multiple==1) && ($attempt !=0)){
+            $attempt = $attempt+1;
+        }elseif($multiple==0){
+            $attempt =0;
+        }else{
+            $attempt = 1;
+        }
+        //echo "$table_name,  $user_code,   $form_no,  $total_user_mark,  $attempt";   
+        $insert_record = $this->insert_record($table_name,$user_code,$form_no,$marks,$total_user_mark,$attempt);
+        if($insert_record == "success"){
+            $new_exam = array("form_type"=>$sub_type,"Form_Code"=> "$form_no","Table_name"=> "$table_name","Attempt"=>$attempt);
+            $data = $this->user_saved_record($username);
+            if(empty($data)){
+                $insert_new_record = $this->insert_new_user_saved_record($user_code,$exam_type,$new_exam);
+                if($insert_new_record =="success"){
+                    return "success";
                 }else{
-                    $new_exam = array("form_type"=>$sub_type,"Form_Code"=> "$form_no","Table_name"=> "$table_name","Attempt"=>$attempt);
-                    $update_user_filled_form = $this->update_user_saved_record($user_code,$data,'comp',$new_exam);
-                    return $update_user_filled_form;  
+                    return "failure";
                 }
+            }else{
+                $new_exam = array("form_type"=>$sub_type,"Form_Code"=> "$form_no","Table_name"=> "$table_name","Attempt"=>$attempt);
+                $update_user_filled_form = $this->update_user_saved_record($user_code,$data,$exam_type,$new_exam);
+                return $update_user_filled_form;  
             }
         }
+
+        
+        /*
         //Academic record
         else{
             $attempt = 0;
@@ -490,7 +507,7 @@ class operation {
                 $new_exam = array("form_type"=>$sub_type,"form_type"=>$sub_type,"Form_Code"=> "$form_no","Table_name"=> "$table_name");
                 $data = $this->user_saved_record($username);
                 if(empty($data)){
-                    $insert_new_record = $this->insert_new_user_saved_record($user_code,'acadmic',$new_exam);
+                    $insert_new_record = $this->insert_new_user_saved_record($user_code,'academic',$new_exam);
                     if($insert_new_record =="success"){
                         return "success";
                     }else{
@@ -506,6 +523,7 @@ class operation {
                 return "failure to insert record";
             }
         }
+        */
     }
 
 //get user saved record
@@ -533,6 +551,8 @@ class operation {
         $table_name = $this->validate_exam_code($form_no);
         if($table_name == "failure"){
             $table_name = "user_record";
+        }else{
+            $table_name = $table_name['table_name'];
         }
         if($form_data !="failure"){
             $form_field = file_get_contents($form_data['form_field']);
@@ -586,8 +606,9 @@ class operation {
     public function update_user_data($username, $form_no, $user_data, $total_user_data ,$attempt){
         $user_code = $this->user_unique_code($username);
         $validate_form_no = $this->validate_exam_code($form_no);
+
         if($validate_form_no !="failure" ){
-            $table_name = $validate_form_no; 
+            $table_name = $validate_form_no['table_name']; 
         }else{
             $table_name ='user_record';
         }
@@ -666,9 +687,11 @@ class operation {
         $table_name = $this->validate_exam_code($form_no);
         if($table_name == 'failure'){
             $table_name = "user_record";
+        }else{
+            $table_name = $table_name['table_name'];
         }
         $delete_record = $this->delete_record($user_code,$form_no,$table_name, $attempt_no);
-        $delete_record =1;
+
         if($delete_record != "failure"){
             $delete_user_saved_record = $this->delete_user_saved_record($username, $user_code,$table_name,$form_no, $attempt_no);
             if($delete_user_saved_record =='success'){

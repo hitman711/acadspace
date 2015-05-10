@@ -1,0 +1,56 @@
+{
+  "form_name": "SSC",
+  "Field_Parameter": 2,
+  "Total_Fields": 6,
+  "header_field": [
+    "Subject",
+    "Marks"
+  ],
+  "field_name": [
+    "Subject",
+    "Marks",
+    "Percentage"
+  ],
+  "Field_1": {
+    "Subject": "First Language",
+    "Marks": "text",
+    "input_length": "3",
+    "input_type": "Number",
+    "limit":100
+  },
+  "Field_2": {
+    "Subject": "Second Language",
+    "Marks": "text",
+    "input_length": "3",
+    "input_type": "Number",
+    "limit":100
+  },
+  "Field_3": {
+    "Subject": "English",
+    "Marks": "text",
+    "input_length": "3",
+    "input_type": "Number",
+    "limit":100
+  },
+  "Field_4": {
+    "Subject": "Maths",
+    "Marks": "text",
+    "input_length": "3",
+    "input_type": "Number",
+    "limit":150
+  },
+  "Field_5": {
+    "Subject": "Science",
+    "Marks": "text",
+    "input_length": "3",
+    "input_type": "Number",
+    "limit":100
+  },
+  "Field_6": {
+    "Subject": "Social Science",
+    "Marks": "text",
+    "input_length": "3",
+    "input_type": "Number",
+    "limit":100
+  }
+}

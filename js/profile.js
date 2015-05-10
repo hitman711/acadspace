@@ -26,14 +26,16 @@ function form_structure(data) {
         schema +="<div class='box-tools pull-right'>";
         schema +="<button class='btn btn-box-tool' id='"+Object.keys(obj)[i]+"'><i class='fa fa-plus'></i></button>";
         schema +="</div></div>";                        
-        schema += "<div class='box-body' style='display: none;' id='"+Object.keys(obj)[i]+"_detail'>";
+        schema += "<div class='box-body' style='display: none;' id='"+Object.keys(obj)[i]+"_detail' name='"+Object.keys(obj)[i]+"'>";
         if (info !="") {
+            
             for(j=0; j<Object.keys(info).length; j++){
+               // alert(JSON.stringify(info[Object.keys(info)[j]]));
                 schema +="<label id='label_"+j+"'>"+Object.keys(info)[j]+"</label>";
                 if (info[Object.keys(info)[j]]['ans']) {
-                    schema +="<input type='text' class='form-control' id='data_input_"+[j]+"' name ='"+info[Object.keys(info)[j]]+"' value='"+info[Object.keys(info)[j]]['ans']+"' /><br>";
+                    schema +="<input type='text' class='form-control' id='data_input_"+[j]+"' list ='"+Object.keys(info)[j]+"' range="+j+" value='"+info[Object.keys(info)[j]]['ans']+"' /><br>";
                 }else{
-                    schema +="<input type='text' class='form-control' id='data_input_"+[j]+"' name ='"+info[Object.keys(info)[j]]+"' placeholder='"+info[Object.keys(info)[j]]['placeholder']+"' /><br>";    
+                    schema +="<input type='text' class='form-control' id='data_input_"+[j]+"' list ='"+Object.keys(info)[j]+"' range="+j+" placeholder='"+info[Object.keys(info)[j]]['placeholder']+"' /><br>";    
                 }
             }                                                 
         }else{
@@ -67,21 +69,36 @@ $(document).ready(function(){
         $(this).html($(this).html() == '<i class="fa fa-minus"></i>' ? '<i class="fa fa-plus"></i>' : '<i class="fa fa-minus"></i>');
     });
     
+    $('.content').on('keypress','input', function(){
+        parent_name = $(this).parent().attr('name');
+        list_name = $(this).attr('list');
+        $.post("php/list.php",{list_name:list_name,field_name:parent_name}, function(result){
+           //alert(result);
+            $(result).insertAfter($('.content'));
+        });
+    });
     
+
 //Add information in profile
     $('#form_data').on('click','#add_data',function(e){
         new_data = $(this).attr('name')+"_detail";
+        parent_name = $(this).parent().attr('name');
         information =[];
         form_name = $(this).attr('name');
         for( i=0; i<$("#"+form_name+"_detail"+" input").length; i++){
-            if ($.trim($("#"+form_name+"_detail"+" #data_input_"+i).val())) {
+            if (!$.isEmptyObject($.trim($("#"+form_name+"_detail"+" #data_input_"+i).val()))) {
                 information.push( $("#"+form_name+"_detail"+" #label_"+i).html()+","+ $("#"+form_name+"_detail"+" #data_input_"+i).val());
             }
         }
-//User user profile        
-        $.post("php/function.php",{user:username,update_form:form_name,info:JSON.stringify(information)}, function(result){
-            alert(result);
-            });
+        
+//User user profile
+        if(!$.isEmptyObject(information)){
+            $.post("php/function.php",{user:username,update_form:form_name,info:JSON.stringify(information)}, function(result){
+                    alert(result);
+                });
+        }else{
+            alert("please provide some info");
+        }
     });   
     
 });

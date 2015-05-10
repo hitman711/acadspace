@@ -11,7 +11,7 @@
     <link href="dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
     <!-- iCheck -->
     <link href="plugins/iCheck/square/blue.css" rel="stylesheet" type="text/css" />
-    <script src="js/jquery-2.1.3.min.js"></script>  
+    <script src="js/jquery-2.1.3.min.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -45,11 +45,11 @@
                             mysql_close($conn);
                             }
                 }else{
-                    echo "Link is invalid";    
+                    echo "<h1>Link is invalid</h1>";
                 }
-                
+
             }else{
-                echo "data not recived";
+                echo "<h1>data not recived</h1>";
             }
         ?>
       </div><!-- /.login-box-body -->

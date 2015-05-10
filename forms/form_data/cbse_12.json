@@ -1,0 +1,142 @@
+{
+  "form_name": "CBSE-12th",
+  "Field_Parameter": 3,
+  "Total_Fields": 7,
+  "header_field": [
+    "Subject",
+    "Grade",
+    "Grade Point"
+  ],
+  "field_name": [
+    "Subject",
+    "Grade",
+    "Grade_Point",
+    "CGPA"
+  ],
+  "Field_1": {
+    "Subject": "English Core",
+    "Grade": "text",
+    "Grade_Point": "0",
+    "input_length": "2",
+    "input_type": "Grade",
+    "limit": [
+      "A1",
+      "A2",
+      "B1",
+      "B2",
+      "C1",
+      "C2",
+      "D",
+      "E1",
+      "E2"
+    ]
+  },
+  "Field_2": {
+    "Subject": "Mathematics",
+    "Grade": "text",
+    "Grade_Point": "0",
+    "input_length": "2",
+    "input_type": "Grade",
+    "limit": [
+      "A1",
+      "A2",
+      "B1",
+      "B2",
+      "C1",
+      "C2",
+      "D",
+      "E1",
+      "E2"
+    ]
+  },
+  "Field_3": {
+    "Subject": "Physics",
+    "Grade": "text",
+    "Grade_Point": "0",
+    "input_length": "2",
+    "input_type": "Grade",
+    "limit": [
+      "A1",
+      "A2",
+      "B1",
+      "B2",
+      "C1",
+      "C2",
+      "D",
+      "E1",
+      "E2"
+    ]
+  },
+  "Field_4": {
+    "Subject": "Chemistry",
+    "Grade": "text",
+    "Grade_Point": "0",
+    "input_length": "2",
+    "input_type": "Grade",
+    "limit": [
+      "A1",
+      "A2",
+      "B1",
+      "B2",
+      "C1",
+      "C2",
+      "D",
+      "E1",
+      "E2"
+    ]
+  },
+  "Field_5": {
+    "Subject": "Work Experience",
+    "Grade": "text",
+    "Grade_Point": "0",
+    "input_length": "2",
+    "input_type": "Grade",
+    "limit": [
+      "A1",
+      "A2",
+      "B1",
+      "B2",
+      "C1",
+      "C2",
+      "D",
+      "E1",
+      "E2"
+    ]
+  },
+  "Field_6": {
+    "Subject": "Physical & Health Education",
+    "Grade": "text",
+    "Grade_Point": "0",
+    "input_length": "2",
+    "input_type": "Grade",
+    "limit": [
+      "A1",
+      "A2",
+      "B1",
+      "B2",
+      "C1",
+      "C2",
+      "D",
+      "E1",
+      "E2"
+    ]
+  },
+  "Field_7": {
+    "Subject": "General Studies",
+    "Grade": "text",
+    "Grade_Point": "0",
+    "input_length": "2",
+    "input_type": "Grade",
+    "limit": [
+      "A1",
+      "A2",
+      "B1",
+      "B2",
+      "C1",
+      "C2",
+      "D",
+      "E1",
+      "E2"
+    ]
+  }
+}

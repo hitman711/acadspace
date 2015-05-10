@@ -26,7 +26,7 @@ if(isset($_POST['user']) && isset($_POST['update_form']) && isset($_POST['info']
     $form_name = htmlspecialchars($_POST['update_form']);
     $information = $_POST['info'];
     $validate_user_data = $call_operation->validate_educational_data($username,$information,$form_name);
-    return $validate_user_data;
+    echo $validate_user_data;
 }
 
 
@@ -173,11 +173,31 @@ class functions {
     function verify_form_information($unique_code ,$form_name,$user_data){
         $form_data = json_decode($this->form_information($unique_code,$form_name),true);
         $user_info = json_decode($user_data,true);
+        $response = '';
         for($i=0; $i<sizeof($user_info);$i++){
             $form_label = split(",",$user_info[$i]);
-//verification code goes here            
-            //$form_data[$form_label[0]]['ans'] = $form_label[1];    
+            $key = $form_label[0];
+            $value = $form_label[1];
+            
+            include('list.php');
+            
+            if(array_key_exists($key,$check)){
+                $check[$key] = str_replace("#",$form_name,$check[$key]);
+                include($check[$key]);
+                $list = $$call[$key];
+                if(in_array($value,$list)){
+
+                    $response ="success";
+                    continue;
+                }else{
+                    $response = "failure";
+                    break;
+                }
+            }else{
+                echo "hell";
+            }
         }
+        return $response;
     }
 }
 

@@ -15,14 +15,27 @@ $(document).ready( function(){
             schema +="<p class='box-title'>"+pass['Question']+"</p>";
             schema +="<div class='box-tools pull-right'>";
             schema +="<button class='btn btn-box-tool' data-widget='collapse'><i class='fa fa-minus'></i></button></div>";
-            schema +="</div><div class='box-body' id='id_"+i+"'style='display:block'><div id='"+total_records[i]+"' style='height: 300px; padding: 0px; position: relative;'></div>";
+            schema +="</div><div class='box-body' id='id_"+i+"'style='display:block'><div id='"+total_records[i]+"' style='height: 400px; padding: 0px; position: relative;'></div>";
+            schema +="<div id='graph_types'><br><center><label> Select Graph Types </label>";
+            schema +="<select id='sub_types_"+i+"' style='padding:5px; font-size:18px'></select></center></div>";
+            schema +="<div><p>"+pass['Description']+"<p></div>";
             schema +="</div></div></div></div>";
             $('#graphs').append(schema);
+            
+//alert(data['Suceeded_Analytic'][total_records[i]]['Answer_Type']+"('"+JSON.stringify(pass['Related_Data'])+"')");
             eval(data['Suceeded_Analytic'][total_records[i]]['Answer_Type']+"('"+JSON.stringify(pass['Related_Data'])+"')");
             schema ='';
+            
+            graph_type = pass['graph_sub_type'];
+            //alert(pass['graph_sub_type'].toString());
+            for (j=0;j<graph_type.length; j++) {
+                $('#sub_types_'+i).append('<option value="'+graph_type[j]+'">'+graph_type[j]+'</option>');
+            }
+            
         }
         });
     });
+
     $('#graphs').on('click','.btn-box-tool', function(){
         $(this).change('<i class="fa fa-plus"></i>');
         changed = $(this).parents().next().attr('id');
@@ -30,9 +43,80 @@ $(document).ready( function(){
         $('#'+changed).slideToggle('slow');
         $(this).html($(this).html() == '<i class="fa fa-minus"></i>' ? '<i class="fa fa-plus"></i>' : '<i class="fa fa-minus"></i>');
     });
+    
+    
 });
 
 
+
+function normal_graph(data) {
+    obj = JSON.parse(data);
+    dataSource =obj['data'];
+    graph_type =obj['graph_type'];
+    argumentField = obj['argumentField'];
+    valueField = obj['valueField'];
+    tooltip = obj['tooltip'];
+    x_axis_min_limit = obj['min-x'];
+    x_axis_max_limit = obj['max-x'];
+    y_axis_min_limit = obj['min-y'];
+    y_axis_max_limit = obj['max-y'];
+    x_axis_name = obj['x-axis-name'];
+    y_axis_name = obj['y-axis-name'];
+    total = obj['avg'];
+    
+    $(obj['set']).dxChart({
+        dataSource: dataSource,
+         commonSeriesSettings:{
+            type: graph_type
+         },
+         series: {
+            argumentField: argumentField,
+            valueField: valueField,
+            name: "Semester",
+        },
+        legend: {
+            verticalAlignment: "TOP",
+            horizontalAlignment: "center",
+            itemTextPosition: "right"
+        },
+        tooltip: {
+            enabled: true
+        },
+	valueAxis: {
+            title: {
+                text: y_axis_name
+            },
+	    max:y_axis_max_limit,
+	    min: y_axis_min_limit,
+            constantLines: [{
+                label: {
+                    text: 'CGPA ='+total
+                },
+                width: 2,
+                value: total,
+                color: '#ff4500',
+                dashStyle: 'dash'
+            }]
+            
+        },
+	argumentAxis:{
+		title:{
+                    text:x_axis_name
+                },
+                max:x_axis_max_limit,
+                min:x_axis_min_limit
+            }
+        });
+}
+
+
+
+
+
+
+
+
+/*
 function donut_chart(plot_graph) {
     //return "bar chart";
     var donutData = [
@@ -120,3 +204,4 @@ function labelFormatter(label, series) {
                 + "<br/>"
                 + Math.round(series.percent) + "%</div>";
       }
+*/

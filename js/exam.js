@@ -14,14 +14,20 @@ function selection_box(result,table_id) {
 function old_simple_record(data) {
     $('#level1').html(' ');
     var pass ='';
-    
     list =[];
     for( i=0; i<data.length; i++){
         if (!$.isEmptyObject(list)) {
-            if (list.indexOf(data[i][0])==0) {
-              
+            if (list.indexOf(data[i][0]) != -1) {
+                
             }else{
                 list.push(data[i][0]);
+                pass +='<div><div class="col-md-3" id="'+data[i][0]+'"><div class="box-header with-border bg-blue">'+
+                    '<h3 class="box-title">'+data[i][0]+'</h3>'+
+                    '<div class="box-tools pull-right">'+
+                    '<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>'+
+                    '</div></div>';
+                    pass +='<div class="box-header with-body" id="body_'+data[i][0]+'">';
+                    pass +='</div></div></div>';
             }
         }else{
                 list.push(data[i][0]);
@@ -37,10 +43,9 @@ function old_simple_record(data) {
     $('#level1').append(pass);
     
     for (i=0; i<data.length; i++) {
-        if (list.indexOf(data[i][0])==0) {
             $('#'+data[i][0]+" #body_"+data[i][0]).append('<center><p><a id="available" class="0" title="'+data[i][1]+'" name="'+data[i][2]+'">'+data[i][1]+'</a></p></center>');
-        }
     }
+    
     if (pass) {
         $('#level_1').css('display','block');
     }else{
@@ -57,10 +62,17 @@ function old_comp_record(data) {
 
     for( i=0; i<data.length; i++){
         if (!$.isEmptyObject(list)) {
-            if (list.indexOf(data[i][0])==0) {
+            if (list.indexOf(data[i][0]) != -1) {
                 
             }else{
                 list.push(data[i][0]);
+                pass +='<div><div class="col-md-3" id="'+data[i][0]+'"><div class="box-header with-border bg-blue">'+
+                    '<h3 class="box-title">'+data[i][0]+'</h3>'+
+                    '<div class="box-tools pull-right">'+
+                    '<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>'+
+                    '</div></div>';
+                    pass +='<div class="box-header with-body" id="body_'+data[i][0]+'">';
+                    pass +='</div></div></div>';
             }
         }else{
                 list.push(data[i][0]);
@@ -76,10 +88,9 @@ function old_comp_record(data) {
     }
     $('#level2').append(pass);
     for (i=0; i<data.length; i++) {
-        if (list.indexOf(data[i][0])==0) {
             $('#'+data[i][0]+" #body_"+data[i][0]).append('<center><p><a id="available" class="'+data[i][4]+'" title="'+data[i][1]+'" name='+data[i][2]+'>'+data[i][1]+'    Attempt:'+data[i][4]+'</a></p></center>');
-        }
     }
+    
     if (pass) {
         $('#level_2').css('display','block');
     }else{
@@ -143,7 +154,7 @@ function structure(data,javascript,form_no) {
                 }
             }
             if (i==obj['Total_Fields']) {
-                schema +="</tr><tr><td id='final' colspan ="+obj['Field_Parameter']+" style='text-align:center; font-size:35px'><p>0</p></td>";
+                schema +="</tr><tr><td  colspan ="+obj['Field_Parameter']+" style='text-align:center;'><span style='font-size:25px'>"+obj["field_name"][obj['Field_Parameter']]+"</span><br><span style='font-size:35px' id='final'>0</span></td>";
             }
             schema +="</tr>";
         }
@@ -263,6 +274,7 @@ $(document).ready( function(){
         $('#form_box').append("<div class='overlay'><i class='fa fa-refresh fa-spin'></i></div>");
         text = {user_name:$('#users').attr('name'), form:$(this).attr('name')};
         $.post('php/examtype.php',{insert_data:text, insert_marks:data_field, total:total},function(result){
+
                 if (result == "success") {
                     success_box("data Added Successfully");
                     $('#form_box .overlay').remove();
@@ -273,6 +285,7 @@ $(document).ready( function(){
 					$(this).removeAttr('disabled');
                     $('#add_data').html("Add Data again");
                 }
+
             });
     }else{
         warning_box("please fill all requierd field");
@@ -319,6 +332,7 @@ $(document).ready( function(){
             total = $('#final').text();
             if (!total) {total = '0';}
             $.post('php/examtype.php',{update_user_data:text, data:data_field,total:total,Attempt:attempt},function(result){
+
                 if (result == "success") {
                         success_box("data Updated Successfully");
                         ('#form_box .overlay').remove();   

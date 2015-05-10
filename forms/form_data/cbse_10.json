@@ -1,0 +1,106 @@
+{
+  "form_name": "CBSE-10th",
+  "Field_Parameter": 3,
+  "Total_Fields": 5,
+  "header_field": [
+    "Subject",
+    "Grade",
+    "Grade Point"
+  ],
+  "field_name": [
+    "Subject",
+    "Grade",
+    "Grade_Point",
+    "CGPA"
+  ],
+  "Field_1": {
+    "Subject": "English Communication",
+    "Grade": "text",
+    "Grade_Point": "0",
+    "input_length": "2",
+    "input_type": "Grade",
+    "limit": [
+      "A1",
+      "A2",
+      "B1",
+      "B2",
+      "C1",
+      "C2",
+      "D",
+      "E1",
+      "E2"
+    ]
+  },
+  "Field_2": {
+    "Subject": "Hindi Course-A",
+    "Grade": "text",
+    "Grade_Point": "0",
+    "input_length": "2",
+    "input_type": "Grade",
+    "limit": [
+      "A1",
+      "A2",
+      "B1",
+      "B2",
+      "C1",
+      "C2",
+      "D",
+      "E1",
+      "E2"
+    ]
+  },
+  "Field_3": {
+    "Subject": "Mathematics",
+    "Grade": "text",
+    "Grade_Point": "0",
+    "input_length": "2",
+    "input_type": "Grade",
+    "limit": [
+      "A1",
+      "A2",
+      "B1",
+      "B2",
+      "C1",
+      "C2",
+      "D",
+      "E1",
+      "E2"
+    ]
+  },
+  "Field_4": {
+    "Subject": "Science",
+    "Grade": "text",
+    "Grade_Point": "0",
+    "input_length": "2",
+    "input_type": "Grade",
+    "limit": [
+      "A1",
+      "A2",
+      "B1",
+      "B2",
+      "C1",
+      "C2",
+      "D",
+      "E1",
+      "E2"
+    ]
+  },
+  "Field_5": {
+    "Subject": "Social Science",
+    "Grade": "text",
+    "Grade_Point": "0",
+    "input_length": "2",
+    "input_type": "Grade",
+    "limit": [
+      "A1",
+      "A2",
+      "B1",
+      "B2",
+      "C1",
+      "C2",
+      "D",
+      "E1",
+      "E2"
+    ]
+  }
+}

@@ -66,17 +66,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 			<!-- Main content -->
 			<section class="content">
+                <script type='text/javascript' src='js/analytics.js'></script>
 				<div>
 					<div class="row">
 						<div id='graphs'>
 						</div>
 					</div>
-					<script type='text/javascript' src='js/analytics.js'></script>
+					
 				</div>
 					<!-- Your Page Content Here -->
 			</section><!-- /.content -->
 		</div><!-- /.content-wrapper -->
       <!-- Main Footer -->
+
       <footer class="main-footer">
         <?php  include('footer.php');?>
         
@@ -92,21 +94,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     <!-- AdminLTE App -->
     <script src="dist/js/app.min.js" type="text/javascript"></script>
-    <script src="plugins/flot/jquery.flot.min.js" type="text/javascript"></script>
-    <!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
-    <script src="plugins/flot/jquery.flot.resize.min.js" type="text/javascript"></script>
-    <!-- FLOT PIE PLUGIN - also used to draw donut charts -->
-    <script src="plugins/flot/jquery.flot.pie.min.js" type="text/javascript"></script>
-    <!-- FLOT CATEGORIES PLUGIN - Used to draw bar charts -->
-    <script src="plugins/flot/jquery.flot.categories.min.js" type="text/javascript"></script>
 	
-	
+<!--------------------------Dev express chart lib ----------------->	
 	<script src="chart/knockout-3.0.0.js"></script>
 	<script src="chart/globalize.min.js"></script>
 	<script src="chart/jChart.js"></script>
 	<script src="chart/dx.chartjs.js"></script>
-	
 
+        
 	</body>
 	
 	
