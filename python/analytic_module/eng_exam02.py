@@ -1,75 +1,98 @@
 import json
+
 def operation(db,unique_code):
-	graph_data =[]
-	#form_code = ['50102%']
-	sql = "SELECT `attempt`,`total` FROM `comp_gre` WHERE `user_code`='%s' AND `form_code` LIKE '%s'" %(unique_code,'50101%')
+    newlist =[1,2,3,4,5,6,7,8]
+    newlist.sort()
+    graph_data =[]
+    series =[]
+    related_data =''
+    new =''
+    total =0
+#get current user college name and university name
+    sql = "SELECT * from `undergraduate` WHERE `unique_code`='%s'"%(unique_code)
+    results = db.RunQueryColNameOnAcadspace(sql)
+    if results:
 	try:
-		results = db.RunQueryOnAcadspace(sql)
-		if results:
-			for information in results:
-				graph_data.append(information)
-		db.close()
-	except:
-		print "Error: unable to fecth data"
-	graph_data.sort()	
-	related_data = {
-	"Question": "How am i performing in my GRE Normal exam?",
-	"Answer_Type": "line_chart",
-	"Description": "Description of chart",
-	"Related_Data": [
-		"#2A",
-		[
-                           {
-			"data": graph_data,
-			"color": "#3c8dbc"
-                           }
-		],
-		{
-		"grid": {
-			"hoverable": "true",
-			"borderColor": "#f3f3f3",
-			"borderWidth": 1,
-			"tickColor": "#f3f3f3"
-		},
-		"series": {
-			"shadowSize": 0,
-			"lines": {
-				"show": "true"
-				},
-			"points": {
-				"show": "true"
-				}
-			},
-		"lines": {
-			"fill": "false",
-			"color": [
-			"#3c8dbc",
-			"#f56954"
-			]
-		},
-		"yaxis": {
-			"show": "true"
-		},
-		"xaxis": {
-			"ticks": [[1,"1"],[2,"2"],[3,"3"],[4,"4"],[5,"5"],[6,"6"],[7,"7"],[8,"8"]]
-			}
-		}
-		]
-	}
-	return related_data 
+		del[results[0]['id']]
+		del[results[0]['unique_code']]
+		for index in results:
+#get other students who are in the same college
+			column_name =index.keys()
+			column_value = index.values()
+#"select sum(`user_record`.`total`) AS `total`,count(`user_record`.`user_code`) AS `filled_form` from `user_record` INNER JOIN `undergraduate` ON `user_record`.`user_code` =`undergraduate`.`unique_code` AND "+query+""
+			query = '';
+			for column in column_name:
+				#print column
+				#print index[column]
+				query = query+"`undergraduate`.`"+column+"` ='"+index[column]+"' AND "
+			extract_query = "select sum(`user_record`.`total`) AS `total`,count(`user_record`.`user_code`) AS `filled_form` from `user_record` INNER JOIN `undergraduate` ON `user_record`.`user_code` =`undergraduate`.`unique_code` AND "+query+""
+			for form_code in newlist:
+
+				form_no ="30101010"+str(form_code)
+				
+#user marks in semesters
+				#print ".................."
+				sql2 ="SELECT `total` FROM `user_record` WHERE `user_code`='%s' AND `form_code` LIKE '%s'"%(unique_code,form_no)
+				user_extract_data = db.RunQueryColNameOnAcadspace(sql2)
+				if(user_extract_data):
+					user_marks = float(user_extract_data[0]['total'])
+#avg user marks who are from user college and in same stream
+
+					sql2 = extract_query+"`user_record`.`form_code` = %s"%(form_no)
+					overal_extract_data = db.RunQueryColNameOnAcadspace(sql2)
+					#print overal_extract_data
+					overall_total_marks =round((overal_extract_data[0]['total']/overal_extract_data[0]['filled_form']),2)
+					#print overall_total_marks
+#form name
+					sql3 ="SELECT `form_title` FROM `form_field` WHERE `form_id`='%s'"%(form_no)
+					form_name = db.RunQueryColNameOnAcademic(sql3)
+					form_name = form_name[0]['form_title']				
+					graph_data.append({"sem_name":form_name,"overall_college_score":overall_total_marks,"user_marks":user_marks})
+				
+		series.append({"valueField":"overall_college_score","name":"Avg college score"})
+		series.append({"valueField":"user_marks","name":"Your Score"})
+		#print graph_data
+		#print series
+		
+	except Exception:
+		
 	
+	related_data ={
+			"Question":"How am i performing in my semester exam?",
+			"Answer_Type":"Comparision_graph",
+			"graph_sub_type":["bar","line","scatter","spline"],
+			"Description": "This chart indicates user overall performance.",
+			"Related_Data":{
+			    "set":"#2A",
+			    "title":"Performance Graph",
+			    "argumentField":"sem_name",
+			    "graph_type":"line",
+			    "data":graph_data,
+			    "tooltip":"true",
+			    "x-axis-name":"Semester Name",
+			    "min-x":0,
+			    "max-x":8,
+			    "y-axis-name":"CGPA",
+			    "min-y":0,
+			    "max-y":9.99,
+			    "series":series
+				}
+			}
+	return related_data
+	
+
+
 def dependancies():
-	dependent_forms = []
-	dependent_forms.append("50102")
-	return dependent_forms
+    dependent_forms = []
+    dependent_forms.append("3010101*")
+    return dependent_forms
+
 
 def execute(db,user_code):
-    print "Engineering Rule 1 Running"+user_code
+    #print "Engineering Rule 1 Running "+user_code
     stat = "Partial"
     stat = "Failed"
     stat = "Success"
     data = operation(db,user_code)
     result = {'2A':data}
     return [stat,result]
-
-

@@ -14,10 +14,15 @@ function personal_info(data) {
     $('#form_data').append(schema);                
 }
 
-function form_structure(data) {
-    obj = JSON.parse(data);
+function form_structure(form_data,user_data) {
+    user_info = JSON.parse(user_data);
+    obj = JSON.parse(form_data);
+    
     for (i=0; i<Object.keys(obj).length; i++) {
-        info = JSON.parse(obj[Object.keys(obj)[i]]);
+        user_data =JSON.parse(user_info[Object.keys(obj)[i]]);
+        
+        //alert(Object.keys(obj)[i]);
+        info = obj[Object.keys(obj)[i]];
         var schema ='';
         schema += "<div class='col-md-6'>";
         schema +="<div class='box box-primary box-solid'>";
@@ -28,14 +33,15 @@ function form_structure(data) {
         schema +="</div></div>";                        
         schema += "<div class='box-body' style='display: none;' id='"+Object.keys(obj)[i]+"_detail' name='"+Object.keys(obj)[i]+"'>";
         if (info !="") {
-            
             for(j=0; j<Object.keys(info).length; j++){
-               // alert(JSON.stringify(info[Object.keys(info)[j]]));
                 schema +="<label id='label_"+j+"'>"+Object.keys(info)[j]+"</label>";
-                if (info[Object.keys(info)[j]]['ans']) {
-                    schema +="<input type='text' class='form-control' id='data_input_"+[j]+"' list ='"+Object.keys(info)[j]+"' range="+j+" value='"+info[Object.keys(info)[j]]['ans']+"' /><br>";
+                
+                if (user_data !=null) {
+                    //alert("i am inside"+user_data);
+                    schema +="<input type='text' class='form-control' id='data_input_"+[j]+"' list ='"+Object.keys(info)[j]+"' range="+j+" placeholder='"+info[Object.keys(info)[j]]['placeholder']+"' value='"+user_data[Object.keys(info)[j].toLowerCase()] +"' /><br>";
                 }else{
-                    schema +="<input type='text' class='form-control' id='data_input_"+[j]+"' list ='"+Object.keys(info)[j]+"' range="+j+" placeholder='"+info[Object.keys(info)[j]]['placeholder']+"' /><br>";    
+                    //alert("i am outside"+user_data);
+                    schema +="<input type='text' class='form-control' id='data_input_"+[j]+"' list ='"+Object.keys(info)[j]+"' range="+j+" placeholder='"+info[Object.keys(info)[j]]['placeholder']+"' /><br>";
                 }
             }                                                 
         }else{
@@ -73,8 +79,8 @@ $(document).ready(function(){
         parent_name = $(this).parent().attr('name');
         list_name = $(this).attr('list');
         $.post("php/list.php",{list_name:list_name,field_name:parent_name}, function(result){
-           //alert(result);
-            $(result).insertAfter($('.content'));
+            //alert(result);   
+           $(result).insertAfter($('.content'));
         });
     });
     
@@ -82,18 +88,17 @@ $(document).ready(function(){
 //Add information in profile
     $('#form_data').on('click','#add_data',function(e){
         new_data = $(this).attr('name')+"_detail";
-        parent_name = $(this).parent().attr('name');
+        parent_name = $(this).attr('name');
         information =[];
         form_name = $(this).attr('name');
         for( i=0; i<$("#"+form_name+"_detail"+" input").length; i++){
             if (!$.isEmptyObject($.trim($("#"+form_name+"_detail"+" #data_input_"+i).val()))) {
-                information.push( $("#"+form_name+"_detail"+" #label_"+i).html()+","+ $("#"+form_name+"_detail"+" #data_input_"+i).val());
+                information.push('{"'+$("#"+form_name+"_detail"+" #label_"+i).html()+'":"'+ $("#"+form_name+"_detail"+" #data_input_"+i).val()+'"}');
             }
         }
-        
-//User user profile
         if(!$.isEmptyObject(information)){
-            $.post("php/function.php",{user:username,update_form:form_name,info:JSON.stringify(information)}, function(result){
+            $.post("php/function.php",{user:username,update_form:parent_name,info:JSON.stringify(information)}, function(result){
+                    console.log(result);
                     alert(result);
                 });
         }else{
@@ -114,7 +119,20 @@ function personal_detail(username) {
 //EDUCATIONAL DETAILS
 function education_detail(username) {
     $.post('php/function.php',{educational_data:username},function(result){
-        form_structure(result);
+        obj = JSON.parse(result);
+        form_data = JSON.parse(obj['form_data']);
+        user_data = obj['user_data'];
+        object_list =Object.keys(form_data);
+        for (i=0; i<object_list.length; i++) {
+            form_data[object_list[i]] = form_data[object_list[i]].substr(1);
+            $.getJSON(form_data[object_list[i]], function(information){
+                //alert(Object.keys(form_data));
+                form_structure(JSON.stringify(information),user_data);
+                //alert(JSON.stringify(information));
+                
+            });
+        }
+        //form_structure(result);
     });
 }
 

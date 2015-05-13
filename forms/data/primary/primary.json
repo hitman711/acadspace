@@ -1,0 +1,12 @@
+{
+  "primary": {
+    "Board Name": {
+      "ans": "",
+      "placeholder": "CBSE, ICSE, SSC"
+    },
+    "School Name": {
+      "ans": "",
+      "placeholder": "Your School name"
+    }
+  }
+}

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 10, 2015 at 04:25 PM
+-- Generation Time: May 13, 2015 at 06:49 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -54,6 +54,28 @@ INSERT INTO `comp_exam_mapping` (`id`, `form_code`, `table_name`, `exam_name`, `
 (32, '5020302', 'comp_gate', 'GATE exam', 'competitive', 1),
 (33, '5020303', 'comp_gate', 'GATE exam', 'competitive', 1),
 (34, '10101', 'primary_record', 'SSC', 'academic', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `edit_profile`
+--
+
+CREATE TABLE IF NOT EXISTS `edit_profile` (
+  `id` int(255) NOT NULL,
+  `primary` varchar(255) NOT NULL,
+  `secondary` varchar(255) NOT NULL,
+  `undergraduate` varchar(255) NOT NULL,
+  `postgraduate` varchar(255) NOT NULL,
+  `doctorate` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `edit_profile`
+--
+
+INSERT INTO `edit_profile` (`id`, `primary`, `secondary`, `undergraduate`, `postgraduate`, `doctorate`) VALUES
+(0, '../forms/data/primary/primary.json', '../forms/data/secondary/secondary.json', '../forms/data/undergraduate/undergraduate.json', '../forms/data/postgraduate/postgraduate.json', '../forms/data/doctorate/doctorate.json\r\n');
 
 -- --------------------------------------------------------
 
@@ -410,6 +432,12 @@ ALTER TABLE `comp_exam_mapping`
  ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `edit_profile`
+--
+ALTER TABLE `edit_profile`
+ ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `form_field`
 --
 ALTER TABLE `form_field`
@@ -533,7 +561,7 @@ CREATE TABLE IF NOT EXISTS `active_user` (
   `username` varchar(255) NOT NULL,
   `unique_code` varchar(255) NOT NULL,
   `active_code` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `active_user`
@@ -541,7 +569,7 @@ CREATE TABLE IF NOT EXISTS `active_user` (
 
 INSERT INTO `active_user` (`id`, `username`, `unique_code`, `active_code`) VALUES
 (14, 'siddhesh123', 'e1MFjZzOocq8ufL', 'pPbuXCGcxh'),
-(15, 'siddhesh', 'krT3QxCML5fGPDb', 'oO3p5qzA82');
+(20, 'siddhesh', 'krT3QxCML5fGPDb', 'LJdal36wBq');
 
 -- --------------------------------------------------------
 
@@ -654,6 +682,51 @@ CREATE TABLE IF NOT EXISTS `comp_toefl` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `doctorate`
+--
+
+CREATE TABLE IF NOT EXISTS `doctorate` (
+`id` int(255) NOT NULL,
+  `university name` int(255) NOT NULL,
+  `college name` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `postgraduate`
+--
+
+CREATE TABLE IF NOT EXISTS `postgraduate` (
+`id` int(255) NOT NULL,
+  `university name` varchar(255) NOT NULL,
+  `college name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `primary`
+--
+
+CREATE TABLE IF NOT EXISTS `primary` (
+`id` int(255) NOT NULL,
+  `unique_code` varchar(255) NOT NULL,
+  `board name` varchar(255) NOT NULL,
+  `school name` varchar(255) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `primary`
+--
+
+INSERT INTO `primary` (`id`, `unique_code`, `board name`, `school name`) VALUES
+(1, 'krT3QxCML5fGPDb', 'cbse', 'SSV'),
+(5, '6CzfTcQwIW8M42l', 'ssc', 'SSV');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `primary_record`
 --
 
@@ -701,7 +774,7 @@ CREATE TABLE IF NOT EXISTS `register` (
   `salt` varchar(30) NOT NULL,
   `status` varchar(150) NOT NULL,
   `unique_code` varchar(45) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `register`
@@ -709,7 +782,42 @@ CREATE TABLE IF NOT EXISTS `register` (
 
 INSERT INTO `register` (`id`, `fname`, `lname`, `email`, `username`, `password`, `salt`, `status`, `unique_code`) VALUES
 (33, 'siddhesh', 'gore', 'sidh711@gmail.com', 'siddhesh', '65ded5353c5ee48d0b7d48c591b8f430', '9TQxF', 'activated', 'krT3QxCML5fGPDb'),
-(34, 'ganesh', 'gore', 'sidh711@hotmail.com', 'siddhesh123', '202cb962ac59075b964b07152d234b70', 'BFuE4', 'activated', 'e1MFjZzOocq8ufL');
+(34, 'ganesh', 'gore', 'sidh711@hotmail.com', 'siddhesh123', '202cb962ac59075b964b07152d234b70', 'BFuE4', 'activated', 'e1MFjZzOocq8ufL'),
+(35, 'user1', 'user1', 'user1@gmail.com', 'user1', 'cfcd208495d565ef66e7dff9f98764da', 'KuPHr', 'activated', '6CzfTcQwIW8M42l');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `secondary`
+--
+
+CREATE TABLE IF NOT EXISTS `secondary` (
+`id` int(255) NOT NULL,
+  `unique_code` varchar(255) NOT NULL,
+  `board name` varchar(255) NOT NULL,
+  `college name` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `undergraduate`
+--
+
+CREATE TABLE IF NOT EXISTS `undergraduate` (
+`id` int(255) NOT NULL,
+  `unique_code` varchar(255) NOT NULL,
+  `university name` varchar(255) NOT NULL,
+  `college name` varchar(255) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `undergraduate`
+--
+
+INSERT INTO `undergraduate` (`id`, `unique_code`, `university name`, `college name`) VALUES
+(1, 'krT3QxCML5fGPDb', 'mumbai', 'ACE'),
+(2, '6CzfTcQwIW8M42l', 'mumbai', 'ACE');
 
 -- --------------------------------------------------------
 
@@ -724,14 +832,15 @@ CREATE TABLE IF NOT EXISTS `user_analytic_stat` (
   `record_update_info` varchar(5000) NOT NULL,
   `Completed_Analytics` varchar(5000) DEFAULT '0',
   `Partial_Analytics` varchar(5000) DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user_analytic_stat`
 --
 
 INSERT INTO `user_analytic_stat` (`ID`, `user_id`, `record_update_stat`, `record_update_info`, `Completed_Analytics`, `Partial_Analytics`) VALUES
-(2, 'krT3QxCML5fGPDb', '0', '{"Total_Edited_Forms":"0","Edited_Form_List":[]}', '../UserJson/Completed/krT3QxCML5fGPDb.json', '../UserJson/Partial/krT3QxCML5fGPDbp.json');
+(2, 'krT3QxCML5fGPDb', '0', '{"Total_Edited_Forms":"0","Edited_Form_List":[]}', '../UserJson/Completed/krT3QxCML5fGPDb.json', '../UserJson/Partial/krT3QxCML5fGPDbp.json'),
+(3, '6CzfTcQwIW8M42l', '0', '{"Total_Edited_Forms":"0","Edited_Form_List":[]}', '../UserJson/Completed/6CzfTcQwIW8M42l.json', '../UserJson/Partial/6CzfTcQwIW8M42lp.json');
 
 -- --------------------------------------------------------
 
@@ -744,14 +853,15 @@ CREATE TABLE IF NOT EXISTS `user_filled_form` (
   `user_code` varchar(255) NOT NULL,
   `form_filled` varchar(3000) NOT NULL,
   `last_modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user_filled_form`
 --
 
 INSERT INTO `user_filled_form` (`id`, `user_code`, `form_filled`, `last_modified`) VALUES
-(4, 'krT3QxCML5fGPDb', '{"Parameter":{"Total_Simple_Exam_Field":7,"Total_Comp_Exam_Field":1},"Simple_Exam":[{"form_type":"undergraduate","Form_Code":"301010101","Table_name":"user_record","Attempt":0},{"form_type":"undergraduate","Form_Code":"301010102","Table_name":"user_record","Attempt":0},{"form_type":"undergraduate","Form_Code":"301010103","Table_name":"user_record","Attempt":0},{"form_type":"10th","Form_Code":"10101","Table_name":"primary_record","Attempt":0},{"form_type":"undergraduate","Form_Code":"301010104","Table_name":"user_record","Attempt":0},{"form_type":"undergraduate","Form_Code":"301010105","Table_name":"user_record","Attempt":0},{"form_type":"undergraduate","Form_Code":"301010106","Table_name":"user_record","Attempt":0}],"Comp_Exam":[{"form_type":"GRE","Form_Code":"5010201","Table_name":"comp_gre","Attempt":1}]}', '2015-05-08 07:37:44');
+(4, 'krT3QxCML5fGPDb', '{"Parameter":{"Total_Simple_Exam_Field":9,"Total_Comp_Exam_Field":1},"Simple_Exam":[{"form_type":"undergraduate","Form_Code":"301010101","Table_name":"user_record","Attempt":0},{"form_type":"undergraduate","Form_Code":"301010102","Table_name":"user_record","Attempt":0},{"form_type":"undergraduate","Form_Code":"301010103","Table_name":"user_record","Attempt":0},{"form_type":"10th","Form_Code":"10101","Table_name":"primary_record","Attempt":0},{"form_type":"undergraduate","Form_Code":"301010104","Table_name":"user_record","Attempt":0},{"form_type":"undergraduate","Form_Code":"301010105","Table_name":"user_record","Attempt":0},{"form_type":"undergraduate","Form_Code":"301010106","Table_name":"user_record","Attempt":0},{"form_type":"undergraduate","Form_Code":"301010107","Table_name":"user_record","Attempt":0},{"form_type":"undergraduate","Form_Code":"301010108","Table_name":"user_record","Attempt":0}],"Comp_Exam":[{"form_type":"GRE","Form_Code":"5010201","Table_name":"comp_gre","Attempt":1}]}', '2015-05-13 16:48:26'),
+(5, '6CzfTcQwIW8M42l', '{"Parameter":{"Total_Simple_Exam_Field":8,"Total_Comp_Exam_Field":0},"Simple_Exam":[{"form_type":"undergraduate","Form_Code":"301010101","Table_name":"user_record","Attempt":0},{"form_type":"undergraduate","Form_Code":"301010102","Table_name":"user_record","Attempt":0},{"form_type":"undergraduate","Form_Code":"301010103","Table_name":"user_record","Attempt":0},{"form_type":"undergraduate","Form_Code":"301010104","Table_name":"user_record","Attempt":0},{"form_type":"undergraduate","Form_Code":"301010105","Table_name":"user_record","Attempt":0},{"form_type":"undergraduate","Form_Code":"301010106","Table_name":"user_record","Attempt":0},{"form_type":"undergraduate","Form_Code":"301010107","Table_name":"user_record","Attempt":0},{"form_type":"undergraduate","Form_Code":"301010108","Table_name":"user_record","Attempt":0}],"Comp_Exam":[]}', '2015-05-11 06:15:38');
 
 -- --------------------------------------------------------
 
@@ -774,7 +884,7 @@ CREATE TABLE IF NOT EXISTS `user_profile` (
 --
 
 INSERT INTO `user_profile` (`id`, `user_code`, `primary`, `secondary`, `undergraduate`, `postgraduation`, `doctorate`) VALUES
-(1, 'krT3QxCML5fGPDb', '{  "Board Name":{    "ans":"",    "placeholder":"CBSE, ICSE, SSC"  },  "Medium":{    "ans":"",    "placeholder":"marathi, hindi, semi-english,english, etc"  },  "School Name":{    "ans":"",    "placeholder":"Your School name"  },  "Duration":{    "ans":"",    "placeholder":"1"  },  "Year of passing":{    "ans":"",    "placeholder":"CBSE, ICSE, SSC"  },  "Current study":{    "ans":"",    "placeholder":"yes or no"  }}', '{   "education Type":{     "ans":"",     "placeholder":"HSC OR Diploma"   },   "Board Name":{     "ans":"",     "placeholder":"based on your education type"   },   "College Name":{     "ans":"",     "placeholder":"Your School name"   },   "Duration":{     "ans":"",     "placeholder":"in years"   },   "Year of passing":{     "ans":"",     "placeholder":"final year"   },   "Current study":{     "ans":"",     "placeholder":"yes or no"   } }', '{   "education Type":{     "ans":"",     "placeholder":"Bachlore degree"   },   "University Name":{     "ans":"",     "placeholder":"university name"   },   "College Name":{     "ans":"",     "placeholder":"Your College name"   },   "Duration":{     "ans":"",     "placeholder":"in years"   },   "Year of passing":{     "ans":"",     "placeholder":"final year"   },   "Current study":{     "ans":"",     "placeholder":"yes or no"   } }', '{   "education Type":{     "ans":"",     "placeholder":"Master degree"   },   "University Name":{     "ans":"",     "placeholder":"University name"   },   "College Name":{     "ans":"",     "placeholder":"Your College OR University Name"   },   "Duration":{     "ans":"",     "placeholder":"in years"   },   "Year of passing":{     "ans":"",     "placeholder":"final year"   },   "Current study":{     "ans":"",     "placeholder":"yes or no"   } }', '{   "education Type":{     "ans":"",     "placeholder":"Doctorate degree"   },   "University Name":{     "ans":"",     "placeholder":"University name"   },   "College Name":{     "ans":"",     "placeholder":"Your College OR University Name"   },   "Duration":{     "ans":"",     "placeholder":"in years"   },   "Year of passing":{     "ans":"",     "placeholder":"final year"   },   "Current study":{     "ans":"",     "placeholder":"yes or no"   } }');
+(1, 'krT3QxCML5fGPDb', '../forms/data/primary/primary.json', '../forms/data/secondary/secondary.json', '../forms/data/undergraduate/undergraduate.json', '../forms/data/postgraduate/postgraduate.json', '../forms/data/doctorate/doctorate.json');
 
 -- --------------------------------------------------------
 
@@ -801,7 +911,7 @@ CREATE TABLE IF NOT EXISTS `user_record` (
   `data_field_12` varchar(255) DEFAULT NULL,
   `attempt` int(30) DEFAULT '0',
   `total` varchar(255) DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user_record`
@@ -809,11 +919,21 @@ CREATE TABLE IF NOT EXISTS `user_record` (
 
 INSERT INTO `user_record` (`id`, `user_code`, `form_code`, `data_field_8`, `data_field_1`, `data_field_2`, `data_field_3`, `data_field_4`, `data_field_5`, `data_field_6`, `data_field_7`, `last_modified`, `data_field_9`, `data_field_10`, `data_field_11`, `data_field_12`, `attempt`, `total`) VALUES
 (19, 'krT3QxCML5fGPDb', '301010101', NULL, 'o', 'a', 'p', 'p', 'p', 'p', 'a', '2015-05-08 06:49:07', NULL, NULL, NULL, NULL, 0, '6.13'),
-(20, 'krT3QxCML5fGPDb', '301010102', NULL, 'a', 'b', 'p', 'a', 'b', 'c', 'a', '2015-05-08 07:34:13', NULL, NULL, NULL, NULL, 0, '7.81'),
-(21, 'krT3QxCML5fGPDb', '301010103', NULL, 'a', 'b', 'c', 'd', 'a', 'o', NULL, '2015-05-07 17:45:53', NULL, NULL, NULL, NULL, 0, '8.07'),
-(22, 'krT3QxCML5fGPDb', '301010104', NULL, 'o', 'a', 'a', 'b', 'a', 'a', NULL, '2015-05-07 19:43:33', NULL, NULL, NULL, NULL, 0, '9.04'),
+(20, 'krT3QxCML5fGPDb', '301010102', NULL, 'a', 'b', 'p', 'o', 'o', 'p', 'a', '2015-05-11 19:16:40', NULL, NULL, NULL, NULL, 0, '8.04'),
+(21, 'krT3QxCML5fGPDb', '301010103', NULL, 'a', 'b', 'p', 'P', 'O', 'o', NULL, '2015-05-12 08:22:34', NULL, NULL, NULL, NULL, 0, '7.32'),
+(22, 'krT3QxCML5fGPDb', '301010104', NULL, 'o', 'a', 'a', 'b', 'o', 'a', NULL, '2015-05-11 19:11:46', NULL, NULL, NULL, NULL, 0, '9.21'),
 (23, 'krT3QxCML5fGPDb', '301010105', 'o', 'o', 'a', 'o', 'a', 'b', 'a', 'o', '2015-05-07 19:44:05', 'p', 'a', 'a', NULL, 0, '9.07'),
-(24, 'krT3QxCML5fGPDb', '301010106', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', '2015-05-07 19:44:34', 'b', 'b', NULL, NULL, 0, '8.00');
+(24, 'krT3QxCML5fGPDb', '301010106', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', '2015-05-07 19:44:34', 'b', 'b', NULL, NULL, 0, '8.00'),
+(25, '6CzfTcQwIW8M42l', '301010101', NULL, 'a', 'a', 'a', 'a', 'a', 'b', 'c', '2015-05-11 06:13:10', NULL, NULL, NULL, NULL, 0, '8.78'),
+(26, '6CzfTcQwIW8M42l', '301010102', NULL, 'o', 'a', 'b', 'c', 'a', 'p', 'o', '2015-05-11 06:13:58', NULL, NULL, NULL, NULL, 0, '8.20'),
+(27, '6CzfTcQwIW8M42l', '301010103', NULL, 'a', 'a', 'd', 'e', 'o', 'o', NULL, '2015-05-11 06:14:20', NULL, NULL, NULL, NULL, 0, '8.04'),
+(28, '6CzfTcQwIW8M42l', '301010104', NULL, 'o', 'o', 'o', 'o', 'o', 'e', NULL, '2015-05-11 06:14:37', NULL, NULL, NULL, NULL, 0, '9.11'),
+(29, '6CzfTcQwIW8M42l', '301010105', 'p', 'o', 'p', 'o', 'p', 'o', 'p', 'o', '2015-05-12 12:56:10', 'o', 'p', 'o', NULL, 0, '7.60'),
+(30, '6CzfTcQwIW8M42l', '301010106', 'c', 'o', 'o', 'o', 'a', 'a', 'c', 'c', '2015-05-11 06:15:04', 'c', 'c', NULL, NULL, 0, '9.08'),
+(31, '6CzfTcQwIW8M42l', '301010107', 'a', 'a', 'e', 'e', 'e', 'a', 'a', 'a', '2015-05-11 06:15:21', 'a', 'a', 'a', NULL, 0, '7.15'),
+(32, '6CzfTcQwIW8M42l', '301010108', 'a', 'd', 'd', 'd', 'd', 'a', 'a', 'a', '2015-05-11 06:15:38', 'a', NULL, NULL, NULL, 0, '7.15'),
+(33, 'krT3QxCML5fGPDb', '301010107', 'a', 'a', 'o', 'o', 'a', 'a', 'o', 'o', '2015-05-11 16:57:11', 'o', 'o', 'o', NULL, 0, '9.50'),
+(35, 'krT3QxCML5fGPDb', '301010108', 'o', 'o', 'a', 'p', 'o', 'o', 'o', 'o', '2015-05-13 16:48:26', 'o', NULL, NULL, NULL, 0, '8.92');
 
 --
 -- Indexes for dumped tables
@@ -856,6 +976,24 @@ ALTER TABLE `comp_toefl`
  ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `doctorate`
+--
+ALTER TABLE `doctorate`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `postgraduate`
+--
+ALTER TABLE `postgraduate`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `primary`
+--
+ALTER TABLE `primary`
+ ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `primary_record`
 --
 ALTER TABLE `primary_record`
@@ -866,6 +1004,18 @@ ALTER TABLE `primary_record`
 --
 ALTER TABLE `register`
  ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `email` (`email`,`username`), ADD UNIQUE KEY `unique_code` (`unique_code`), ADD UNIQUE KEY `unique_code_2` (`unique_code`), ADD UNIQUE KEY `unique_code_3` (`unique_code`);
+
+--
+-- Indexes for table `secondary`
+--
+ALTER TABLE `secondary`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `undergraduate`
+--
+ALTER TABLE `undergraduate`
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `user_analytic_stat`
@@ -904,7 +1054,7 @@ MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `active_user`
 --
 ALTER TABLE `active_user`
-MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
+MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `analytics_question_record`
 --
@@ -926,6 +1076,21 @@ MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 ALTER TABLE `comp_toefl`
 MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `doctorate`
+--
+ALTER TABLE `doctorate`
+MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `postgraduate`
+--
+ALTER TABLE `postgraduate`
+MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `primary`
+--
+ALTER TABLE `primary`
+MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
 -- AUTO_INCREMENT for table `primary_record`
 --
 ALTER TABLE `primary_record`
@@ -934,17 +1099,27 @@ MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 -- AUTO_INCREMENT for table `register`
 --
 ALTER TABLE `register`
-MODIFY `id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=35;
+MODIFY `id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=36;
+--
+-- AUTO_INCREMENT for table `secondary`
+--
+ALTER TABLE `secondary`
+MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `undergraduate`
+--
+ALTER TABLE `undergraduate`
+MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `user_analytic_stat`
 --
 ALTER TABLE `user_analytic_stat`
-MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `user_filled_form`
 --
 ALTER TABLE `user_filled_form`
-MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `user_profile`
 --
@@ -954,7 +1129,7 @@ MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 -- AUTO_INCREMENT for table `user_record`
 --
 ALTER TABLE `user_record`
-MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
+MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=36;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

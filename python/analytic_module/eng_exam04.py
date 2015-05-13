@@ -23,11 +23,11 @@ def operation(db,unique_code):
 
     related_data ={
         "Question":"How am i performing in my semester exam?",
-        "Answer_Type":"normal_graph",
+        "Answer_Type":"side_graph",
         "graph_sub_type":["bar","line","scatter","spline"],
         "Description": "This chart indicates user overall performance.",
         "Related_Data":{
-            "set":"#1A",
+            "set":"#4A",
             "title":"Performance Graph",
             "argumentField":"x-axis",
             "valueField":"y-axis",
@@ -48,7 +48,7 @@ def operation(db,unique_code):
 
 def dependancies():
     dependent_forms = []
-    dependent_forms.append("3010101*")
+    dependent_forms.append("30101010000")
     return dependent_forms
 
 
@@ -58,5 +58,5 @@ def execute(db,user_code):
     stat = "Failed"
     stat = "Success"
     data = operation(db,user_code)
-    result = {'1A':data}
+    result = {'4A':data}
     return [stat,result]

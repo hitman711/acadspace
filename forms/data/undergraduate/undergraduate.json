@@ -1,0 +1,12 @@
+{
+  "undergraduate": {
+    "University Name": {
+      "ans": "",
+      "placeholder": "university name"
+    },
+    "College Name": {
+      "ans": "",
+      "placeholder": "Your College name"
+    }
+  }
+}

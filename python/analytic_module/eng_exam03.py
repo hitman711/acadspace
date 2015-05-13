@@ -10,7 +10,7 @@ def operation(db,unique_code):
 		db.close()
 	except:
 		print "Error: unable to fecth data"
-	graph_data.sort()	
+	graph_data.sort()
 	related_data = {
 	"Question": "How am i performing in my GRE Technical exam?",
 	"Answer_Type": "line_chart",
@@ -55,11 +55,11 @@ def operation(db,unique_code):
 		}
 		]
 	}
-	return related_data 
-	
+	return related_data
+
 def dependancies():
 	dependent_forms = []
-	dependent_forms.append("5010200*")
+	dependent_forms.append("501020000*")
 	return dependent_forms
 
 def execute(db,user_code):

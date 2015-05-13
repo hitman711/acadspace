@@ -1,0 +1,12 @@
+{
+  "secondary": {
+    "Board Name": {
+      "ans": "",
+      "placeholder": "board name"
+    },
+    "College Name": {
+      "ans": "",
+      "placeholder": "Your College name"
+    }
+  }
+}

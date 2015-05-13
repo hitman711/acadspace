@@ -83,7 +83,7 @@ class querys {
 
 //read profile data
     public function read_profile($username){
-        $read_profile = "SELECT `primary`, `secondary`, `undergraduate`, `postgraduation`, `doctorate` FROM `user_profile` WHERE `user_code`='$username'";
+        $read_profile = "SELECT `primary`, `secondary`, `undergraduate`, `postgraduate`, `doctorate` FROM `edit_profile`";
         return $read_profile;
     }
     
@@ -96,6 +96,54 @@ class querys {
         $update_form_data = "UPDATE `user_profile` SET `$form_name`='$form_data' WHERE `user_code`='$username'";
         return $update_form_data;
     }
+    
+    public function verify_user_field_data($username,$table_name){
+        $verify_available = "SELECT `unique_code` FROM `$table_name` WHERE `unique_code`='$username'";
+        return $verify_available;
+    }
+    
+    
+    public function read_user_field_data($unique_code,$table_name){
+        $read_user_data = "SELECT * FROM `$table_name` WHERE `unique_code`='$unique_code'";
+        return $read_user_data;
+    }
+    
+    
+    public function insert_profile_query($username, $column_name, $form_name, $data){
+        $col_name ='';
+        $data_name ='';
+        for($i=0; $i<sizeof($column_name); $i++){
+            $insert_col_name =strtolower($column_name[$i]);
+            $col_name = $col_name."`$insert_col_name`";
+            $data_name = $data_name."'$data[$i]'";
+            if($i != (sizeof($column_name) -1)){
+                $col_name = $col_name.",";
+                $data_name = $data_name.",";
+            }else{
+                
+            }
+        }
+        $insert_profile_query = "INSERT INTO `$form_name`(`unique_code`,$col_name) VALUES ('$username',$data_name)";
+        return $insert_profile_query;
+    }
+    
+    
+    public function update_profile_query($username, $column_name,$form_name, $data){
+        $pass ='';
+        for($i=0; $i<sizeof($column_name); $i++){
+            $insert_col_name =strtolower($column_name[$i]);
+            $pass = $pass."`$insert_col_name` ='$data[$i]'";
+            if($i != (sizeof($column_name) -1)){
+                $pass = $pass.",";    
+            }else{
+                
+            }
+            
+        }
+        $insert_profile_query = "UPDATE `$form_name` SET $pass WHERE `unique_code` = '$username'";
+        return $insert_profile_query;
+    }
+    
     
 
 /*--------------------------------------------------------------------------------------above function define user registration, login and session data -------------------------------------------------------------------------------- */

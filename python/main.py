@@ -91,7 +91,7 @@ for i in range(0,len(data)):            # Iterating over resulted records (users
                     if result.keys()[0] in Completed_Analytics['Suceeded_Analytic']:
                         print "Updating Record . . . . . . "
                     Completed_Analytics['Suceeded_Analytic'].update(result)
-                    print Completed_Analytics
+
                     if result.keys()[0] in Partial_Analytics['Partial_Analytic']:
                         Partial_Analytics['Partial_Analytic'].pop(result.keys()[0])
                     Data_Update_Flag = True
@@ -123,5 +123,4 @@ for i in range(0,len(data)):            # Iterating over resulted records (users
         Partial_Analytics = str(MySQLdb.escape_string(Pfile_name))
         user_id = str(MySQLdb.escape_string(user_id))
         Query = "UPDATE `user_analytic_stat` SET `record_update_stat`='0',`record_update_info`='%s', `Completed_Analytics`='%s',`Partial_Analytics`='%s' WHERE `user_id` = '%s'"%(record_update_info,Completed_Analytics,Partial_Analytics,user_id)
-        #db.RunQueryColNameOnAcadspace(Query)
-        db.RunQueryOnDb(Query,'acadspace')
+        db.RunQueryOnAcadspace(Query)

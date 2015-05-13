@@ -62,6 +62,7 @@ function normal_graph(data) {
     y_axis_max_limit = obj['max-y'];
     x_axis_name = obj['x-axis-name'];
     y_axis_name = obj['y-axis-name'];
+    series_name =obj['series_name'];
     total = obj['avg'];
     
     $(obj['set']).dxChart({
@@ -72,12 +73,11 @@ function normal_graph(data) {
          series: {
             argumentField: argumentField,
             valueField: valueField,
-            name: "Semester",
+            name: series_name,
         },
         legend: {
-            verticalAlignment: "TOP",
-            horizontalAlignment: "center",
-            itemTextPosition: "right"
+            verticalAlignment: "bottom",
+            horizontalAlignment: "center"
         },
         tooltip: {
             enabled: true
@@ -108,6 +108,61 @@ function normal_graph(data) {
             }
         });
 }
+
+
+function Comparision_graph(data) {
+    
+    obj = JSON.parse(data);
+    dataSource =obj['data'];
+    argumentField = obj['argumentField'];
+    graph_type =obj['graph_type'];
+    valueField = obj['valueField'];
+    series =obj['series'];
+    tooltip = obj['tooltip'];
+    title = obj['title'];
+    x_axis_min_limit = obj['min-x'];
+    x_axis_max_limit = obj['max-x'];
+    y_axis_min_limit = obj['min-y'];
+    y_axis_max_limit = obj['max-y'];
+    x_axis_name = obj['x-axis-name'];
+    y_axis_name = obj['y-axis-name'];
+    $(obj['set']).dxChart({
+    dataSource: dataSource,
+    commonSeriesSettings: {
+        argumentField: argumentField,
+        type: graph_type,
+        hoverMode: "allArgumentPoints",
+        selectionMode: "allArgumentPoints"
+    },
+    series:series,
+    title: title,
+    legend: {
+        verticalAlignment: "bottom",
+        horizontalAlignment: "center"
+    },
+    tooltip: {
+        enabled: tooltip
+    },
+    valueAxis: {
+            title: {
+                text: y_axis_name
+            },
+	    max:y_axis_max_limit,
+	    min: y_axis_min_limit            
+        },
+    argumentAxis:{
+	    title:{
+                text:x_axis_name
+            },
+            max:x_axis_max_limit,
+            min:x_axis_min_limit
+        }
+    
+});
+
+}
+
+
 
 
 

@@ -65,23 +65,44 @@
             
 <!----------------------------Retype PAssword ------------------------------>
           <div class="form-group has-feedback">
-            <input type="password" class="form-control" placeholder="Retype password" id='rpass'/>
+            <input type="password" class="form-control" placeholder="Retype password" id='retype_pass'/>
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
         
-<!----------------------------profile photo ------------------------------>
-            <div class="form-group has-feedback">
-                <label>Profile Image</label>
-            <input type="file" class="form-control" placeholder="Upload your image" id='profile_img'/>
-            <span class="glyphicon glyphicon-upload form-control-feedback"><i class="icon-large  icon-upload"></i></span>
+<!----------------------------Educational INFO ------------------------------>
+          <hr>
+          <label>Educational Info</label>
+      <!------------------------------TYPE------------------------------------>
+          <div class="form-group has-feedback">
+            <input type="text" class="form-control" placeholder="current study" title="e.g.10th , 12th, diploma, undergraduate etc" id='c_study'/>
+            <span class="glyphicon glyphicon-book form-control-feedback"></span>
           </div>
+
+      <!------------------------------BOARD OR UNIVERSITY NAME------------------------------------>
+          <div class="form-group has-feedback">
+            <input type="text" class="form-control" placeholder="board or university name"  id='c_board'/>
             
+            <span class="form-control-feedback"><i class="fa fa-university"></i></span>
+          </div>    
+
+      <!------------------------------SCHOOL OR COLLEGE NAME------------------------------------>
+          <div class="form-group has-feedback">
+            <input type="text" class="form-control" placeholder="school or college name" id='c_name'/>
+            <span class="form-control-feedback"><i class="fa fa-building"></i></span>
+          </div>
+          
+      <!------------------------------STREAM NAME------------------------------------>
+          <div class="form-group has-feedback">
+            <input type="text" class="form-control" placeholder="medium or field" id='c_stream'/>
+            <span class="glyphicon glyphicon-book form-control-feedback"></span>
+          </div>
+          
 <!----------------------------Aggred To the terms ------------------------------>
           <div class="row">
-            <!--div class="col-xs-8">
+            <div class="col-xs-8">
               <div class="checkbox icheck">
                 <label>
-                  <input type="checkbox"> I agree to the <a href="#">terms</a>
+                  <input type="checkbox" id="aggrement"> I agree to the <a href="#">terms</a>
                 </label>
               </div>
             </div><!-- /.col -->
