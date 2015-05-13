@@ -31,7 +31,7 @@ function old_simple_record(data) {
             }
         }else{
                 list.push(data[i][0]);
-                pass +='<div><div class="col-md-3" id="'+data[i][0]+'"><div class="box-header with-border bg-blue">'+
+                pass +='<div><div class="col-md-3" id="'+data[i][0]+'"><div class="box-header with-border bg-blue" >'+
                     '<h3 class="box-title">'+data[i][0]+'</h3>'+
                     '<div class="box-tools pull-right">'+
                     '<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>'+
@@ -192,7 +192,6 @@ $(document).ready( function(){
     
 //Initial selection box(LEVEL 1)
     $.post('php/examtype.php',{level_1_selection_box:'level0'}, function(result){
-
         $('#display_form').css('display','none');
         selection_box(result,"0");
         $('#0').css('display','inline');
@@ -367,6 +366,20 @@ $(document).ready( function(){
                 old_comp_record(obj['comp']);
             });
         });
+    
+    
+    $('#level1, #level2').on('click','.btn-box-tool', function(){
+        $(this).change('<i class="fa fa-plus"></i>');
+        changed = $(this).parents().next().attr('id');
+        //alert(changed);
+        $('#'+changed).slideToggle('slow');
+        $(this).html($(this).html() == '<i class="fa fa-minus"></i>' ? '<i class="fa fa-plus"></i>' : '<i class="fa fa-minus"></i>');
+    });
+    
+    
+    
+    
+    
 });
 
 

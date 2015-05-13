@@ -4,14 +4,16 @@ $('#register').click( function() {
       $('#email').val() &&
       $('#user').val() &&
       $('#pass').val() &&
-      $('#retype_pass').val() &&
+      $('#retype_pass').val() 
+      /*&&
       $('#c_study').val() &&
       $('#c_board').val() &&
       $('#c_name').val() &&
       $('#c_stream').val()
+      */
       ){
         if($('#pass').val() == $('#retype_pass').val()){
-            $('#response').html('');
+            $('#response').html('<center><i class="fa fa-refresh fa-spin"></i><center>');
             var fname = $('#first').val();
             var lname = $('#last').val();
             var email = $('#email').val();
@@ -19,15 +21,8 @@ $('#register').click( function() {
             var password = $('#pass').val();
             var repass = $('#retype_pass').val();
 //Current educational Detail            
-            var c_type =$('#c_study').val();
-            var c_board = $('#c_board').val();
-            var c_name = $('#c_name').val();
-            var c_stram = $('#c_stream').val();
             
-            
-            //alert(fname+' '+lname+' '+email+' '+username+' '+password);
             $('#process').css('display','block');
-            //alert(lname+" "+fname+" "+email+" "+username+" "+password+" "+c_type+" "+c_board+" "+c_name+" "+c_stram);
             
             $.post('./php/register.php',{
                 first:fname,
@@ -35,23 +30,10 @@ $('#register').click( function() {
                 email:email,
                 user:username,
                 pass:password,
-                rpass:repass,
-                s_type :c_type,
-                s_board :c_board,
-                s_name :c_name,
-                s_stream : c_stram
+                rpass:repass
                 }, function(result){
                 $(this).attr('disabled');
                 $('#response').html(result);
-                 /*$('#process').html('');
-                $('#process').css('color','white');
-                $('#process').css('font-size','20px');
-                $('#process').css('background-color','white');
-                $('#process').css('color','black');
-                $('#process').html(result);
-                */
-                //alert(result);
-                //window.location.replace(result);
                 });
 
         }

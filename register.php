@@ -6,6 +6,7 @@
   <head>
     <meta charset="UTF-8">
     <title>Acadspace Registration</title>
+    <link rel="icon" href="<?php echo $fevicon;?>" type="image/png" sizes="16x16">
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.2 -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -70,32 +71,6 @@
           </div>
         
 <!----------------------------Educational INFO ------------------------------>
-          <hr>
-          <label>Educational Info</label>
-      <!------------------------------TYPE------------------------------------>
-          <div class="form-group has-feedback">
-            <input type="text" class="form-control" placeholder="current study" title="e.g.10th , 12th, diploma, undergraduate etc" id='c_study'/>
-            <span class="glyphicon glyphicon-book form-control-feedback"></span>
-          </div>
-
-      <!------------------------------BOARD OR UNIVERSITY NAME------------------------------------>
-          <div class="form-group has-feedback">
-            <input type="text" class="form-control" placeholder="board or university name"  id='c_board'/>
-            
-            <span class="form-control-feedback"><i class="fa fa-university"></i></span>
-          </div>    
-
-      <!------------------------------SCHOOL OR COLLEGE NAME------------------------------------>
-          <div class="form-group has-feedback">
-            <input type="text" class="form-control" placeholder="school or college name" id='c_name'/>
-            <span class="form-control-feedback"><i class="fa fa-building"></i></span>
-          </div>
-          
-      <!------------------------------STREAM NAME------------------------------------>
-          <div class="form-group has-feedback">
-            <input type="text" class="form-control" placeholder="medium or field" id='c_stream'/>
-            <span class="glyphicon glyphicon-book form-control-feedback"></span>
-          </div>
           
 <!----------------------------Aggred To the terms ------------------------------>
           <div class="row">

@@ -15,9 +15,7 @@ $(document).ready( function(){
             schema +="<p class='box-title'>"+pass['Question']+"</p>";
             schema +="<div class='box-tools pull-right'>";
             schema +="<button class='btn btn-box-tool' data-widget='collapse'><i class='fa fa-minus'></i></button></div>";
-            schema +="</div><div class='box-body' id='id_"+i+"'style='display:block'><div id='"+total_records[i]+"' style='height: 400px; padding: 0px; position: relative;'></div>";
-            schema +="<div id='graph_types'><br><center><label> Select Graph Types </label>";
-            schema +="<select id='sub_types_"+i+"' style='padding:5px; font-size:18px'></select></center></div>";
+            schema +="</div><div class='box-body' id='id_"+i+"'style='display:block'><div id='"+total_records[i]+"' style='height: 350px; padding: 0px; position: relative;'></div>";
             schema +="<div><p>"+pass['Description']+"<p></div>";
             schema +="</div></div></div></div>";
             $('#graphs').append(schema);
@@ -25,13 +23,6 @@ $(document).ready( function(){
 //alert(data['Suceeded_Analytic'][total_records[i]]['Answer_Type']+"('"+JSON.stringify(pass['Related_Data'])+"')");
             eval(data['Suceeded_Analytic'][total_records[i]]['Answer_Type']+"('"+JSON.stringify(pass['Related_Data'])+"')");
             schema ='';
-            
-            graph_type = pass['graph_sub_type'];
-            //alert(pass['graph_sub_type'].toString());
-            for (j=0;j<graph_type.length; j++) {
-                $('#sub_types_'+i).append('<option value="'+graph_type[j]+'">'+graph_type[j]+'</option>');
-            }
-            
         }
         });
     });
@@ -126,6 +117,7 @@ function Comparision_graph(data) {
     y_axis_max_limit = obj['max-y'];
     x_axis_name = obj['x-axis-name'];
     y_axis_name = obj['y-axis-name'];
+    
     $(obj['set']).dxChart({
     dataSource: dataSource,
     commonSeriesSettings: {
@@ -157,7 +149,6 @@ function Comparision_graph(data) {
             max:x_axis_max_limit,
             min:x_axis_min_limit
         }
-    
 });
 
 }

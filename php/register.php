@@ -11,11 +11,14 @@ include('mail.php');
       isset($_POST['user']) &&
       isset($_POST['pass']) &&
       isset($_POST['rpass']) &&
-      (isset($_POST['pass']) == isset($_POST['rpass'])) &&
+      (isset($_POST['pass']) == isset($_POST['rpass']))
+      /*
+      &&
       isset($_POST['s_type']) &&
       isset($_POST['s_board']) &&
       isset($_POST['s_name']) &&
       isset($_POST['s_stream'])
+      */
       )
     {
 	$conn = mysql_connect($host, $admin,$pass) or Die("database connectivity failed");
