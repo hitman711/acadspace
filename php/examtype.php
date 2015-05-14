@@ -1,6 +1,6 @@
 <?php
 include('query.php');
-include('configuration.php');
+require_once('configuration.php');
 $call_function = new operation();
 
 /*-------------------------------------------------------------------------------------the  below function take input form user and pass to specific function----------------------------------------------------------------------------*/
@@ -122,8 +122,8 @@ class databases {
     function database_info(){
         global $host;
         global $admin;
-        global$pass;
-        $conn = mysql_connect($host,$admin,$pass) or Die("error");
+        global $pass;
+        $conn = mysql_connect(HOST,USERNAME,PASSWORD) or Die("error");
         if($conn){
             return $conn;    
         }else{
@@ -157,9 +157,9 @@ class operation {
     
 //get user unique code
     function user_unique_code($username){
-        global $database;
+        //global $database;
         $connect = new databases();
-        $db_connect = $connect->select_db($database);
+        $db_connect = $connect->select_db(MAIN_DATABASE);
         $sql = new querys();
         $query = $sql->get_user_code($username);
         $result = mysql_query($query, $connect->database_info());
@@ -170,9 +170,9 @@ class operation {
     
 //get form name
     public function get_form_name($form_code){
-        global $sample_data;
+        //global $sample_data;
         $connect = new databases();
-        $db_connect = $connect->select_db($sample_data);
+        $db_connect = $connect->select_db(SAMPLE_DATABASE);
         $sql = new querys();
         $query = $sql->get_form_name($form_code);
         $result = mysql_query($query,$connect->database_info());
@@ -183,9 +183,9 @@ class operation {
     
 //user filled form record
     function user_saved_record($username){
-        global $database;
+        //global $database;
         $connect = new databases();
-        $db_connect = $connect->select_db($database);
+        $db_connect = $connect->select_db(MAIN_DATABASE);
         $sql = new querys();
         $query = $sql->read_user_filled_form($this->user_unique_code($username));
         //echo $query;
@@ -229,9 +229,9 @@ class operation {
     
 //update user saved record
     function update_user_saved_record($user_code,$existing_data,$type,$new_data){
-        global $database;
+        //global $database;
         $connect = new databases();
-        $db_connect = $connect->select_db($database);
+        $db_connect = $connect->select_db(MAIN_DATABASE);
         $sql = new querys();
         $obj = json_decode($existing_data);
 
@@ -256,9 +256,9 @@ class operation {
     }
 //insert new user saved record
     public function insert_new_user_saved_record($user_code,$type,$new_data){
-        global $database;
+        //global $database;
         $connect = new databases();
-        $db_connect = $connect->select_db($database);
+        $db_connect = $connect->select_db(MAIN_DATABASE);
         $sql = new querys();
         $data = array("Parameter"=>array("Total_Simple_Exam_Field"=>0,"Total_Comp_Exam_Field"=>0),"Simple_Exam"=>array(),"Comp_Exam"=>array());
         if($type =="academic"){
@@ -283,9 +283,9 @@ class operation {
     
 //get attempt record
     public function get_attempt_record($user_code, $table_name, $form_no){
-        global $database;
+        //global $database;
         $connect = new databases();
-        $db_connect = $connect->select_db($database);
+        $db_connect = $connect->select_db(MAIN_DATABASE);
         $sql = new querys();
         $query = $sql->get_attempt_record($user_code,$table_name,$form_no);
         $result = mysql_query($query, $connect->database_info());
@@ -300,9 +300,9 @@ class operation {
     
 //first selection box
     public function first_selection_box($first_table){
-        global $sample_data;
+        //global $sample_data;
         $connect = new databases();
-        $db_connect = $connect->select_db($sample_data);
+        $db_connect = $connect->select_db(SAMPLE_DATABASE);
         $sql = new querys();
         $query = $sql->get_field($first_table);
         $result = mysql_query($query,$connect->database_info());
@@ -323,9 +323,9 @@ class operation {
     
 //validate compatative exam code
     public function validate_exam_code($form_no){
-        global $sample_data;
+        //global $sample_data;
         $connect = new databases();
-        $db_connect = $connect->select_db($sample_data);
+        $db_connect = $connect->select_db(SAMPLE_DATABASE);
         $sql = new querys();
         $query = $sql->validate_exam_code($form_no);
         $result = mysql_query($query,$connect->database_info());
@@ -348,9 +348,9 @@ class operation {
             echo "form";
         }
         else{
-            global $sample_data;
+            //global $sample_data;
             $connect = new databases();
-            $db_connect = $connect->select_db($sample_data);
+            $db_connect = $connect->select_db(SAMPLE_DATABASE);
             $sql = new querys();
             $query = $sql->get_next_field($level_code,$next_table);
             $result = mysql_query($query,$connect->database_info());
@@ -369,9 +369,9 @@ class operation {
     }  
 //get form record
     public function get_form_info($table_name,$form_no){
-        global $sample_data;
+        //global $sample_data;
         $connect = new databases();
-        $db_connect = $connect->select_db($sample_data);
+        $db_connect = $connect->select_db(SAMPLE_DATABASE);
         $sql = new querys();
         $query = $sql->get_form($table_name,$form_no);
         $result = mysql_query($query,$connect->database_info());
@@ -383,9 +383,9 @@ class operation {
     
 //get form field
     public function get_form_field($form_no){
-        global $sample_data;
+        //global $sample_data;
         $connect = new databases();
-        $db_connect = $connect->select_db($sample_data);
+        $db_connect = $connect->select_db(SAMPLE_DATABASE);
         $sql = new querys();
         $query = $sql->get_form_field($form_no);
         $result = mysql_query($query,$connect->database_info());
@@ -424,9 +424,9 @@ class operation {
     
 //insert record
     public function insert_record($table_name,$user_code, $form_no, $marks,$total_marks,$attempt){
-        global $database;
+        //global $database;
         $connect = new databases();
-        $db_connect = $connect->select_db($database);
+        $db_connect = $connect->select_db(MAIN_DATABASE);
         $sql = new querys();
         $query =$sql->insert_record($table_name,$user_code, $form_no, $marks,$total_marks,$attempt);
         $result = mysql_query($query,$connect->database_info());
@@ -439,9 +439,9 @@ class operation {
     }
     
     public function form_sub_type($form_no){
-        global $sample_data;
+        //global $sample_data;
         $connect = new databases();
-        $db_connect = $connect->select_db($sample_data);
+        $db_connect = $connect->select_db(SAMPLE_DATABASE);
         $sql = new querys();
         $query = $sql->form_sub_type($form_no);
         $result = mysql_query($query,$connect->database_info());
@@ -496,41 +496,13 @@ class operation {
             }
         }
 
-        
-        /*
-        //Academic record
-        else{
-            $attempt = 0;
-            $table_name = "user_record";
-            $insert_record = $this->insert_record($table_name,$user_code,$form_no,$marks,$total_user_mark, $attempt);
-            if($insert_record =="success"){
-                $new_exam = array("form_type"=>$sub_type,"form_type"=>$sub_type,"Form_Code"=> "$form_no","Table_name"=> "$table_name");
-                $data = $this->user_saved_record($username);
-                if(empty($data)){
-                    $insert_new_record = $this->insert_new_user_saved_record($user_code,'academic',$new_exam);
-                    if($insert_new_record =="success"){
-                        return "success";
-                    }else{
-                        return "failure";
-                    }
-                }else{
-                    $new_exam = array("form_type"=>$sub_type,"form_type"=>$sub_type,"Form_Code"=> "$form_no","Table_name"=> "$table_name");
-                    $update_user_filled_form = $this->update_user_saved_record($user_code,$data,'acadmic',$new_exam);
-                    return $update_user_filled_form;
-                }
-            }
-            else{
-                return "failure to insert record";
-            }
-        }
-        */
     }
 
 //get user saved record
     public function get_user_record($user,$table_name,$form_no,$attempt){
-        global $database;
+        //global $database;
         $connect = new databases();
-        $db_connect = $connect->select_db($database);
+        $db_connect = $connect->select_db(MAIN_DATABASE);
         $sql = new querys();
         $query = $sql->get_user_record($user,$table_name,$form_no,$attempt);
         $result = mysql_query($query, $connect->database_info());
@@ -588,9 +560,9 @@ class operation {
     
 //update user database record
     public function update_record($user,$form_no,$table_name,$data, $total_user_data, $attempt){
-        global $database;
+        //global $database;
         $connect = new databases();
-        $db_connect = $connect->select_db($database);
+        $db_connect = $connect->select_db(MAIN_DATABASE);
         $sql = new querys();
         $query = $sql->update_comp_record($user,$form_no,$table_name,$data, $total_user_data ,$attempt);
         $result = mysql_query($query,$connect->database_info());
@@ -624,9 +596,9 @@ class operation {
     
 //delete user data
     public function delete_record($user_code,$form_no ,$table_name, $attempt_no){
-        global $database;
+        //global $database;
         $connect = new databases();
-        $db_connect = $connect->select_db($database);
+        $db_connect = $connect->select_db(MAIN_DATABASE);
         $sql = new querys();
         $query = $sql->delete_record($table_name, $user_code, $form_no,$attempt_no);
         $result = mysql_query($query, $connect->database_info());
@@ -642,9 +614,9 @@ class operation {
     
 //delete user saved record
     public function delete_user_saved_record($username,$user_code, $table_name, $form_no,$attempt){
-        global $database;
+        //global $database;
         $connect = new databases();
-        $db_connect = $connect->select_db($database);
+        $db_connect = $connect->select_db(MAIN_DATABASE);
         $sql = new querys();
         $data = $this->user_saved_record($username);
         if($data != "failure"){
@@ -725,9 +697,9 @@ class operation {
  
 //read user analytic information 
     function read_user_analytic_stats($unique_code){
-        global $database;
+        //global $database;
         $connect = new databases();
-        $db_connect = $connect->select_db($database);
+        $db_connect = $connect->select_db(MAIN_DATABASE);
         $sql = new querys();
         $query = $sql->read_user_analytic_stats($unique_code);
         $result = mysql_query($query,$connect->database_info());
@@ -747,9 +719,9 @@ class operation {
         $record_update_stats = 1;
         $record_update_info =json_encode(array("Total_Edited_Forms"=>$record_update_stats, "Edited_Form_List"=>array($form_no)));       
         //echo " $unique_code, $record_update_stats , $record_update_info, $completed_analytics , $partial_analytic";
-        global $database;
+        //global $database;
         $connect = new databases();
-        $db_connect = $connect->select_db($database);
+        $db_connect = $connect->select_db(MAIN_DATABASE);
         $sql = new querys();
         $query = $sql->insert_user_analytic_stats($unique_code, $record_update_stats , $record_update_info);
         $result = mysql_query($query,$connect->database_info());
@@ -772,9 +744,9 @@ class operation {
         array_push($update_info['Edited_Form_List'],$form_no);
         $record_update_info = json_encode($update_info);
         //echo "$unique_code ,  $record_update_stat ,  $record_update_info";
-        global $database;
+        //global $database;
         $connect = new databases();
-        $db_connect = $connect->select_db($database);
+        $db_connect = $connect->select_db(MAIN_DATABASE);
         $sql = new querys();
         $query = $sql->update_user_analytic_stats($unique_code,$record_update_stat,$record_update_info);
         //echo $query;
@@ -819,9 +791,9 @@ public function delete_analytic_record($username,$form_no){
         $record_update_stat = sizeof($update_info['Edited_Form_List']);
         $update_info['Total_Edited_Forms'] = $record_update_stat;
         $record_update_info = json_encode($update_info);
-        global $database;
+        //global $database;
         $connect = new databases();
-        $db_connect = $connect->select_db($database);
+        $db_connect = $connect->select_db(MAIN_DATABASE);
         $sql = new querys();
         $query = $sql->update_user_analytic_stats($unique_code,$record_update_stat,$record_update_info);
         $result = mysql_query($query, $connect->database_info());

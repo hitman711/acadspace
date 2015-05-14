@@ -1,14 +1,14 @@
 <?php
-include('configuration.php');
+require_once('configuration.php');
 include('query.php');
 session_start();
 if(isset($_POST['submit'])){
     if(isset($_POST['username']) && isset($_POST['password']))   
     {
-        $conn = mysql_connect($host, $admin,$pass) or Die("database connectivity failed");
+        $conn = mysql_connect(HOST, USERNAME,PASSWORD) or Die("database connectivity failed");
         $username = $_POST['username'];
         $pass = $_POST['password'];
-        $db = mysql_select_db($database, $conn) or Die("database not selected");
+        $db = mysql_select_db(MAIN_DATABASE, $conn) or Die("database not selected");
         $sql = new querys();
         $query = $sql->login($username); 
         $check = mysql_query($query,$conn);

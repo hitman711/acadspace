@@ -1,9 +1,8 @@
         <!-- Logo -->
         <a href="index.php" class="logo" style='height: 70px'>
          <!-- <i class="fa fa-graduation-cap"></i> Acadspace -->
-          <img src="<?php echo $logo;?>" width="170px" height="70px">
+          <img src="<?php echo LOGO;?>" width="170px" height="70px">
         </a>
-
         <!-- Header Navbar -->
         <nav class="navbar navbar-static-top" role="navigation">
           <!-- Sidebar toggle button-->
@@ -11,8 +10,9 @@
             <span class="sr-only">Toggle navigation</span>
           </a>
           <!-- Navbar Right Menu -->
-          <div class="navbar-custom-menu" >
+          <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
+              
 <?php
 /*
               <!-- Messages: style can be found in dropdown.less-->

@@ -1,11 +1,11 @@
 <?php
-include('configuration.php');
+require_once('configuration.php');
 include('query.php');
-$conn = mysql_connect($host, $admin,$pass) or Die("database connectivity failed");
+$conn = mysql_connect(HOST, USERNAME, PASSWORD) or Die("database connectivity failed");
 
 if(isset($_POST['username']))
 {    
-    $db = mysql_select_db($database,$conn) or Die('Database not selected');
+    $db = mysql_select_db(MAIN_DATABASE,$conn) or Die('Database not selected');
     $username = $_POST['username'];
     $sql = new querys();
     $query = $sql->username_validate($username);
@@ -21,7 +21,7 @@ if(isset($_POST['username']))
 
 if(isset($_POST['email']))
 {
-    $db = mysql_select_db($database,$conn) or Die('Database not selected');
+    $db = mysql_select_db(MAIN_DATABASE,$conn) or Die('Database not selected');
     $email = $_POST['email'];
     if(filter_var($email, FILTER_VALIDATE_EMAIL) === false){
         echo "invalid";

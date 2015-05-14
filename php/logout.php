@@ -1,10 +1,10 @@
 <?php
-include('configuration.php');
+require_once('configuration.php');
 include('query.php');
 session_start();
 $active_code =$_SESSION['login_user'];
-$conn = mysql_connect($host, $admin,$pass) or Die("database connectivity failed");
-$db = mysql_select_db($database, $conn);   
+$conn = mysql_connect(HOST, USERNAME, PASSWORD) or Die("database connectivity failed");
+$db = mysql_select_db(MAIN_DATABASE, $conn);   
 $user_check =$_SESSION['login_user'];
 $sql = new querys();
 $query = $sql->delete_active_user($active_code);

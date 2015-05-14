@@ -1,13 +1,6 @@
 <?php
 include('query.php');
-include('configuration.php');
-/*
-$host = 'localhost';
-$admin='root';
-$pass='28263506';
-$database ='acadspace';
-$sample_data= 'acadmic';
-*/
+require_once('configuration.php');
 
 //load user analytic stats
 
@@ -22,10 +15,7 @@ if(isset($_POST['users'])){
 //Database
 class databases {
     function database_info(){
-        global $host;
-        global $admin;
-        global$pass;
-        $conn = mysql_connect($host,$admin,$pass) or Die("error");
+        $conn = mysql_connect(HOST,USERNAME,PASSWORD) or Die("error");
         if($conn){
             return $conn;    
         }else{
@@ -54,9 +44,9 @@ class operation {
 
 //username using user code
     function user_unique_code($username){
-        global $database;
+        //global $database;
         $connect = new databases();
-        $db_connect = $connect->select_db($database);
+        $db_connect = $connect->select_db(MAIN_DATABASE);
         $sql = new querys();
         $query = $sql->get_user_code($username);
         $result = mysql_query($query, $connect->database_info());
@@ -70,13 +60,12 @@ class operation {
         $unique_code = $this->user_unique_code($username);
         $user_analyatic_record = $this->user_analytic_stats($unique_code);
         return $user_analyatic_record;
-        
     }
     
     function user_analytic_stats($unique_code){
-        global $database;
+        //global $database;
         $connect = new databases();
-        $db_connect = $connect->select_db($database);
+        $db_connect = $connect->select_db(MAIN_DATABASE);
         $sql = new querys();
         $query = $sql->user_analytic_stats($unique_code);
         $result = mysql_query($query,$connect->database_info());

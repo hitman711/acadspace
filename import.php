@@ -1,7 +1,7 @@
 <?php 
-	include ('php/configuration.php');
+	require_once('php/configuration.php');
 ?>
-<link rel="icon" href="<?php echo $fevicon;?>" type="image/png" sizes="16x16">
+<link rel="icon" href="<?php echo FEVICON;?>" type="image/png" sizes="16x16">
 <meta charset="UTF-8">
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.2 -->
@@ -19,4 +19,5 @@
     <link href="dist/css/skins/skin-blue.min.css" rel="stylesheet" type="text/css" />
 <!--<script src="bootstrap/js/bootstrap.min.js"></script>-->
 <script src="js/jquery-2.1.3.min.js"></script>
-<link rel="stylesheet" href="css/styles.css"> 
+<link rel="stylesheet/less" type="text/css" href="css/styles.less">
+<script type="text/javascript" src="js/less.min.js"></script>

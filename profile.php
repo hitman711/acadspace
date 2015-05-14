@@ -8,6 +8,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html>
   <head>
+      <title>Acadspace User Profile</title>
       <?php include('import.php');?>
     </head>
   <!--

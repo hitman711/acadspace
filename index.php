@@ -6,7 +6,7 @@ if(isset($_SESSION['login_user'])){
 }
 ?>
 <?php 
-	include ('php/configuration.php');
+	require_once('php/configuration.php');
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +14,7 @@ if(isset($_SESSION['login_user'])){
   <head>
     <meta charset="UTF-8">
     <title>AdminLTE 2 | Log in</title>
-    <link rel="icon" href="<?php echo $fevicon;?>" type="image/png" sizes="16x16">
+    <link rel="icon" href="<?php echo FEVICON;?>" type="image/png" sizes="16x16">
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.2 -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -35,7 +35,7 @@ if(isset($_SESSION['login_user'])){
   <body class="login-page">
     <div class="login-box">
       <div class="login-logo">
-        <a href="index.php"><b><img src="<?php echo $logo;?>" width="300px" height="150px"></a>
+        <a href="index.php"><b><img src="<?php echo LOGO;?>" width="300px" height="150px"></a>
       </div><!-- /.login-logo -->
       <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session</p>

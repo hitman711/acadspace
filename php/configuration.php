@@ -1,14 +1,19 @@
 <?php
 
-$logo = 'img/acadspace.png';
-$fevicon = 'img/fevicon.png';
+define("LOGO","img/acadspace.png");
+define("FEVICON","img/fevicon.png");
 $profile = "img/blank-profile.jpg";
 
+define("HOST","localhost");
+define("USERNAME","root");
+define("PASSWORD","28263506");
+define("MAIN_DATABASE","acadspace");
+define("SAMPLE_DATABASE","acadspace");
 $host = 'localhost';
 $admin='root';
 $pass='28263506';
 $database ='acadspace';
-$sample_data= 'acadmic';
+$sample_data= 'acadspace';
 
 $first_table ='level0';
 $form_table = 'form_field';

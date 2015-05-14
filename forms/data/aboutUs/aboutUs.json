@@ -1,0 +1,47 @@
+{
+    "1":{
+        "Image":"forms/data/aboutUs/jonathan_joshi.jpg",
+        "Name":"Dr. Jonathan Joshi",
+        "Designation":"CEO",
+        "Social_link":{ "Facebook":"https://www.facebook.com/jonathan.joshi",
+            "Google_plus":"https://plus.google.com/u/0/114347770063701560195/posts",
+            "Linkedin":"https://in.linkedin.com/in/jonjoshi",
+            "Twitter":"null"
+        },
+        "Description":"My info"
+    },
+    "2":{
+        "Image":"forms/data/aboutUs/ganesh_gore.jpg",
+        "Name":"Ganesh Gore",
+        "Designation":"CTO",
+        "Social_link":{ "Facebook":"https://www.facebook.com/ganesh70508",
+            "Google_plus":"https://plus.google.com/+GaneshGore007/posts",
+            "Linkedin":"https://www.linkedin.com/pub/ganesh-gore/39/a44/b2b",
+            "Twitter":"null"
+        },
+        "Description":"My info"
+    },
+    "3":{
+        "Image":"forms/data/aboutUs/zalak_dave.jpg",
+        "Name":"Zalak Dave",
+        "Designation":"Tech Lead",
+        "Social_link":{ "Facebook":"https://www.facebook.com/zalak.dave",
+            "Google_plus":"https://plus.google.com/+GaneshGore007/posts",
+            "Linkedin":"https://in.linkedin.com/pub/zalak-dave/96/125/901",
+            "Twitter":"null"
+        },
+        "Description":"My info"
+    },
+    "4":{
+        "Image":"forms/data/aboutUs/zeeshan_anjum.jpg",
+        "Name":"Zeeshan Anjum",
+        "Designation":"Technical Intern",
+        "Social_link":{ "Facebook":"https://www.facebook.com/zeeshan.anjum3?fref=ts",
+            "Google_plus":"https://plus.google.com/+ZeeshanAnjum0123/posts",
+            "Linkedin":"https://in.linkedin.com/in/zeeshan002",
+            "Twitter":"null"
+        },
+        "Description":"My info"
+    }
+    
+}

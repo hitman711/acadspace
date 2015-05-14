@@ -9,7 +9,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html>
   <head>
-      <title>Exam forms</title>
+      <title>Acadspace Exam forms</title>
       <?php include('import.php');?>
     </head>
   <!--

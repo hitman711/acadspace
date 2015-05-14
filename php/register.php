@@ -1,6 +1,6 @@
 <?php
 //include three file for further processing
-include('configuration.php');
+require_once('configuration.php');
 include('query.php');
 include('mail.php');
 
@@ -21,7 +21,7 @@ include('mail.php');
       */
       )
     {
-	$conn = mysql_connect($host, $admin,$pass) or Die("database connectivity failed");
+	$conn = mysql_connect(HOST, USERNAME, PASSWORD) or Die("database connectivity failed");
         $fname =mysql_real_escape_string(strip_tags($_POST['first']));
         $lname =mysql_real_escape_string(strip_tags($_POST['last']));
         $email =mysql_real_escape_string(strip_tags($_POST['email']));
@@ -30,7 +30,7 @@ include('mail.php');
         $salt = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 5);
         $pass = md5($pass+$salt);
         $activation = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 12);
-        $db = mysql_select_db($database,$conn);
+        $db = mysql_select_db(MAIN_DATABASE,$conn);
         $sql = new querys();
         $unique_code = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 15);
         $profileImg =0;
