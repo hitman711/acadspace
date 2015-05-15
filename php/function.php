@@ -1,6 +1,6 @@
 <?php
 include('query.php');
-include('configuration.php');
+require_once('configuration.php');
 /*
 $host = 'localhost';
 $admin='root';
@@ -54,10 +54,7 @@ if(isset($_POST['user']) && isset($_POST['update_form']) && isset($_POST['info']
 
 class databases {
     function database_info(){
-        global $host;
-        global $admin;
-        global$pass;
-        $conn = mysql_connect($host,$admin,$pass) or Die("error");
+        $conn = mysql_connect(HOST,USERNAME,PASSWORD) or Die("error");
         if($conn){
             return $conn;    
         }else{
@@ -184,9 +181,9 @@ class functions {
     
 /*----------------------------------------find user unique code in database--------------*/
     function user_unique_code($username){
-        global $database;
+        //global $database;
         $connect = new databases();
-        $db_connect = $connect->select_db($database);
+        $db_connect = $connect->select_db(MAIN_DATABASE);
         $sql = new querys();
         $query = $sql->get_user_code($username);
         $result = mysql_query($query, $connect->database_info());
@@ -198,9 +195,9 @@ class functions {
 
 /*-------------------------------------------get user registration information from database ----------------------*/
     function registration_information($unique_code){
-        global $database;
+        //global $database;
         $connect = new databases();
-        $db_connect = $connect->select_db($database);
+        $db_connect = $connect->select_db(MAIN_DATABASE);
         $sql = new querys();
         $query = $sql->read_register($unique_code);
         $result = mysql_query($query,$connect->database_info());
@@ -212,9 +209,9 @@ class functions {
 
 /*-----------------------------------------get profile structure information ---------------------------------------*/
     function educational_information($unique_code){
-        global $sample_data;
+        //global $sample_data;
         $connect = new databases();
-        $db_connect = $connect->select_db($sample_data);
+        $db_connect = $connect->select_db(MAIN_DATABASE);
         $sql = new querys();
         $query = $sql->read_profile($unique_code);
         $result = mysql_query($query,$connect->database_info());
@@ -225,9 +222,9 @@ class functions {
 
 /*---------------------------check availability -------------------------------------------*/
     function check_available($unique_code,$table_name){
-        global $database;
+        //global $database;
         $connect = new databases();
-        $db_connect = $connect->select_db($database);
+        $db_connect = $connect->select_db(MAIN_DATABASE);
         $sql = new querys();
         $query = $sql->verify_user_field_data($unique_code,$table_name);
         $result = mysql_query($query,$connect->database_info());
@@ -245,9 +242,9 @@ class functions {
     
 /*---------------------------------------check user already filled data or not -------------------------------------*/
     function get_user_data($unique_code,$table_name){
-        global $database;
+        //global $database;
         $connect = new databases();
-        $db_connect = $connect->select_db($database);
+        $db_connect = $connect->select_db(MAIN_DATABASE);
         $sql = new querys();
         $query = $sql->read_user_field_data($unique_code,$table_name);
         $result = mysql_query($query,$connect->database_info());
@@ -265,9 +262,9 @@ class functions {
 
 //get user profile data for verification
     function form_information($unique_code,$form_name){
-        global $database;
+        //global $database;
         $connect = new databases();
-        $db_connect = $connect->select_db($database);
+        $db_connect = $connect->select_db(MAIN_DATABASE);
         $sql = new querys();
         $query = $sql->edu_form_data($unique_code,$form_name);
         $result = mysql_query($query,$connect->database_info());
@@ -301,9 +298,9 @@ class functions {
 
 /*----------------------------------update query ---------------------------------*/
     public function update_data($unique_code ,$form_name,$column_name,$value){
-        global $database;
+        //global $database;
         $connect = new databases();
-        $db_connect = $connect->select_db($database);
+        $db_connect = $connect->select_db(MAIN_DATABASE);
         $sql = new querys();
         $query = $sql->update_profile_query($unique_code,$column_name,$form_name,$value);
         $result = mysql_query($query,$connect->database_info());
@@ -341,9 +338,9 @@ class functions {
 
 /*-------------------------------------------------Run insert data Query -----------------------*/
     public function insert_data($unique_code ,$form_name,$column_name,$value){
-        global $database;
+        //global $database;
         $connect = new databases();
-        $db_connect = $connect->select_db($database);
+        $db_connect = $connect->select_db(MAIN_DATABASE);
         $sql = new querys();
         $query = $sql->insert_profile_query($unique_code,$column_name,$form_name,$value);
         $result = mysql_query($query,$connect->database_info());
