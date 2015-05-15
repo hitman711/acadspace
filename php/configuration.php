@@ -10,10 +10,14 @@ define("PASSWORD","28263506");
 define("MAIN_DATABASE","acadspace");
 define("SAMPLE_DATABASE","acadspace");
 
+define ("FIRST_SELECTION","level0");
+define("FORM_TABLE","form_field");
 
-$first_table ='level0';
-$form_table = 'form_field';
-$sample ='0';
+
+
+
+
+
 
 $filled_form_data = '{
  "Parameter": {

@@ -1,13 +1,7 @@
 <?php
 include('query.php');
 require_once('configuration.php');
-/*
-$host = 'localhost';
-$admin='root';
-$pass='28263506';
-$database ='acadspace';
-$sample_data= 'acadmic';
-*/
+
 $call_operation = new operation();
 if(isset($_POST['profile_data'])){
     $active_code = $_POST['profile_data'];
