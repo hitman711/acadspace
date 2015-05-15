@@ -5,7 +5,7 @@ $('document').ready(function(){
         for (i=1; i<=Object.keys(result).length; i++) {
             //alert(Object.keys(result[i]));
             schema ='';
-            schema +="<div class='col-md-3' id='img_div'>";
+            schema +="<div class='col-md-3' id='mem_div'>";
             schema +="<div id='member_img'>";
             schema +="<img src='"+result[i]['Image']+"'>";
             schema +="</div>";

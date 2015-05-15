@@ -9,11 +9,7 @@ define("USERNAME","root");
 define("PASSWORD","28263506");
 define("MAIN_DATABASE","acadspace");
 define("SAMPLE_DATABASE","acadspace");
-$host = 'localhost';
-$admin='root';
-$pass='28263506';
-$database ='acadspace';
-$sample_data= 'acadspace';
+
 
 $first_table ='level0';
 $form_table = 'form_field';

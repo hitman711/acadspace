@@ -4,7 +4,7 @@
           <img src="<?php echo LOGO;?>" width="170px" height="70px">
         </a>
         <!-- Header Navbar -->
-        <nav class="navbar navbar-static-top" role="navigation">
+        <nav  id='sidebar' class="navbar navbar-static-top" role="navigation">
           <!-- Sidebar toggle button-->
           <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button" style='height: inherit'>
             <span class="sr-only">Toggle navigation</span>
@@ -111,7 +111,7 @@
               <!-- User Account Menu -->
               <li class="dropdown user user-menu">
                 <!-- Menu Toggle Button -->
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <a href="#"  id='right_bar'class="dropdown-toggle" data-toggle="dropdown">
                   <!-- The user image in the navbar-->
                   <img src="<?php echo $profile;?>" class="user-image" alt="User Image" id='user_profile'/>
                   
