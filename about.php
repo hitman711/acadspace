@@ -53,7 +53,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-          <h1 style='margin-top: 20px'>
+          <h1>
             About Us
             <small>your analytics</small>
           </h1>

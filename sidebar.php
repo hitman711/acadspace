@@ -1,6 +1,6 @@
 
 
-<section class="sidebar" style='margin-top: 20px'>
+<section class="sidebar">
 <div class="user-panel">
             <div class="pull-left image">
               <img src="<?php echo $profile;?>" class="img-circle" alt="User Image" id='user_profile'/>

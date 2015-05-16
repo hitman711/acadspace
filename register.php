@@ -28,7 +28,7 @@
   <body class="register-page">
     <div class="register-box">
       <div class="register-logo">
-        <a href="index.php"><img src="<?php echo $logo;?>" width="300px" height="150px"></a>
+        <a href="index.php"><img src="<?php echo LOGO;?>" width="300px" height="150px"></a>
       </div>
       <div class="register-box-body">
         <p class="login-box-msg">Register a new membership</p>

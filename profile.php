@@ -56,6 +56,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
+          
           <h1>
             Dashboard
             <small>your analytics</small>
