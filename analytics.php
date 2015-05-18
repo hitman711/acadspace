@@ -51,7 +51,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       </aside>
 
       <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">
+      <div class="content-wrapper" id='analytics'>
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 			<h1>
@@ -69,6 +69,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <script type='text/javascript' src='js/analytics.js'></script>
 				<div>
 					<div class="row">
+                                          <div id='ranks'>
+                                          </div>
+                                        </div>
+                                        <div class="row">
 						<div id='graphs'>
 						</div>
 					</div>

@@ -9,7 +9,34 @@ $(document).ready( function(){
         total_records = Object.keys(data['Suceeded_Analytic']);
         for (i=0; i<total_records.length; i++) {
             pass = data['Suceeded_Analytic'][total_records[i]];
-            //alert(pass['Question']);
+            if (pass['type'] == 'rank') {
+                schema +="<div class='col-md-4'>";
+                schema +="<div class='box box-success box-solid'>";
+                schema +="<div class='box-header'>";
+                schema +="<p class='box-title'>"+pass['Question']+"</p>";
+                schema +="<div class='box-tools pull-right'>";
+                schema +="<button class='btn btn-box-tool' data-widget='collapse'><i class='fa fa-minus'>";
+                schema +="</i></button></div>";
+                schema +="</div>";
+                schema +="<div class='box-body' id='id_"+i+"'style='display:block'>";
+                schema +="<div class='row'>";
+                schema +="<div class='col-sm-6' id='college'>";
+                schema +="<p id='rank_label_field'>"+pass['college_rank']+"</p>";
+                schema +="<p id='rank_field'>"+pass['college']+"</p>";
+                schema +="</div>";
+                schema +="<div class='col-sm-6' id='university'>";
+                schema +="<p id='rank_label_field'>"+pass['university_rank']+"</p>";
+                schema +="<p id='rank_field'>"+pass['university']+"</p>";
+                schema +="</div>";
+                schema +="</div>";
+                schema +="</div>";
+                schema +="</div>";
+                schema +="</div>";
+                $('#ranks').append(schema);
+                schema ='';
+            }else{
+                
+            //alert(pass['type']);
             //alert(Object.keys(data['Suceeded_Analytic'][total_records[i]]));
             schema +="<div class='col-md-6'>";
             schema +="<div class='box box-primary'><div class='box-header'>";
@@ -25,11 +52,12 @@ $(document).ready( function(){
 //alert(data['Suceeded_Analytic'][total_records[i]]['Answer_Type']+"('"+JSON.stringify(pass['Related_Data'])+"')");
             eval(data['Suceeded_Analytic'][total_records[i]]['Answer_Type']+"('"+JSON.stringify(pass['Related_Data'])+"')");
             schema ='';
+            }
         }
         });
     });
 
-    $('#graphs').on('click','.btn-box-tool', function(){
+    $('#ranks, #graphs').on('click','.btn-box-tool', function(){
         $(this).change('<i class="fa fa-plus"></i>');
         changed = $(this).parents().next().attr('id');
         //alert(changed);
@@ -123,7 +151,7 @@ function Comparision_graph(data) {
     dataSource: dataSource,
     commonSeriesSettings: {
         argumentField: argumentField,
-        type: "bar",
+        type: graph_type,
         hoverMode: "allArgumentPoints",
         selectionMode: "allArgumentPoints"
     },

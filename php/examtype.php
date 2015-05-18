@@ -801,9 +801,10 @@ public function delete_analytic_record($username,$form_no){
                 }else{
                     if($input_length >= sizeof($user_data[$i])){
                         if($input_format == "date"){
-                            if(date("m/d/Y")>=date('m/d/Y',strtotime($user_data[0]))){
+                            if(strtotime(date('m/d/Y')) >= strtotime(date('m/d/Y',strtotime($user_data[0])))){
                                continue; 
                             }else{
+                                
                                 return "failure";
                                 break;     
                             }
