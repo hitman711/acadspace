@@ -59,7 +59,7 @@ def operation(db,unique_code):
 
 def dependancies():
 	dependent_forms = []
-	dependent_forms.append("501020000*")
+	dependent_forms.append("3010101*")
 	return dependent_forms
 
 def execute(db,user_code):
@@ -68,7 +68,7 @@ def execute(db,user_code):
     stat = "Failed"
     stat = "Success"
     data = operation(db,user_code)
-    result = {'2B':data}
+    //result = {'3A':data}
     return [stat,result]
 
 
