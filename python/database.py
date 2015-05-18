@@ -35,7 +35,7 @@ def RunQueryColNameOnAcadspace(query):
 
 
 def RunQueryOnAcademic(query):
-	return RunQueryOnDb(query,"acadmic")
+	return RunQueryOnDb(query,"acadspace")
 
 def RunQueryColNameOnAcademic(query):
-	return RunQueryColNameOnDb(query,"acadmic")
+	return RunQueryColNameOnDb(query,"acadspace")

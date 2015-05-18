@@ -1,8 +1,10 @@
 $(document).ready( function(){
     username = $('#users').attr('name');
     $.post('php/analytics.php',{users:username}, function(result){
+        
         result = result.substr(1);
         $.getJSON(result,function(data){
+        
         schema ='';
         total_records = Object.keys(data['Suceeded_Analytic']);
         for (i=0; i<total_records.length; i++) {
@@ -102,7 +104,6 @@ function normal_graph(data) {
 
 
 function Comparision_graph(data) {
-    
     obj = JSON.parse(data);
     dataSource =obj['data'];
     argumentField = obj['argumentField'];
@@ -122,7 +123,7 @@ function Comparision_graph(data) {
     dataSource: dataSource,
     commonSeriesSettings: {
         argumentField: argumentField,
-        type: graph_type,
+        type: "bar",
         hoverMode: "allArgumentPoints",
         selectionMode: "allArgumentPoints"
     },

@@ -24,7 +24,6 @@ def operation(db,unique_code):
     related_data ={
         "Question":"How am i performing in my semester exam?",
         "Answer_Type":"normal_graph",
-        "graph_sub_type":["bar","line","scatter","spline"],
         "Description": "This chart indicates user overall performance.",
         "Related_Data":{
             "set":"#1A",

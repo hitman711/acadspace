@@ -26,6 +26,7 @@ def operation(db,unique_code):
 				#print index[column]
 				query = query+"`undergraduate`.`"+column+"` ='"+index[column]+"' AND "
 			extract_query = "select sum(`user_record`.`total`) AS `total`,count(`user_record`.`user_code`) AS `filled_form` from `user_record` INNER JOIN `undergraduate` ON `user_record`.`user_code` =`undergraduate`.`unique_code` AND "+query+""
+			university_query ="select sum(`user_record`.`total`) AS `total`,count(`user_record`.`user_code`) AS `filled_form` from `user_record` INNER JOIN `undergraduate` ON `user_record`.`user_code` =`undergraduate`.`unique_code` AND "+"`undergraduate`.`"+column_name[1]+"` ='"+index[column_name[1]]+"' AND "+""
 			for form_code in newlist:
 
 				form_no ="30101010"+str(form_code)
@@ -47,24 +48,30 @@ def operation(db,unique_code):
 					sql3 ="SELECT `form_title` FROM `form_field` WHERE `form_id`='%s'"%(form_no)
 					form_name = db.RunQueryColNameOnAcademic(sql3)
 					form_name = form_name[0]['form_title']				
-					graph_data.append({"sem_name":form_name,"overall_college_score":overall_total_marks,"user_marks":user_marks})
-				
+					
+					
+					sql4 = university_query+"`user_record`.`form_code` = %s"%(form_no)
+					overal_university_data = db.RunQueryColNameOnAcadspace(sql4)
+					#print overal_extract_data
+					overall_university_marks =round((overal_university_data[0]['total']/overal_university_data[0]['filled_form']),2)
+					
+					graph_data.append({"sem_name":form_name,"overall_university_score":overall_university_marks,"overall_college_score":overall_total_marks,"user_marks":user_marks})
+					
+		series.append({"valueField":"overall_university_score","name":"Avg univeristy score"})
 		series.append({"valueField":"overall_college_score","name":"Avg college score"})
 		series.append({"valueField":"user_marks","name":"Your Score"})
-		#print graph_data
-		#print series
 		
-	except Exception:
+	except:
+		print "Error: unable to fecth data"
 		
-	
+		
 	related_data ={
 			"Question":"How am i performing in my semester exam?",
 			"Answer_Type":"Comparision_graph",
-			"graph_sub_type":["bar","line","scatter","spline"],
 			"Description": "This chart indicates user overall performance.",
 			"Related_Data":{
 			    "set":"#2A",
-			    "title":"Performance Graph",
+			    "title":"New Graph",
 			    "argumentField":"sem_name",
 			    "graph_type":"line",
 			    "data":graph_data,
@@ -76,8 +83,9 @@ def operation(db,unique_code):
 			    "min-y":0,
 			    "max-y":9.99,
 			    "series":series
-				}
 			}
+		}
+	print related_data
 	return related_data
 	
 
