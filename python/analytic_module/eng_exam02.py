@@ -30,7 +30,7 @@ def operation(db,unique_code):
 			for form_code in newlist:
 
 				form_no ="30101010"+str(form_code)
-				
+
 #user marks in semesters
 				#print ".................."
 				sql2 ="SELECT `total` FROM `user_record` WHERE `user_code`='%s' AND `form_code` LIKE '%s'"%(unique_code,form_no)
@@ -47,28 +47,29 @@ def operation(db,unique_code):
 #form name
 					sql3 ="SELECT `form_title` FROM `form_field` WHERE `form_id`='%s'"%(form_no)
 					form_name = db.RunQueryColNameOnAcademic(sql3)
-					form_name = form_name[0]['form_title']				
-					
-					
+					form_name = form_name[0]['form_title']
+
+
 					sql4 = university_query+"`user_record`.`form_code` = %s"%(form_no)
 					overal_university_data = db.RunQueryColNameOnAcadspace(sql4)
 					#print overal_extract_data
 					overall_university_marks =round((overal_university_data[0]['total']/overal_university_data[0]['filled_form']),2)
-					
+
 					graph_data.append({"sem_name":form_name,"overall_university_score":overall_university_marks,"overall_college_score":overall_total_marks,"user_marks":user_marks})
-					
+
 		series.append({"valueField":"overall_university_score","name":"Avg univeristy score"})
 		series.append({"valueField":"overall_college_score","name":"Avg college score"})
 		series.append({"valueField":"user_marks","name":"Your Score"})
-		
+
 	except:
 		print "Error: unable to fecth data"
-		
-		
+
+
 	related_data ={
 			"Question":"How am i performing in my semester exam?",
 			"Answer_Type":"Comparision_graph",
 			"Description": "This chart indicates user overall performance.",
+            "type":"graph",
 			"Related_Data":{
 			    "set":"#2A",
 			    "title":"New Graph",
@@ -85,9 +86,9 @@ def operation(db,unique_code):
 			    "series":series
 			}
 		}
-	print related_data
+	#print related_data
 	return related_data
-	
+
 
 
 def dependancies():

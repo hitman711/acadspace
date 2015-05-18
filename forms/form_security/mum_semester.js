@@ -32,7 +32,7 @@ $(document).ready( function(){
         var sum_of_cg = 0;
 		grade_point_arr = {'O':10, 'A':9, 'B':8, 'C':7, 'D':6, 'E':5, 'P':4};
 		total_length = $('#'+obj['form_name']+' input').length;
-		for(i=1; i<=total_length; i++){
+		for(i=2; i<=total_length; i++){
 			if($('#data_field_'+i).val()){
 				res = $('#data_field_'+i).val().toUpperCase();
 				credit = parseFloat($('#Fld_Credit_Course_'+i).text());

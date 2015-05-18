@@ -23,7 +23,7 @@ def operation(db,unique_code):
 			"color": "#3c8dbc"
                            }
 		],
-		{
+			{
 		"grid": {
 			"hoverable": "true",
 			"borderColor": "#f3f3f3",

@@ -259,8 +259,9 @@ $(document).ready( function(){
 //insert user data event
     $('#form_box').on('click','#add_data', function(){
     clean_form_box();
+    $(this).removeAttr('disabled');
     if ($.trim($('#form_box table tr td input').val())) {
-        $(this).attr('disabled','true');
+        //$(this).attr('disabled','true');
         $(this).html("<i class='fa fa-circle-o-notch fa-spin'></i><span>processing.......</span>");
         var field_name ="";
         var field_value ='';
@@ -273,10 +274,10 @@ $(document).ready( function(){
         $('#form_box').append("<div class='overlay'><i class='fa fa-refresh fa-spin'></i></div>");
         text = {user_name:$('#users').attr('name'), form:$(this).attr('name')};
         $.post('php/examtype.php',{insert_data:text, insert_marks:data_field, total:total},function(result){
-
                 if (result == "success") {
                     success_box("data Added Successfully");
                     $('#form_box .overlay').remove();
+                    $(this).removeAttr('disabled');
                     $('#add_data').html("Data Added Successfully");
                 }else{
                     $('#form_box .overlay').remove();
@@ -284,7 +285,6 @@ $(document).ready( function(){
 					$(this).removeAttr('disabled');
                     $('#add_data').html("Add Data again");
                 }
-
             });
     }else{
         warning_box("please fill all requierd field");
@@ -331,7 +331,7 @@ $(document).ready( function(){
             total = $('#final').text();
             if (!total) {total = '0';}
             $.post('php/examtype.php',{update_user_data:text, data:data_field,total:total,Attempt:attempt},function(result){
-
+                
                 if (result == "success") {
                         success_box("data Updated Successfully");
                         ('#form_box .overlay').remove();   
