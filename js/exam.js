@@ -44,7 +44,7 @@ function old_simple_record(data) {
     
     for (i=0; i<data.length; i++) {
             $('#'+data[i][0]+" #body_"+data[i][0]).append('<center><p><a id="available" class="0" title="'+data[i][1]+'" name="'+data[i][2]+'">'+data[i][1]+'</a></p></center>');
-    }
+    }   
     
     if (pass) {
         $('#level_1').css('display','block');
@@ -276,9 +276,10 @@ $(document).ready( function(){
         $.post('php/examtype.php',{insert_data:text, insert_marks:data_field, total:total},function(result){
                 if (result == "success") {
                     success_box("data Added Successfully");
-                    $('#form_box .overlay').remove();
-                    $(this).removeAttr('disabled');
-                    $('#add_data').html("Data Added Successfully");
+                    $('#display_form #form_box').html(' ');
+                    //$('#form_box .overlay').remove();
+                    //$(this).removeAttr('disabled');
+                    //$('#add_data').html("Data Added Successfully");
                 }else{
                     $('#form_box .overlay').remove();
                     warning_box("Something wrong");
@@ -375,9 +376,6 @@ $(document).ready( function(){
         $('#'+changed).slideToggle('slow');
         $(this).html($(this).html() == '<i class="fa fa-minus"></i>' ? '<i class="fa fa-plus"></i>' : '<i class="fa fa-minus"></i>');
     });
-    
-    
-    
     
     
 });

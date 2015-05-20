@@ -3,7 +3,7 @@ import json
 def operation(db,unique_code):
     graph_data =[]
     total =0
-    sql = "SELECT `form_code`,`total` FROM `user_record` WHERE `user_code`='%s' AND `form_code` LIKE '%s'"%(unique_code,'3010101%')
+    sql = "SELECT `form_code`,`total` FROM `user_record` WHERE `user_code`='%s' AND `form_code` LIKE '%s'"%(unique_code,'3010201%')
     try:
         # Execute the SQL command
         results = db.RunQueryColNameOnAcadspace(sql)
@@ -27,11 +27,11 @@ def operation(db,unique_code):
         "type":"graph",
         "Description": "This chart indicates user overall performance.",
         "Related_Data":{
-            "set":"#1A",
+            "set":"#1B",
             "title":"Performance Graph",
             "argumentField":"x-axis",
             "valueField":"y-axis",
-            "graph_type":"bar",
+            "graph_type":"line",
             "series_name":"Semester",
             "data":graph_data,
             "tooltip":"true",
@@ -48,7 +48,7 @@ def operation(db,unique_code):
 
 def dependancies():
     dependent_forms = []
-    dependent_forms.append("3010101*")
+    dependent_forms.append("3010201*")
     return dependent_forms
 
 
@@ -58,5 +58,5 @@ def execute(db,user_code):
     stat = "Failed"
     stat = "Success"
     data = operation(db,user_code)
-    result = {'1A':data}
+    result = {'1B':data}
     return [stat,result]

@@ -66,13 +66,13 @@ def operation(db,unique_code):
 
 
 	related_data ={
-			"Question":"How am i performing in my semester exam?",
+			"Question":"How am i performing in my Computer Engg semester exam?",
 			"Answer_Type":"Comparision_graph",
 			"Description": "This chart indicates user overall performance.",
             "type":"graph",
 			"Related_Data":{
 			    "set":"#2B",
-			    "title":"New Graph",
+			    "title":"Computer Engineering",
 			    "argumentField":"sem_name",
 			    "graph_type":"line",
 			    "data":graph_data,
@@ -87,6 +87,7 @@ def operation(db,unique_code):
 			}
 		}
 	#print related_data
+	print "2B data available"
 	return related_data
 
 

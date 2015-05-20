@@ -15,10 +15,10 @@ $(document).ready( function(){
                 schema +="<div class='box-header'>";
                 schema +="<p class='box-title'>"+pass['Question']+"</p>";
                 schema +="<div class='box-tools pull-right'>";
-                schema +="<button class='btn btn-box-tool' data-widget='collapse'><i class='fa fa-minus'>";
+                schema +="<button class='btn btn-box-tool' data-widget='collapse'><i class='fa fa-plus'>";
                 schema +="</i></button></div>";
                 schema +="</div>";
-                schema +="<div class='box-body' id='id_"+i+"'style='display:block'>";
+                schema +="<div class='box-body' id='id_"+i+"'style='display:none'>";
                 schema +="<div class='row'>";
                 schema +="<div class='col-sm-6' id='college'>";
                 schema +="<p id='rank_label_field'>"+pass['college_rank']+"</p>";
@@ -34,7 +34,7 @@ $(document).ready( function(){
                 schema +="</div>";
                 $('#ranks').append(schema);
                 schema ='';
-            }else{
+            }else if(pass['type'] == 'graph'){
                 
             //alert(pass['type']);
             //alert(Object.keys(data['Suceeded_Analytic'][total_records[i]]));

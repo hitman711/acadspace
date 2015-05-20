@@ -29,7 +29,7 @@ def operation(db,unique_code):
 			university_query ="select sum(`user_record`.`total`) AS `total`,count(`user_record`.`user_code`) AS `filled_form` from `user_record` INNER JOIN `undergraduate` ON `user_record`.`user_code` =`undergraduate`.`unique_code` AND "+"`undergraduate`.`"+column_name[1]+"` ='"+index[column_name[1]]+"' AND "+""
 			for form_code in newlist:
 
-				form_no ="30101010"+str(form_code)
+				form_no ="30102010"+str(form_code)
 
 #user marks in semesters
 				#print ".................."
@@ -93,7 +93,7 @@ def operation(db,unique_code):
 
 def dependancies():
     dependent_forms = []
-    dependent_forms.append("3010101*")
+    dependent_forms.append("3010201000")
     return dependent_forms
 
 
@@ -103,5 +103,5 @@ def execute(db,user_code):
     stat = "Failed"
     stat = "Success"
     data = operation(db,user_code)
-    result = {'2A':data}
+    result = {'2B':data}
     return [stat,result]

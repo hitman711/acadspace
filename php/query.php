@@ -167,6 +167,18 @@ class querys {
         return $get_attempt;
     }
     
+    
+    //check availability record
+    public function check_availability($user_code, $table_name, $form_no){
+        $check_availability = "SELECT `user_code` AS `validity` FROM `$table_name` WHERE `form_code`='$form_no' AND `user_code`='$user_code'";
+        return $check_availability;
+        //return $get_attempt;
+    }
+    
+    
+    
+    
+    
     //filled information
     public function get_form_field($form_no){
         $get_form_filed ="SELECT `total_field`,`form_field`,`security` , `form_title` FROM `form_field` WHERE `form_id`='$form_no'";

@@ -29,7 +29,7 @@ def operation(db,unique_code):
 			university_query ="select sum(`user_record`.`total`) AS `total`,count(`user_record`.`user_code`) AS `filled_form` from `user_record` INNER JOIN `undergraduate` ON `user_record`.`user_code` =`undergraduate`.`unique_code` AND "+"`undergraduate`.`"+column_name[1]+"` ='"+index[column_name[1]]+"' AND "+""
 			for form_code in newlist:
 
-				form_no ="30102010"+str(form_code)
+				form_no ="30103010"+str(form_code)
 
 #user marks in semesters
 				#print ".................."
@@ -66,13 +66,13 @@ def operation(db,unique_code):
 
 
 	related_data ={
-			"Question":"How am i performing in my semester exam?",
+			"Question":"How am i performing in my Electronic Engg semester exam?",
 			"Answer_Type":"Comparision_graph",
 			"Description": "This chart indicates user overall performance.",
             "type":"graph",
 			"Related_Data":{
-			    "set":"#2B",
-			    "title":"New Graph",
+			    "set":"#2C",
+			    "title":"Electronic Engineering",
 			    "argumentField":"sem_name",
 			    "graph_type":"line",
 			    "data":graph_data,
@@ -87,13 +87,14 @@ def operation(db,unique_code):
 			}
 		}
 	#print related_data
+	print "2C data available"
 	return related_data
 
 
 
 def dependancies():
     dependent_forms = []
-    dependent_forms.append("3010201*")
+    dependent_forms.append("3010301*")
     return dependent_forms
 
 
@@ -103,5 +104,5 @@ def execute(db,user_code):
     stat = "Failed"
     stat = "Success"
     data = operation(db,user_code)
-    result = {'2B':data}
+    result = {'2C':data}
     return [stat,result]

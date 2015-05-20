@@ -51,22 +51,37 @@ if(isset($_POST['insert_data']) &&  isset($_POST['insert_marks']) && isset($_POS
     $total = htmlspecialchars($_POST['total']);
     $validate_user_data = $call_function->validate_user_form_data($marks,$form_no);
     if($validate_user_data == "success"){
-        $insert_user_record = $call_function->insert_user_record($username,$form_no,$marks, $total);
-        if($insert_user_record == 'success'){
-            $user_analytic_record = $call_function->user_analytic_record($username,$form_no);
-            if($user_analytic_record =='success'){
-                echo "success";
+        $check_availability = $call_function->check_availability($username,$form_no);
+        if($check_availability =="insert"){
+            $insert_user_record = $call_function->insert_user_record($username,$form_no,$marks, $total);
+            if($insert_user_record == 'success'){
+                $user_analytic_record = $call_function->user_analytic_record($username,$form_no);
+                if($user_analytic_record =='success'){
+                    echo "success";
+                }else{
+                    echo "failure";
+                }
+            }else{
+                return $insert_user_record;
+            }    
+        }else{
+            $update_user_data = $call_function->update_user_data($username, $form_no, $updated_data,$total, $attempt_no);
+            if($update_user_data == 'success'){
+                $user_analytic_record = $call_function->user_analytic_record($username,$form_no);
+                if($user_analytic_record =='success'){
+                   echo "success";
+                }else{
+                   echo "failure";
+                }
             }else{
                 echo "failure";
             }
-        }else{
-            return $insert_user_record;
         }
+        
     }else{
         echo "failure";    
     }
 }
-
 
 //update user data
 if(isset($_POST['update_user_data']) &&  isset($_POST['data']) && isset($_POST['total']) && isset($_POST['Attempt'])){
@@ -430,6 +445,7 @@ class operation {
         $sub_type = $this->form_sub_type($form_no);
         
         //INSERT RECORD record
+        
         if($validate_exam_code != "failure"){
             $exam_type = $validate_exam_code['exam_type'];
             $table_name = $validate_exam_code['table_name'];
@@ -820,6 +836,49 @@ public function delete_analytic_record($username,$form_no){
         }
         return "success";
     }
+    
+    
+    
+    public function check_availability($username,$form_no){
+        $unique_code = $this->user_unique_code($username);
+        
+        $validate_exam_code = $this->validate_exam_code($form_no);
+        
+        if(($validate_exam_code != "failure") && (!stristr($validate_exam_code['table_name'],"comp_"))){
+            $exam_type = $validate_exam_code['exam_type'];
+            $table_name = $validate_exam_code['table_name'];
+            $multiple = $validate_exam_code['multiple'];
+            
+            return $this->check_available_data($unique_code,$table_name,$form_no);
+            
+        }elseif(($validate_exam_code != "failure") && (stristr($validate_exam_code['table_name'],"comp_"))){
+            return "insert";
+        }
+        else{
+            $exam_type = "academic";
+            $table_name = "user_record";
+            $multiple = 0;
+            
+            return $this->check_available_data($unique_code,$table_name,$form_no);
+        }
+        
+    }
+    
+    public function check_available_data($unique_code,$table_name,$form_no){
+        $connect = new databases();
+        $db_connect = $connect->select_db();
+        $sql = new querys();
+        $query = $sql->check_availability($unique_code,$table_name,$form_no);
+        $result = mysql_query($query, $connect->database_info());
+        $row = mysql_fetch_assoc($result);
+        if($row['validity']){
+            return "update";
+        }else{
+            return "insert";
+        }
+        $connect->close_database();
+    }
+    
 }
 
 
