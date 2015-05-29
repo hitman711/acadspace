@@ -126,6 +126,9 @@
                       <?php if(isset($user_valid)){echo $user_valid;}?>
                       <!--<small>Member since Nov. 2012</small>-->
                     </p>
+                    <p id='usertype'>
+                      <?php echo $userType; ?>
+                    </p>
                   </li>
                   <!-- Menu Body
                   <li class="user-body">

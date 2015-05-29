@@ -1,56 +1,63 @@
 {
   "form_name": "SSC",
   "Field_Parameter": 2,
-  "Total_Fields": 6,
+  "Total_Fields": 7,
   "header_field": [
-    "Subject",
-    "Marks"
+    "Exam Name",
+    "SSC"
   ],
   "field_name": [
-    "Subject",
-    "Marks",
+    "Field_Name",
+    "input",
     "Percentage"
   ],
   "Field_1": {
-    "Subject": "First Language",
-    "Marks": "text",
-    "input_length": "3",
-    "input_type": "Number",
-    "limit":100
+    "Field_Name": "Attempt Date",
+    "input": "date",
+    "input_length": "5",
+    "input_type": "date",
+    "limit": "10"
   },
   "Field_2": {
-    "Subject": "Second Language",
-    "Marks": "text",
+    "Field_Name": "First Language",
+    "input": "text",
     "input_length": "3",
-    "input_type": "Number",
-    "limit":100
+    "input_type": "number",
+    "limit": 100
   },
   "Field_3": {
-    "Subject": "English",
-    "Marks": "text",
+    "Field_Name": "Second Language",
+    "input": "text",
     "input_length": "3",
-    "input_type": "Number",
-    "limit":100
+    "input_type": "number",
+    "limit": 100
   },
   "Field_4": {
-    "Subject": "Maths",
-    "Marks": "text",
+    "Field_Name": "English",
+    "input": "text",
     "input_length": "3",
-    "input_type": "Number",
-    "limit":150
+    "input_type": "number",
+    "limit": 100
   },
   "Field_5": {
-    "Subject": "Science",
-    "Marks": "text",
+    "Field_Name": "Mathematics",
+    "input": "text",
     "input_length": "3",
-    "input_type": "Number",
-    "limit":100
+    "input_type": "number",
+    "limit": 150
   },
-  "Field_6": {
-    "Subject": "Social Science",
-    "Marks": "text",
+    "Field_6": {
+    "Field_Name": "Science",
+    "input": "text",
     "input_length": "3",
-    "input_type": "Number",
-    "limit":100
+    "input_type": "number",
+    "limit": 100
+  },
+    "Field_7": {
+    "Field_Name": "Social Science",
+    "input": "text",
+    "input_length": "3",
+    "input_type": "number",
+    "limit": 100
   }
 }

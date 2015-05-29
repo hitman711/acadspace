@@ -41,8 +41,8 @@ class querys {
     }
     
 //login
-    public function login($username){
-        $login = "SELECT `password`,`salt`,`status`,`unique_code` FROM `register` WHERE `username`='$username'";
+    public function login($table_name,$username){
+        $login = "SELECT `password`,`salt`,`status`,`unique_code` FROM `$table_name` WHERE `username`='$username'";
         return $login;
     }
     
@@ -73,8 +73,8 @@ class querys {
     
     
 //session
-    public function session($active_key){
-        $session = "SELECT CONCAT(`fname`,' ',`lname`) AS `username` FROM `register` WHERE `username`=(SELECT `username` from `active_user` where active_code='$active_key')";
+    public function session($active_key,$table_name){
+        $session = "SELECT CONCAT(`fname`,' ',`lname`) AS `username` FROM `$table_name` WHERE `username`=(SELECT `username` from `active_user` where active_code='$active_key')";
         //$session = "SELECT `id`, `username` FROM `active_user` WHERE `active_code`='$active_key'";
         return $session;
     }

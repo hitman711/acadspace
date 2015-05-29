@@ -111,7 +111,7 @@ function normal_graph(data) {
 	    min: y_axis_min_limit,
             constantLines: [{
                 label: {
-                    text: 'CGPA ='+total
+                    text: 'Avg ='+total
                 },
                 width: 2,
                 value: total,
