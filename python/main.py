@@ -77,16 +77,29 @@ for i in range(0,len(data)):            # Iterating over resulted records (users
         print "Edited Form >> %s"%(edited_form)
         for dict_key, dict_data in Dep_Dict.items():        # Iterate to find out affected analysis
             match_flag = False
-            matching_regex ="(%s\w+)"%dict_data[0].replace("*",'')        # Convert to regex for comparison
-            #- - - - - - Comparing edited form with analysis
-            match_flag = True if re.match(str(matching_regex), str(edited_form)) else match_flag
-
+            form_code =''
+            for each_code in dict_data:
+                matching_regex = "(%s)"%each_code.replace("*",'')
+                if re.match(str(matching_regex), str(edited_form)):
+                    match_flag = True
+                    form_code = each_code
+                else:
+                    match_flag
+            '''
+            for each_code in dict_data:
+                matching_regex ="(%s\w+)"%each_code.replace("*",'')
+                # Convert to regex for comparison#- - - - - - Comparing edited form with analysis
+                match_flag = True if re.match(str(matching_regex), str(edited_form)) else match_flag
+            '''
             #- - - If Analysis is affected - - - - - - -
             if match_flag == True:
-                exec("tempmod = %s"%dict_key)                   # Load that module
+                exec("tempmod = %s"%dict_key)
+                print dict_key
+                #print "list = "+form_code
+                # Load that module
                 # Execute that Module returns
                 # "Success","Failure","Partial" Status
-                [Stat,result] = tempmod.execute(db,user_id)
+                [Stat,result] = tempmod.execute(db,user_id,form_code)
                 if Stat == "Success":                                # If Success add data to Suceeded_Analytic
                     if result.keys()[0] in Completed_Analytics['Suceeded_Analytic']:
                         print "Updating Record . . . . . . "
