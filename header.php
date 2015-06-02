@@ -1,3 +1,7 @@
+
+<?php clearstatcache();
+
+?>        
         <!-- Logo -->
         <a href="index.php" class="logo" style='height: 70px'>
          <!-- <i class="fa fa-graduation-cap"></i> Acadspace -->
@@ -126,6 +130,12 @@
                       <?php if(isset($user_valid)){echo $user_valid;}?>
                       <!--<small>Member since Nov. 2012</small>-->
                     </p>
+                    <p>
+                      
+                    </p>
+                    <p id='usertype' name='<?php echo $userType;?>'>
+                      <?php echo $userType; ?>
+                    </p>
                   </li>
                   <!-- Menu Body
                   <li class="user-body">
@@ -142,9 +152,11 @@
                   -->
                   <!-- Menu Footer-->
                   <li class="user-footer">
-                    <div class="pull-left">
-                      <a href="profile.php" class="btn btn-default btn-flat">Profile</a>
-                    </div>
+                    <?php if($userType =="student"){
+                      echo "<div class='pull-left'>";
+                      echo "<a href='profile.php' class='btn btn-default btn-flat'>Profile</a>";
+                      echo "</div>";
+                      }?>
                     <div class="pull-right">
                       <a href="./php/logout.php" class="btn btn-default btn-flat">Sign out</a>
                     </div>

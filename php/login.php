@@ -3,14 +3,20 @@ require_once('configuration.php');
 include('query.php');
 session_start();
 if(isset($_POST['submit'])){
-    if(isset($_POST['username']) && isset($_POST['password']))   
+    if(isset($_POST['username']) && isset($_POST['password']) && isset($_POST['userType']))   
     {
         $conn = mysql_connect(HOST, USERNAME,PASSWORD) or Die("database connectivity failed");
         $username = $_POST['username'];
         $pass = $_POST['password'];
+        $table_name ='';
+        if(strtolower($_POST['userType'])=="student"){
+            $table_name = 'register';
+        }else{
+            $table_name = strtolower($_POST['userType']);
+        }
         $db = mysql_select_db(MAIN_DATABASE, $conn) or Die("database not selected");
         $sql = new querys();
-        $query = $sql->login($username); 
+        $query = $sql->login($table_name,$username); 
         $check = mysql_query($query,$conn);
         $row = mysql_fetch_row($check);
         if($row){
@@ -18,7 +24,7 @@ if(isset($_POST['submit'])){
             $salt = $row[1];
             $unique_code = $row[3];
             if($row[2] == 'activated'){
-                $pass = md5($pass+$salt);    
+                $pass = md5($pass.$salt);    
                 if($password == $pass){
                     $query = $sql->active_user($username);
                     $result = mysql_query($query,$conn);

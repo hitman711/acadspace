@@ -41,8 +41,8 @@ class querys {
     }
     
 //login
-    public function login($username){
-        $login = "SELECT `password`,`salt`,`status`,`unique_code` FROM `register` WHERE `username`='$username'";
+    public function login($table_name,$username){
+        $login = "SELECT `password`,`salt`,`status`,`unique_code` FROM `$table_name` WHERE `username`='$username'";
         return $login;
     }
     
@@ -73,8 +73,8 @@ class querys {
     
     
 //session
-    public function session($active_key){
-        $session = "SELECT CONCAT(`fname`,' ',`lname`) AS `username` FROM `register` WHERE `username`=(SELECT `username` from `active_user` where active_code='$active_key')";
+    public function session($active_key,$table_name){
+        $session = "SELECT CONCAT(`fname`,' ',`lname`) AS `username` FROM `$table_name` WHERE `username`=(SELECT `username` from `active_user` where active_code='$active_key')";
         //$session = "SELECT `id`, `username` FROM `active_user` WHERE `active_code`='$active_key'";
         return $session;
     }
@@ -236,6 +236,15 @@ class querys {
         return $get_user_code;
     }
     
+    //get special record info
+    public function get_record($username,$tablename){
+        $get_record = "SELECT `info_link` FROM `".$tablename."_record` WHERE `unique_id`='$username'";
+        return $get_record;
+    }
+    
+    
+    
+    
     //insert user acadmic record
     public function insert_record($table_name,$user_code, $form_code, $data, $total,$attempt){
         $field_name = "";
@@ -275,7 +284,7 @@ class querys {
             $update_value = $update_value."`data_field_".($i+1)."` = '$data[$i]',";
         }
         $update_value = substr($update_value,0,-1);
-        $update_record = "UPDATE `user_record` SET $update_value WHERE `user_code`='$user_code' AND `form_code`= '$form_code'";
+        $update_record = "UPDATE `primary_record` SET $update_value WHERE `user_code`='$user_code' AND `form_code`= '$form_code'";
         return $update_record;
 
     }

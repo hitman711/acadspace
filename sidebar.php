@@ -27,10 +27,15 @@
           <ul class="sidebar-menu">
             <li class="header">HEADER</li>
             <!-- Optionally, you can add icons to the links -->
-            <li id='exam'><a href="exam.php"><i class="fa fa-file-text-o"></i><span>Exam</span></a></li>
-            <li><a href="analytics.php"><i class="fa fa-pie-chart"></i><span> Analytics</span></a></li>
-            <li><a href="analytics.php"><i class="fa fa-user"></i><span> Friends</span></a></li>
-            <li><a href="analytics.php"><i class="fa fa-trophy"></i><span> Record</span></a></li>
+            <?php
+            if($userType == "student"){
+              echo '<li id="exam"><a href="exam.php"><i class="fa fa-file-text-o"></i><span>Exam</span></a></li>';
+              echo '<li><a href="analytics.php"><i class="fa fa-pie-chart"></i><span> Analytics</span></a></li>';
+            }
+            ?>
+            
+            <!--li><a href="analytics.php"><i class="fa fa-user"></i><span> Friends</span></a></li-->
+            <li><a href="#"><i class="fa fa-trophy"></i><span> Record</span></a></li>
             <li><a href="about.php"><i class="fa fa-users"></i><span> About Us</span></a></li>
             <!--
             <li><a href="#"><span>Another Link</span></a></li>

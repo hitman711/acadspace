@@ -49,6 +49,14 @@ if(isset($_SESSION['login_user'])){
             <input type="password" class="form-control" placeholder="Password" name='password'/>
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
+	  <div class="form-group has-feedback">
+	    <label>Sign in as</label>
+	    <select class="form-control" name='userType'>
+		<option value='student' id='0'>Student</option>
+		<option value='institute' id='1'>Institute</option>
+		<option value='institute' id='2'>Class</option>
+	    </select>
+	  </div>
           <div class="row">
             <div class="col-xs-8">    
               <div class="checkbox icheck">

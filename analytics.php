@@ -63,10 +63,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				<li class="active">Here</li>
 			</ol>
 			</section>
-
+<script type='text/javascript' src='js/analytics.js'></script>
+<div class='row'>
+  <div class='col-md-12'>
 			<!-- Main content -->
 			<section class="content">
-                <script type='text/javascript' src='js/analytics.js'></script>
+                
 				<div>
 					<div class="row">
                                           <div id='ranks'>
@@ -80,6 +82,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				</div>
 					<!-- Your Page Content Here -->
 			</section><!-- /.content -->
+  </div>
+</div>
+
+                      <div class='row'>
+                        <div class='col-md-12'>
+                          <section class="competitive_content">
+                            <div>
+                              <div class="row">
+                                <div id='ranks'>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div id='graphs'>
+                                </div>
+                              </div>
+                            </div>
+                          </section>
+                        </div>
+                      </div>
 		</div><!-- /.content-wrapper -->
       <!-- Main Footer -->
 

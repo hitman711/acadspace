@@ -32,6 +32,7 @@ function form_structure(form_data,user_data) {
         schema +="<button class='btn btn-box-tool' id='"+Object.keys(obj)[i]+"'><i class='fa fa-plus'></i></button>";
         schema +="</div></div>";                        
         schema += "<div class='box-body' style='display: none;' id='"+Object.keys(obj)[i]+"_detail' name='"+Object.keys(obj)[i]+"'>";
+        schema +="<div id='info_box'></div>";
         if (info !="") {
             for(j=0; j<Object.keys(info).length; j++){
                 schema +="<label id='label_"+j+"'>"+Object.keys(info)[j]+"</label>";
@@ -87,6 +88,7 @@ $(document).ready(function(){
 
 //Add information in profile
     $('#form_data').on('click','#add_data',function(e){
+        add_info = $(this).parent().parent().attr('id');
         new_data = $(this).attr('name')+"_detail";
         parent_name = $(this).attr('name');
         information =[];
@@ -98,8 +100,15 @@ $(document).ready(function(){
         }
         if(!$.isEmptyObject(information)){
             $.post("php/function.php",{user:username,update_form:parent_name,info:JSON.stringify(information)}, function(result){
-                    console.log(result);
-                    alert(result);
+                    if (result== "success") {
+                        success_box(add_info,result);
+                    }else{
+                        warning_box(add_info,result);
+                    }
+                    //alert($("#"+msg+" #info_box").html(result));
+                    //console.log(result);
+                    //$('#'++" #info_box").html(result);
+                    //alert(result);
                 });
         }else{
             alert("please provide some info");
@@ -107,6 +116,13 @@ $(document).ready(function(){
     });   
     
 });
+
+
+
+
+
+
+
 
 //PERSONAL DETAILS
 function personal_detail(username) {
@@ -136,5 +152,20 @@ function education_detail(username) {
     });
 }
 
+function success_box(location,msg) {
+    $('#'+location+' #info_box').slideUp('slow');
+    $('#'+location+' #info_box').html('<p style="font-size:20px" class="pager"><i class="fa fa-check-circle"></i>  '+msg+'</p>');
+    $('#'+location+' #info_box').slideDown('slow');
+    $('#'+location+' #info_box').delay(2000).slideUp('slow');
+    //setInterval($('#'+location+' #info_box').slideUp('slow'),10000);
+}
 
+///Respose failure
+function warning_box(location,msg) {
+    $('#'+location+' #info_box').slideUp('slow');
+    $('#'+location+' #info_box').html('<p style="font-size:20px" class="pager"><i class="fa fa-times-circle"></i>  '+msg+'</p>');
+    $('#'+location+' #info_box').slideDown('slow');
+    $('#'+location+' #info_box').delay(2000).slideUp('slow');
+    //setInterval($('#'+location+' #info_box').slideUp('slow'),10000);
+}
     

@@ -3,7 +3,7 @@ $sub ='#';
 $check = array("Board Name"=>"../forms/data/$sub/board.php",
                "Medium"=>"../forms/data/$sub/medium.php",
                "Year of passing"=>"../forms/data/$sub/year_of_passing.php",
-               "School Name"=>"../forms/data/$sub/school.php",
+               "Institute Name"=>"../forms/data/$sub/institute.php",
                "University Name"=>"../forms/data/$sub/university.php",
                "College Name"=>"../forms/data/$sub/college.php",
                "Stream Name"=>"../forms/data/$sub/stream.php",);
@@ -11,7 +11,7 @@ $check = array("Board Name"=>"../forms/data/$sub/board.php",
 $call = array("Board Name"=>'board_name',
                "Medium"=>'medium',
                "Year of passing"=>'year_of_passing',
-               "School Name"=>'school_name',
+               "Institute Name"=>'institute_name',
                "University Name"=>'university_name',
                "College Name"=>'college_name',
                "Stream Name"=>'stream_name');
@@ -32,22 +32,26 @@ if(isset($_POST['list_name']) && isset($_POST['field_name'])){
     }
 }
 
+
 class verify {
+
     public function verification($sub,$key, $value){
-       $check = array("Board Name"=>"../forms/data/$sub/board.php",
+	$check = array("Board Name"=>"../forms/data/$sub/board.php",
                "Medium"=>"../forms/data/$sub/medium.php",
                "Year of passing"=>"../forms/data/$sub/year_of_passing.php",
-               "School Name"=>"../forms/data/$sub/school.php",
+               "Institute Name"=>"../forms/data/$sub/institute.php",
                "University Name"=>"../forms/data/$sub/university.php",
-               "College Name"=>"../forms/data/$sub/college.php",);
+               "College Name"=>"../forms/data/$sub/college.php",
+               "Stream Name"=>"../forms/data/$sub/stream.php",);
 
-        $call = array("Board Name"=>'board_name',
+	$call = array("Board Name"=>'board_name',
                "Medium"=>'medium',
                "Year of passing"=>'year_of_passing',
-               "School Name"=>'school_name',
+               "Institute Name"=>'institute_name',
                "University Name"=>'university_name',
-               "College Name"=>'college_name');
-        
+               "College Name"=>'college_name',
+               "Stream Name"=>'stream_name');
+
         if(array_key_exists($key,$check)){
             include($check[$key]);
             $list = $$call[$key];
@@ -61,20 +65,22 @@ class verify {
     }
 
     public function validate($sub,$key, $value){
-        $check = array("Board Name"=>"../forms/data/$sub/board.php",
+	$check = array("Board Name"=>"../forms/data/$sub/board.php",
                "Medium"=>"../forms/data/$sub/medium.php",
                "Year of passing"=>"../forms/data/$sub/year_of_passing.php",
-               "School Name"=>"../forms/data/$sub/school.php",
+               "Institute Name"=>"../forms/data/$sub/institute.php",
                "University Name"=>"../forms/data/$sub/university.php",
-               "College Name"=>"../forms/data/$sub/college.php",);
+               "College Name"=>"../forms/data/$sub/college.php",
+               "Stream Name"=>"../forms/data/$sub/stream.php",);
 
-        $call = array("Board Name"=>'board_name',
+	$call = array("Board Name"=>'board_name',
                "Medium"=>'medium',
                "Year of passing"=>'year_of_passing',
-               "School Name"=>'school_name',
+               "Institute Name"=>'institute_name',
                "University Name"=>'university_name',
-               "College Name"=>'college_name');
-        
+               "College Name"=>'college_name',
+               "Stream Name"=>'stream_name');
+
         if(array_key_exists($key,$check)){
             include($check[$key]);
             $list = $$call[$key];
@@ -89,24 +95,26 @@ class verify {
     
     
     public function get_keys($sub,$key, $value){
-       $key =ucwords($key);
-       $check = array("Board Name"=>"../forms/data/$sub/board.php",
+      $check = array("Board Name"=>"../forms/data/$sub/board.php",
                "Medium"=>"../forms/data/$sub/medium.php",
                "Year of passing"=>"../forms/data/$sub/year_of_passing.php",
-               "School Name"=>"../forms/data/$sub/school.php",
+               "Institute Name"=>"../forms/data/$sub/institute.php",
                "University Name"=>"../forms/data/$sub/university.php",
-               "College Name"=>"../forms/data/$sub/college.php",);
+               "College Name"=>"../forms/data/$sub/college.php",
+               "Stream Name"=>"../forms/data/$sub/stream.php",);
 
-        $call = array("Board Name"=>'board_name',
+      $call = array("Board Name"=>'board_name',
                "Medium"=>'medium',
                "Year of passing"=>'year_of_passing',
-               "School Name"=>'school_name',
+               "Institute Name"=>'institute_name',
                "University Name"=>'university_name',
-               "College Name"=>'college_name'); 
-        
+               "College Name"=>'college_name',
+               "Stream Name"=>'stream_name');
+
+       $key =ucwords($key); 
         if(array_key_exists($key,$check)){
             include($check[$key]);
-            $list = $$call[$key];
+            $list = $$call[$key];  
             foreach($list as $keys=>$val){
                 if( $val== $value){
                     return $keys;

@@ -1,5 +1,8 @@
 <?php
 include('php/session.php');
+if($userType != "student"){
+  header("Location:dashboard.php");
+}
 ?>
 <!DOCTYPE html>
 <!--

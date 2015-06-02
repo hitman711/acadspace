@@ -1,0 +1,3 @@
+<?php
+$institute_name = array("shree samartha vidhyalay"=>"SSV");
+?>

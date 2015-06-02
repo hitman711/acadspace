@@ -6,6 +6,13 @@ $call_function = new operation();
 
 /*-------------------------------------------------------------------------------------the  below function take input form user and pass to specific function----------------------------------------------------------------------------*/
 
+/*******************DASHBOARD EVENT*********************************************/
+if(isset($_POST['types']) && isset($_POST['active_id'])){
+    $types = htmlspecialchars($_POST['types']);
+    $username = htmlspecialchars($_POST['active_id']);
+    $get_info = $call_function->recordInfo($username,$types);
+    echo $get_info;
+}
 
 //users old saved record
 if(isset($_POST['saved_user_name'])){
@@ -154,11 +161,30 @@ class operation {
         $connect->close_database();
     }
     
+    
+    function recordInfo($username,$type){
+        $unique_code = $this->user_unique_code($username);
+        $connect = new databases();
+        $db_connect = $connect->select_db();
+        $sql = new querys();
+        $query = $sql->get_record($unique_code,$type);
+        $result = mysql_query($query, $connect->database_info());
+        $row = mysql_fetch_assoc($result);
+        return $row['info_link'];
+        $connect->close_database();
+    }
+    
+    
+    
+    
+    
+    
+    
 //get form name
     public function get_form_name($form_code){
         //global $sample_data;
         $connect = new databases();
-        $db_connect = $connect->select_db(SAMPLE_DATABASE);
+        $db_connect = $connect->select_db();
         $sql = new querys();
         $query = $sql->get_form_name($form_code);
         $result = mysql_query($query,$connect->database_info());
@@ -288,7 +314,7 @@ class operation {
     public function first_selection_box(){
         //global $sample_data;
         $connect = new databases();
-        $db_connect = $connect->select_db(SAMPLE_DATABASE);
+        $db_connect = $connect->select_db();
         $sql = new querys();
         $query = $sql->get_field(FIRST_SELECTION);
         $result = mysql_query($query,$connect->database_info());
@@ -311,7 +337,7 @@ class operation {
     public function validate_exam_code($form_no){
         //global $sample_data;
         $connect = new databases();
-        $db_connect = $connect->select_db(SAMPLE_DATABASE);
+        $db_connect = $connect->select_db();
         $sql = new querys();
         $query = $sql->validate_exam_code($form_no);
         $result = mysql_query($query,$connect->database_info());
@@ -336,7 +362,7 @@ class operation {
         else{
             //global $sample_data;
             $connect = new databases();
-            $db_connect = $connect->select_db(SAMPLE_DATABASE);
+            $db_connect = $connect->select_db();
             $sql = new querys();
             $query = $sql->get_next_field($level_code,$next_table);
             $result = mysql_query($query,$connect->database_info());
@@ -357,7 +383,7 @@ class operation {
     public function get_form_info($table_name,$form_no){
         //global $sample_data;
         $connect = new databases();
-        $db_connect = $connect->select_db(SAMPLE_DATABASE);
+        $db_connect = $connect->select_db();
         $sql = new querys();
         $query = $sql->get_form($table_name,$form_no);
         $result = mysql_query($query,$connect->database_info());
@@ -371,7 +397,7 @@ class operation {
     public function get_form_field($form_no){
         //global $sample_data;
         $connect = new databases();
-        $db_connect = $connect->select_db(SAMPLE_DATABASE);
+        $db_connect = $connect->select_db();
         $sql = new querys();
         $query = $sql->get_form_field($form_no);
         $result = mysql_query($query,$connect->database_info());
@@ -427,7 +453,7 @@ class operation {
     public function form_sub_type($form_no){
         //global $sample_data;
         $connect = new databases();
-        $db_connect = $connect->select_db(SAMPLE_DATABASE);
+        $db_connect = $connect->select_db();
         $sql = new querys();
         $query = $sql->form_sub_type($form_no);
         $result = mysql_query($query,$connect->database_info());
@@ -452,7 +478,7 @@ class operation {
             $multiple = $validate_exam_code['multiple'];
         }else{
             $exam_type = "academic";
-            $table_name = "user_record";
+            $table_name = "undergraduate_record";
             $multiple = 0;
         }
         
@@ -509,7 +535,7 @@ class operation {
         $form_data = $this->get_form_field($form_no);
         $table_name = $this->validate_exam_code($form_no);
         if($table_name == "failure"){
-            $table_name = "user_record";
+            $table_name = "undergraduate_record";
         }else{
             $table_name = $table_name['table_name'];
         }
@@ -569,7 +595,7 @@ class operation {
         if($validate_form_no !="failure" ){
             $table_name = $validate_form_no['table_name']; 
         }else{
-            $table_name ='user_record';
+            $table_name ="undergraduate_record";
         }
         $update_info = $this->update_record($user_code,$form_no,$table_name,$user_data, $total_user_data ,$attempt);
         //return $update_info;
@@ -645,7 +671,7 @@ class operation {
         $user_code = $this->user_unique_code($username);
         $table_name = $this->validate_exam_code($form_no);
         if($table_name == 'failure'){
-            $table_name = "user_record";
+            $table_name = "undergraduate_record";
         }else{
             $table_name = $table_name['table_name'];
         }
@@ -856,7 +882,7 @@ public function delete_analytic_record($username,$form_no){
         }
         else{
             $exam_type = "academic";
-            $table_name = "user_record";
+            $table_name = "undergraduate_record";
             $multiple = 0;
             
             return $this->check_available_data($unique_code,$table_name,$form_no);

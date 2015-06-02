@@ -1,6 +1,7 @@
 <?php
-include('query.php');
+require_once('query.php');
 require_once('configuration.php');
+require_once('database_connect.php');
 
 $call_operation = new operation();
 if(isset($_POST['profile_data'])){
@@ -46,33 +47,6 @@ if(isset($_POST['user']) && isset($_POST['update_form']) && isset($_POST['info']
 }
 
 
-class databases {
-    function database_info(){
-        $conn = mysql_connect(HOST,USERNAME,PASSWORD) or Die("error");
-        if($conn){
-            return $conn;    
-        }else{
-            echo "error";
-        }
-        
-    }
-    
-    function select_db($database_name){
-        $db = mysql_select_db($database_name,$this->database_info());
-        if($db){
-            return $db;    
-        }else{
-            echo "error";
-        }
-        
-    }
-    function close_database(){
-        return mysql_close($this->database_info());
-    }
-}
-  
-
-
 class operation {
 /*---------------------geu user unique code -------------------------------*/
     public function user_data($username){
@@ -89,22 +63,28 @@ class operation {
         $pass = [];
         $forms = $this->educational_data($active_code);
         $forms = json_decode($forms);
+
+//echo json_encode($forms,true);
         foreach($forms as $key=>$value){
             $table_name = $key;
             $check_availability = $call_function->get_user_data($unique_code,$table_name);
+//echo " $check_availability";
             $check_availability = json_decode($check_availability,true);
             if($check_availability !='failure'){
                 if($check_availability != null){
+//print_r($check_availability);
                     foreach($check_availability as $column_name=>$key_code){
+
                         if($column_name =='id' && $column_name='unique_code'){
                             
                         }else{
+//print_r($check_availability);
                             $check_availability[$column_name] = $call_function->get_key_value($table_name,$column_name,$key_code);
                         }
                     }
                     $check_availability = json_encode($check_availability);
                     $pass[$key] = $check_availability;
-                    
+
                 }else{
                    $pass[$key] = $check_availability;
                 }
@@ -177,7 +157,7 @@ class functions {
     function user_unique_code($username){
         //global $database;
         $connect = new databases();
-        $db_connect = $connect->select_db(MAIN_DATABASE);
+        $db_connect = $connect->select_db();
         $sql = new querys();
         $query = $sql->get_user_code($username);
         $result = mysql_query($query, $connect->database_info());
@@ -191,7 +171,7 @@ class functions {
     function registration_information($unique_code){
         //global $database;
         $connect = new databases();
-        $db_connect = $connect->select_db(MAIN_DATABASE);
+        $db_connect = $connect->select_db();
         $sql = new querys();
         $query = $sql->read_register($unique_code);
         $result = mysql_query($query,$connect->database_info());
@@ -205,7 +185,7 @@ class functions {
     function educational_information($unique_code){
         //global $sample_data;
         $connect = new databases();
-        $db_connect = $connect->select_db(MAIN_DATABASE);
+        $db_connect = $connect->select_db();
         $sql = new querys();
         $query = $sql->read_profile($unique_code);
         $result = mysql_query($query,$connect->database_info());
@@ -218,7 +198,7 @@ class functions {
     function check_available($unique_code,$table_name){
         //global $database;
         $connect = new databases();
-        $db_connect = $connect->select_db(MAIN_DATABASE);
+        $db_connect = $connect->select_db();
         $sql = new querys();
         $query = $sql->verify_user_field_data($unique_code,$table_name);
         $result = mysql_query($query,$connect->database_info());
@@ -238,14 +218,14 @@ class functions {
     function get_user_data($unique_code,$table_name){
         //global $database;
         $connect = new databases();
-        $db_connect = $connect->select_db(MAIN_DATABASE);
+        $db_connect = $connect->select_db();
         $sql = new querys();
         $query = $sql->read_user_field_data($unique_code,$table_name);
         $result = mysql_query($query,$connect->database_info());
         if($result){
             $row = mysql_fetch_assoc($result);
             if($row){
-                return json_encode($row);    
+                return json_encode($row);
             }else{
                 return "failure";
             }    
@@ -258,7 +238,7 @@ class functions {
     function form_information($unique_code,$form_name){
         //global $database;
         $connect = new databases();
-        $db_connect = $connect->select_db(MAIN_DATABASE);
+        $db_connect = $connect->select_db();
         $sql = new querys();
         $query = $sql->edu_form_data($unique_code,$form_name);
         $result = mysql_query($query,$connect->database_info());
@@ -294,7 +274,7 @@ class functions {
     public function update_data($unique_code ,$form_name,$column_name,$value){
         //global $database;
         $connect = new databases();
-        $db_connect = $connect->select_db(MAIN_DATABASE);
+        $db_connect = $connect->select_db();
         $sql = new querys();
         $query = $sql->update_profile_query($unique_code,$column_name,$form_name,$value);
         $result = mysql_query($query,$connect->database_info());
@@ -334,7 +314,7 @@ class functions {
     public function insert_data($unique_code ,$form_name,$column_name,$value){
         //global $database;
         $connect = new databases();
-        $db_connect = $connect->select_db(MAIN_DATABASE);
+        $db_connect = $connect->select_db();
         $sql = new querys();
         $query = $sql->insert_profile_query($unique_code,$column_name,$form_name,$value);
         $result = mysql_query($query,$connect->database_info());
@@ -351,9 +331,11 @@ class functions {
     function get_key_value($form_name,$key,$val){
         include_once('list.php');
         $response ='';
-        //echo "$form_name = $key  = $val";
+//echo "$form_name = $key  = $val";
         $new = new verify();
+//echo "$key = $val";
         $get_key = $new->get_keys($form_name,$key,$val);
+
         return $get_key;
     }
     

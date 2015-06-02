@@ -406,6 +406,7 @@ function success_box(msg) {
     $('#display_form #success').slideUp('slow');
     $('#display_form #success').html('<p style="font-size:20px" class="pager"><i class="fa fa-check-circle"></i>  '+msg+'</p>');
     $('#display_form #success').slideDown('slow');
+    $('#display_form #success').delay(2000).slideUp('slow');
 }
 
 ///Respose failure
@@ -413,6 +414,7 @@ function warning_box(msg) {
     $('#display_form #warning').slideUp('slow');
     $('#display_form #warning').html('<p style="font-size:20px" class="pager"><i class="fa fa-times-circle"></i>  '+msg+'</p>');
     $('#display_form #warning').slideDown('slow');
+    $('#display_form #success').delay(2000).slideUp('slow');
 }
 
 

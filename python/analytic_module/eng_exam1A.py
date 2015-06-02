@@ -4,7 +4,7 @@ def operation(db,unique_code,form_code):
     #print "inside"+form_code
     graph_data =[]
     total =0
-    sql = "SELECT `form_code`,`total` FROM `user_record` WHERE `user_code`='%s' AND `form_code` LIKE '%s'"%(unique_code,form_code+'%')
+    sql = "SELECT `form_code`,`total` FROM `undergraduate_record` WHERE `user_code`='%s' AND `form_code` LIKE '%s'"%(unique_code,form_code+'%')
     try:
         # Execute the SQL command
         results = db.RunQueryColNameOnAcadspace(sql)
@@ -15,6 +15,7 @@ def operation(db,unique_code,form_code):
             for form_title in result2:
                 exam_name = form_title['form_title']
             marks = row['total']
+            #print marks
 	    total += float(marks)
             graph_data.append({"x-axis":exam_name,"y-axis":float(marks)})
             graph_data.sort()

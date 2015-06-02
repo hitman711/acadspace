@@ -29,15 +29,15 @@ def operation(db,unique_code, match_code):
         query = '';
         for column in column_name:
             query = query+"`undergraduate`.`"+column+"` ='"+index[column]+"' AND "
-            extract_query = "select count(`user_record`.`user_code`) AS `Rank` from `user_record` INNER JOIN `undergraduate` ON `user_record`.`user_code` =`undergraduate`.`unique_code` AND "+query+""
-            university_query ="select count(`user_record`.`user_code`) AS `Rank` from `user_record` INNER JOIN `undergraduate` ON `user_record`.`user_code` =`undergraduate`.`unique_code` AND "+"`undergraduate`.`"+column_name[1]+"` ='"+index[column_name[1]]+"' AND "+""
+            extract_query = "select count(`undergraduate_record`.`user_code`) AS `Rank` from `undergraduate_record` INNER JOIN `undergraduate` ON `undergraduate_record`.`user_code` =`undergraduate`.`unique_code` AND "+query+""
+            university_query ="select count(`undergraduate_record`.`user_code`) AS `Rank` from `undergraduate_record` INNER JOIN `undergraduate` ON `undergraduate_record`.`user_code` =`undergraduate`.`unique_code` AND "+"`undergraduate`.`"+column_name[1]+"` ='"+index[column_name[1]]+"' AND "+""
             #print university_query
         for form_code in newlist:
 
             form_no =match_code+"0"+str(form_code)
 
 #User Marks
-            sql2 ="SELECT `data_field_1`,`total` FROM `user_record` WHERE `user_code`='%s' AND `form_code` LIKE '%s'"%(unique_code,form_no)
+            sql2 ="SELECT `data_field_1`,`total` FROM `undergraduate_record` WHERE `user_code`='%s' AND `form_code` LIKE '%s'"%(unique_code,form_no)
             user_marks = db.RunQueryColNameOnAcadspace(sql2)
 
 #Available user marks
@@ -49,7 +49,7 @@ def operation(db,unique_code, match_code):
                 #print "user marks = "+str(user_total_marks)
 
 #University rank
-                sql3=university_query+"`user_record`.`form_code` = '%s' AND `user_record`.`total`>%s AND `user_record`.`data_field_1` LIKE '%s'"%(form_no,user_total_marks,exam_year)
+                sql3=university_query+"`undergraduate_record`.`form_code` = '%s' AND `undergraduate_record`.`total`>%s AND `undergraduate_record`.`data_field_1` LIKE '%s'"%(form_no,user_total_marks,exam_year)
                 #print sql3
                 results3 = db.RunQueryColNameOnAcadspace(sql3)
                 #print results3
@@ -58,7 +58,7 @@ def operation(db,unique_code, match_code):
                     #print "University Rank ="+str(university_rank)
 
 #College wise rank
-                sql4 = extract_query+"`user_record`.`form_code` = '%s' AND `user_record`.`total`>%s AND `user_record`.`data_field_1` LIKE '%s'"%(form_no,user_total_marks,exam_year)
+                sql4 = extract_query+"`undergraduate_record`.`form_code` = '%s' AND `undergraduate_record`.`total`>%s AND `undergraduate_record`.`data_field_1` LIKE '%s'"%(form_no,user_total_marks,exam_year)
                 #print sql4
                 results4 = db.RunQueryColNameOnAcadspace(sql4)
                 #print results4
@@ -69,9 +69,7 @@ def operation(db,unique_code, match_code):
 #form name
                 sql5="SELECT CONCAT(  `form_title` ,  ' ',  `field_name` ) AS  `form_title`  FROM  `form_field` WHERE  `form_id` = '%s'"%(form_no)
                 form_name = db.RunQueryColNameOnAcadspace(sql5)
-                print form_name[0]['form_title']
                 form_name = form_name[0]['form_title']
-                #print form_name
 
 #JSON format
                 related_data["4"+filed_list[i]]={
@@ -84,6 +82,7 @@ def operation(db,unique_code, match_code):
                     "university":university_rank
                     }
                 i = i+1
+                #print related_data["4"+filed_list[i-1]]
 
             else:
                 related_data["4"+filed_list[i]]={

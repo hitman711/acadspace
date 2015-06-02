@@ -28,7 +28,7 @@ include('mail.php');
         $username =mysql_real_escape_string(strip_tags($_POST['user']));
         $pass = mysql_real_escape_string(strip_tags($_POST['pass']));
         $salt = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 5);
-        $pass = md5($pass+$salt);
+        $pass = md5($pass.$salt);
         $activation = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 12);
         $db = mysql_select_db(MAIN_DATABASE,$conn);
         $sql = new querys();
