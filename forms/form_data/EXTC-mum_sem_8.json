@@ -1,0 +1,182 @@
+{
+    "form_name": "EXTC-mum-semester-8",
+    "Field_Parameter": 5,
+    "Total_Fields": 9,
+    "header_field": [
+      "Subject",
+      "Grade",
+      "Grade Point",
+      "Credit Course",
+      "sum of CG"
+    ],
+    "field_name": [
+      "Subject",
+      "Grade",
+      "Grade_Point",
+      "Credit_Course",
+      "Sum_of_CG",
+      "CGPA"
+    ],
+    "Field_1": {
+      "Subject": "Attempt Date",
+      "Grade": "date",
+      "Grade_Point": "",
+      "Credit_Course": "",
+      "Sum_of_CG": "",
+      "input_length": "5",
+      "input_type": "date",
+      "limit": "10"
+    },
+    "Field_2": {
+      "Grade": "text",
+      "Grade_Point": "0",
+      "Credit_Course": 4,
+      "Subject": "Satelite Communication & Networks",
+      "Sum_of_CG": 0,
+      "input_length": "1",
+      "input_type": "Grade",
+      "limit": [
+        "O",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "P"
+      ]
+    },
+    "Field_3": {
+      "Grade": "text",
+      "Grade_Point": "0",
+      "Credit_Course": 4,
+      "Subject": "Inteet & Voice Communication ",
+      "Sum_of_CG": 0,
+      "input_length": "1",
+      "input_type": "Grade",
+      "limit": [
+        "O",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "P"
+      ]
+    },
+    "Field_4": {
+      "Grade": "text",
+      "Grade_Point": "0",
+      "Credit_Course": 4,
+      "Subject": "Elective",
+      "Sum_of_CG": 0,
+      "input_length": "1",
+      "input_type": "Grade",
+      "limit": [
+        "O",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "P"
+      ]
+    },
+    "Field_5": {
+      "Grade": "text",
+      "Grade_Point": "0",
+      "Credit_Course": 1,
+      "Subject": "Wireless Networks (TW/P)",
+      "Sum_of_CG": 0,
+      "input_length": "1",
+      "input_type": "Grade",
+      "limit": [
+        "O",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "P"
+      ]
+    },
+    "Field_6": {
+      "Grade": "text",
+      "Grade_Point": "0",
+      "Credit_Course": 1,
+      "Subject": " Satelite Communication & Networks (TW /P)",
+      "Sum_of_CG": 0,
+      "input_length": "1",
+      "input_type": "Grade",
+      "limit": [
+        "O",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "P"
+      ]
+    },
+    "Field_7": {
+      "Grade": "text",
+      "Grade_Point": "0",
+      "Credit_Course": 1,
+      "Subject": "Inteet & Voice Communication (TW /P)",
+      "Sum_of_CG": 0,
+      "input_length": "1",
+      "input_type": "Grade",
+      "limit": [
+        "O",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "P"
+      ]
+    },
+    "Field_8": {
+      "Grade": "text",
+      "Grade_Point": "0",
+      "Credit_Course": 1,
+      "Subject": "Elective (TW/P)",
+      "Sum_of_CG": 0,
+      "input_length": "1",
+      "input_type": "Grade",
+      "limit": [
+        "O",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "P"
+      ]
+    },
+    "Field_9": {
+      "Grade": "text",
+      "Grade_Point": "0",
+      "Credit_Course": 6,
+      "Subject": "Project II",
+      "Sum_of_CG": 0,
+      "input_length": "1",
+      "input_type": "Grade",
+      "limit": [
+        "O",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "P"
+      ]
+    }
+}

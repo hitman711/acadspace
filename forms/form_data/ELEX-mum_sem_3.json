@@ -1,0 +1,182 @@
+{
+    "form_name": "ELEX-mum-semester-3",
+    "Field_Parameter": 5,
+    "Total_Fields": 9,
+    "header_field": [
+      "Subject",
+      "Grade",
+      "Grade Point",
+      "Credit Course",
+      "sum of CG"
+    ],
+    "field_name": [
+      "Subject",
+      "Grade",
+      "Grade_Point",
+      "Credit_Course",
+      "Sum_of_CG",
+      "CGPA"
+    ],
+    "Field_1": {
+      "Subject": "Attempt Date",
+      "Grade": "date",
+      "Grade_Point": "",
+      "Credit_Course": "",
+      "Sum_of_CG": "",
+      "input_length": "5",
+      "input_type": "date",
+      "limit": "10"
+    },
+    "Field_2": {
+      "Grade": "text",
+      "Grade_Point": "0",
+      "Credit_Course": 4,
+      "Subject": "Electronic Devices",
+      "Sum_of_CG": 0,
+      "input_length": "1",
+      "input_type": "Grade",
+      "limit": [
+        "O",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "P"
+      ]
+    },
+    "Field_3": {
+      "Grade": "text",
+      "Grade_Point": "0",
+      "Credit_Course": 4,
+      "Subject": "Digital Circuits & Design",
+      "Sum_of_CG": 0,
+      "input_length": "1",
+      "input_type": "Grade",
+      "limit": [
+        "O",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "P"
+      ]
+    },
+    "Field_4": {
+      "Grade": "text",
+      "Grade_Point": "0",
+      "Credit_Course": 4,
+      "Subject": "Circuit Theory",
+      "Sum_of_CG": 0,
+      "input_length": "1",
+      "input_type": "Grade",
+      "limit": [
+        "O",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "P"
+      ]
+    },
+    "Field_5": {
+      "Grade": "text",
+      "Grade_Point": "0",
+      "Credit_Course": 4,
+      "Subject": "Electronic Instruments & Meassurements",
+      "Sum_of_CG": 0,
+      "input_length": "1",
+      "input_type": "Grade",
+      "limit": [
+        "O",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "P"
+      ]
+    },
+    "Field_6": {
+      "Grade": "text",
+      "Grade_Point": "0",
+      "Credit_Course": 1,
+      "Subject": "Electronic Devices (TW/P)",
+      "Sum_of_CG": 0,
+      "input_length": "1",
+      "input_type": "Grade",
+      "limit": [
+        "O",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "P"
+      ]
+    },
+    "Field_7": {
+      "Grade": "text",
+      "Grade_Point": "0",
+      "Credit_Course": 1,
+      "Subject": "Digital Circuits & Design (TW/P)",
+      "Sum_of_CG": 0,
+      "input_length": "1",
+      "input_type": "Grade",
+      "limit": [
+        "O",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "P"
+      ]
+    },
+    "Field_8": {
+      "Grade": "text",
+      "Grade_Point": "0",
+      "Credit_Course": 1,
+      "Subject": "Circuit Theory (TW/P)",
+      "Sum_of_CG": 0,
+      "input_length": "1",
+      "input_type": "Grade",
+      "limit": [
+        "O",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "P"
+      ]
+    },
+    "Field_9": {
+      "Grade": "text",
+      "Grade_Point": "0",
+      "Credit_Course": 2,
+      "Subject": "Object Oriented Programming Methodology laboratory (TW)",
+      "Sum_of_CG": 0,
+      "input_length": "1",
+      "input_type": "Grade",
+      "limit": [
+        "O",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "P"
+      ]
+    }
+}
