@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 04, 2015 at 12:25 PM
+-- Generation Time: Jun 05, 2015 at 08:55 PM
 -- Server version: 5.5.43-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.9
 
@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `active_user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`,`unique_code`),
   UNIQUE KEY `acative_code` (`active_code`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=51 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=47 ;
 
 --
 -- Dumping data for table `active_user`
@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `active_user` (
 
 INSERT INTO `active_user` (`id`, `username`, `unique_code`, `active_code`) VALUES
 (45, 'compuser1', '03KsO9jZy3AOf25', 'FhOrVd7aGw'),
-(50, 'ituser1', 'j4mTjyjwzHqz0jp', 'i9L7FshI0C');
+(46, 'DJ2015', '5O54t8CHZerX0Ks', 'g9whUZC0oS');
 
 -- --------------------------------------------------------
 
@@ -456,14 +456,20 @@ CREATE TABLE IF NOT EXISTS `institute_record` (
   `name` varchar(150) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
 
 --
 -- Dumping data for table `institute_record`
 --
 
 INSERT INTO `institute_record` (`id`, `unique_id`, `info_link`, `name`) VALUES
-(1, 'aceprinciple', '../UserJson/Dashboard/vesitprinciple.json', 'ACE');
+(19, 'aceprinciple', '../UserJson/Dashboard/aceprinciple.json', 'ACE'),
+(20, '5O54t8CHZerX0Ks', '../UserJson/Dashboard/5O54t8CHZerX0Ks.json', 'DJ'),
+(21, 'sEhfOKTBY9idJ1C', '../UserJson/Dashboard/sEhfOKTBY9idJ1C.json', 'RJIT'),
+(22, 'ytNSmEeQIOEW3iC', '../UserJson/Dashboard/ytNSmEeQIOEW3iC.json', 'KJSCE'),
+(23, 'PywP9KjYfPNgoU9', '../UserJson/Dashboard/PywP9KjYfPNgoU9.json', 'DBIT'),
+(24, 'T6JT7fsifOGHdnm', '../UserJson/Dashboard/T6JT7fsifOGHdnm.json', 'CRIT'),
+(25, 'VYmlZC6Qb9I10UW', '../UserJson/Dashboard/VYmlZC6Qb9I10UW.json', 'PVPP COE');
 
 -- --------------------------------------------------------
 
