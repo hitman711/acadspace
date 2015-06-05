@@ -5,6 +5,7 @@ import os
 
 #--------------------------for graph data saved info ------
 
+
 def totalUsers(userId,data):
 	jsonFormat = json.loads('{"stream":"","total":""}')
 	Cfile_name = "../../UserJson/Dashboard/"+userId+".json"
@@ -12,14 +13,21 @@ def totalUsers(userId,data):
 	jsonFormat['stream'] = data.keys()[0]
 	jsonFormat['total'] =data.values()[0]
 	fileData['TotalUsers']['dataSource'].append(jsonFormat)
+	fileData['TotalUsers']['Title'] ="User register from your institute"
+	
 	open(Cfile_name,'w').write(json.dumps(fileData))
 
 
-def yearlyUser(userId,field,data):
-	jsonFormat = json.loads('{"stream":"","total":""}')
+def yearlyUser(streamName,userId,field,data):
+	jsonFormat = json.loads('{"'+streamName+'":'+json.dumps(data)+'}')
+	#print jsonFormat
 	Cfile_name = "../../UserJson/Dashboard/"+userId+".json"
 	fileData = json.loads(open(Cfile_name).read())
-	fileData['YearlyUser']['dataSource'].append(data)
+	fileData['YearlyUser']['dataSource'].append(jsonFormat)
+	
+	fileData['YearlyUser']['Title1'] = "Institute domain wise performance comparison with past performance"
+
+	fileData['YearlyUser']['Title2'] = "Institute domain wise user available"
 	open(Cfile_name,'w').write(json.dumps(fileData))
 
 
@@ -33,6 +41,15 @@ def CreateFile(file_name):
 	file_name.close()
 
 
+def instituteRecord(userId,institueName):
+	db = MySQLdb.connect("localhost","root","28263506","acadspace" )
+	cursor = db.cursor()
+	Cfile_name = "../UserJson/Dashboard/"+userId+".json"
+	query = "INSERT INTO `institute_record`(`unique_id`, `info_link`, `name`) VALUES ('%s','%s','%s')"%(userId,Cfile_name,institueName)
+	#cursor.execute(query)
+	#db.commit()
+	db.close()
+ 
 
 #..................................DATABASE.....................
 def databaseSearch(query):
@@ -60,6 +77,7 @@ try:
 		institute_code = each['college code']
 #.................................CREATE FILE......................
 		CreateFile(institute_code)
+		instituteRecord(institute_code,institute_name)
 
 		query2 ="SELECT COUNT(`unique_code`) AS `total_user` FROM `undergraduate` WHERE `university name`='%s' AND `institute name`='%s'"%(university_name,institute_name)
 		result2 = databaseSearch(query2)
@@ -78,12 +96,12 @@ try:
 			result4 = databaseSearch(query4)
 
 #.................................YEARLY user Record with marks for both year wise stream user and there marks data.........
-			yearlyUser(institute_code,streamlist[each_code],result4)
+			yearlyUser(streamlist[each_code],institute_code,streamlist[each_code],result4)
 			
-
+			'''
 			for index in range(1,9):
 				query4 = "SELECT  STR_TO_DATE(`data_field_1`,'%s') AS `Date`,`form_code`,ROUND(SUM(`total`)/COUNT(`user_code`),2) AS `AVG` FROM `undergraduate_record` INNER JOIN `undergraduate` ON `undergraduate_record`.`user_code`=`undergraduate`.`unique_code` AND `university name`='%s' AND `institute name`='%s' AND `form_code` = '%s' GROUP BY YEAR(STR_TO_DATE(`data_field_1`,'%s'))"%('%Y-%m-%d',university_name,institute_name,int(each_code+"0")+index,'%Y-%m-%d')
-				print query4
+				#print query4
 				result4 = databaseSearch(query4)
 				if result4:
 					#print result4
@@ -96,7 +114,7 @@ try:
 				
 				query6 = "SELECT YEAR(STR_TO_DATE(`data_field_1`,'%s')) AS `YEAR`,ROUND(sum(`total`)/count(`user_code`),2) AS `%s peroformance` FROM `undergraduate_record` INNER JOIN `undergraduate` ON `undergraduate_record`.`user_code`=`undergraduate`.`unique_code` AND `university name`='%s' AND `institute name`='%s' AND `form_code` BETWEEN '%s' AND '%s'"%('%Y-%m-%d',streamlist[each_code],university_name,institute_name,int(each_code+"0")+(index-1),int(each_code+"0")+index)
 				#result6 = databaseSearch(query6)
-				
+			'''
 
 except:
 	raise

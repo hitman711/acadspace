@@ -120,7 +120,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- AdminLTE App -->
     <script src="dist/js/app.min.js" type="text/javascript"></script>
 	
-<!--------------------------Dev express chart lib ----------------->	
+<!--------------------------Dev express chart lib ---------------->	
 	<script src="chart/knockout-3.0.0.js"></script>
 	<script src="chart/globalize.min.js"></script>
 	<script src="chart/jChart.js"></script>

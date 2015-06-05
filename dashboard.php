@@ -65,14 +65,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         <!-- Main content -->
         <section class="content">
-          <div class="box">
-            <div class="box-header with-border" id="body_header">
-              
+          <div class='box' id='dashboard'>
+              <div class='row' id="DashboardGraphs">
+              </div>
             </div>
-            <div class="box-body" id='body_content'>
-               
-            </div>
-          </div>
           
           
           
@@ -97,9 +93,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     <!-- AdminLTE App -->
     <script src="dist/js/app.min.js" type="text/javascript"></script>
-    
+
     <!-- Optionally, you can add Slimscroll and FastClick plugins. 
           Both of these plugins are recommended to enhance the 
           user experience -->
+
+    <!--------------------------Dev express chart lib ----------------> 
+  <script src="chart/knockout-3.0.0.js"></script>
+  <script src="chart/globalize.min.js"></script>
+  <script src="chart/jChart.js"></script>
+  <script src="chart/dx.chartjs.js"></script>
   </body>
 </html>
