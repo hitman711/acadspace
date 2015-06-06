@@ -13,7 +13,7 @@ def totalUsers(userId,data):
 	jsonFormat['stream'] = data.keys()[0]
 	jsonFormat['total'] =data.values()[0]
 	fileData['TotalUsers']['dataSource'].append(jsonFormat)
-	fileData['TotalUsers']['Title'] ="User register from your institute"
+	fileData['TotalUsers']['Titles']['Title1'] ="User register from your institute"
 	
 	open(Cfile_name,'w').write(json.dumps(fileData))
 
@@ -25,9 +25,9 @@ def yearlyUser(streamName,userId,field,data):
 	fileData = json.loads(open(Cfile_name).read())
 	fileData['YearlyUser']['dataSource'].append(jsonFormat)
 	
-	fileData['YearlyUser']['Title1'] = "Institute domain wise performance comparison with past performance"
+	fileData['YearlyUser']['Titles']['Title1'] = "Institute domain wise performance comparison with past performance"
 
-	fileData['YearlyUser']['Title2'] = "Institute domain wise user available"
+	fileData['YearlyUser']['Titles']['Title2'] = "Institute domain wise user available"
 	open(Cfile_name,'w').write(json.dumps(fileData))
 
 
@@ -37,7 +37,7 @@ def yearlyUser(streamName,userId,field,data):
 def CreateFile(file_name):
 	Cfile_name = "../../UserJson/Dashboard/"+file_name+".json"
 	file_name = open(os.path.join("../../UserJson/Dashboard/"+file_name+".json"),"w+")
-	file_name.write('{"TotalUsers":{"dataSource":[]},"YearlyUser":{"dataSource":[]}}')
+	file_name.write('{"TotalUsers":{"dataSource":[],"Titles":{}},"YearlyUser":{"dataSource":[],"Titles":{}}}')
 	file_name.close()
 
 

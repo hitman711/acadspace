@@ -64,7 +64,7 @@ def operation(db,unique_code,match_code):
 				series.append({"valueField":"user_marks","name":"Your Score"})
 		
 				related_data ={
-					 "Question":"Overall semester's performance in exam?",
+					 "Question":"How I am performing compared to College and university average performance?",
 					 "Answer_Type":"Comparision_graph",
 					 "Description": "This chart indicates user overall performance.",
 					"type":"graph",

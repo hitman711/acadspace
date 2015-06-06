@@ -8,8 +8,8 @@ $(document).ready(function(){
             graph_list =(Object.keys(obj));
             for (var i = 0; i < graph_list.length; i++) {
                 test =obj[graph_list[i]];
-                alert(JSON.stringify(test['dataSource']));
-                graphData(graph_list[i],JSON.stringify(test['dataSource']));
+                //alert(JSON.stringify(test['Titles']));
+                graphData(graph_list[i],JSON.stringify(test['dataSource']), JSON.stringify(test['Titles']));
             };
 
         });
@@ -18,21 +18,21 @@ $(document).ready(function(){
 });
 
 
-function graphData(graphSetLocation,dataSource){
+function graphData(graphSetLocation,dataSource,Titles){
     graphlist = {"TotalUsers":"BarChart","YearlyUser":"YearlyBarChart"};
     setLocation = graphSetLocation;
     graphName = graphlist[graphSetLocation];
-    eval(graphName+"('"+setLocation+"','"+graphName+"','"+dataSource+"')");
+    eval(graphName+"('"+setLocation+"','"+graphName+"','"+dataSource+"','"+Titles+"')");
 
 }
 
 
-function BarChart(setLocation,graphName,graphData){
-
+function BarChart(setLocation,graphName,graphData,Titles){
+    //alert(JSON.parse(Titles)['Title1']);
     schema = "<div class='col-md-6'>";
     schema +="<div class='box box-success box-solid'>";
     schema +="<div class='box-header with-border'>";
-    schema +="<h3 class='box-title'>"+setLocation+"</h3>";
+    schema +="<h3 class='box-title'>"+JSON.parse(Titles)['Title1']+"</h3>";
     schema +="<div class='box-tools pull-right'>";
     schema +="<button class='btn btn-box-tool' data-widget='collapse'><i class='fa fa-minus'></i></button>";
     schema +="</div></div>";
@@ -83,7 +83,10 @@ function PieChart(setLocation,graphName,graphData){
 });
 }
 
-function YearlyBarChart(setLocation,graphName,graphData){
+function YearlyBarChart(setLocation,graphName,graphData,Titles){
+    //alert(Titles);
+    Titles = JSON.parse(Titles);
+    //alert();
     obj = JSON.parse(graphData);
     dataSource1 = [];
     dataSource2 =[];
@@ -92,7 +95,7 @@ function YearlyBarChart(setLocation,graphName,graphData){
     for (var i = 0; i < obj.length; i++) {
         streamName = Object.keys(obj[i]);
         stream.push(streamName);
-        console.log(JSON.stringify(obj[i][streamName]));
+        //console.log(JSON.stringify(obj[i][streamName]));
         for (var j = 0; j < obj[i][streamName].length; j++) {
                    if(yearsList){
                     if(yearsList.indexOf(obj[i][streamName][j]['year']) == -1){
@@ -123,21 +126,28 @@ function YearlyBarChart(setLocation,graphName,graphData){
         dataSource2.push(test2);
         test1 = test2 =[];
     };
+
+    for (var i = 0; i < Object.keys(Titles).length; i++) {
+        //alert(Titles["Title"+(i+1)]);
+        //console.log(eval("dataSource"+(i+1)));
+        SideBarChart(setLocation+(i+1),graphName,eval("dataSource"+(i+1)),Titles["Title"+(i+1)]);
+    };
+
     //alert(JSON.strigify(dataSource1));
     //alert(dataSource1);
-    SideBarChart(setLocation+"1",graphName,dataSource1);
+    //SideBarChart(setLocation+"1",graphName,dataSource1);
     //alert(dataSource2);
-    SideBarChart(setLocation+"2",graphName,dataSource2);
+    //SideBarChart(setLocation+"2",graphName,dataSource2);
     yearsList =[];
     stream =[];
 }
 
-function SideBarChart(setLocation,graphName,graphData){
+function SideBarChart(setLocation,graphName,graphData,titles){
     
-    schema = "<div class='col-md-6'>";
+    schema = "<div class='col-md-12'>";
     schema +="<div class='box box-success box-solid'>";
     schema +="<div class='box-header with-border'>";
-    schema +="<h3 class='box-title'>"+setLocation+"</h3>";
+    schema +="<h3 class='box-title'>"+titles+"</h3>";
     schema +="<div class='box-tools pull-right'>";
     schema +="<button class='btn btn-box-tool' data-widget='collapse'><i class='fa fa-minus'></i></button>";
     schema +="</div></div>";
@@ -155,7 +165,7 @@ function SideBarChart(setLocation,graphName,graphData){
     dataSource: graphData,
     commonSeriesSettings: {
         argumentField: "Year",
-        type: "line",
+        type: "bar",
         hoverMode: "allArgumentPoints",
         selectionMode: "allArgumentPoints",
     },

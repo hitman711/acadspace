@@ -74,8 +74,8 @@
           
 <!----------------------------Aggred To the terms ------------------------------>
           <div class="row">
-            <div class="col-xs-8">
-              <div class="checkbox icheck">
+            <div class="col-md-12">
+              <div class="checkbox icheck" style="text-align:center">
                 <label>
                   <input type="checkbox" id="aggrement"> I agree to the <a href="#">terms</a>
                 </label>

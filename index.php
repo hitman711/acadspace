@@ -38,7 +38,7 @@ if(isset($_SESSION['login_user'])){
         <a href="index.php"><b><img src="<?php echo LOGO;?>" width="300px" height="150px"></a>
       </div><!-- /.login-logo -->
       <div class="login-box-body">
-        <p class="login-box-msg">Sign in to start your session</p>
+        <p class="login-box-msg">Sign in</p>
           <p><?php if(isset($response)){ echo $response;}?></p>
         <form action="" method="post">
           <div class="form-group has-feedback">
@@ -58,11 +58,13 @@ if(isset($_SESSION['login_user'])){
 	    </select>
 	  </div>
           <div class="row">
-            <div class="col-xs-8">    
+            <div class="col-md-12">    
               <div class="checkbox icheck">
-                <label>
+                <!--label>
                   <input type="checkbox"> Remember Me
-                </label>
+                </label-->
+                <label>To sign up as Institute or Class please mail us at <a href="mailto:contact@acadspace.com">contact@acadspace.com</a></label>
+
               </div>                        
             </div><!-- /.col -->
             <div class="col-xs-4">
@@ -71,14 +73,14 @@ if(isset($_SESSION['login_user'])){
           </div>
         </form>
 
-        <div class="social-auth-links text-center">
+        <!--div class="social-auth-links text-center">
           <p>- OR -</p>
           <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using Facebook</a>
           <a href="#" class="btn btn-block btn-social btn-google-plus btn-flat"><i class="fa fa-google-plus"></i> Sign in using Google+</a>
-        </div><!-- /.social-auth-links -->
+        </div--><!-- /.social-auth-links -->
 
-        <a href="#">I forgot my password</a><br>
-        <a href="register.php" class="text-center">Register a new membership</a>
+        <!--a href="#">I forgot my password</a--><br>
+        <a href="register.php" class="text-center">Signup as student</a>
 
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->

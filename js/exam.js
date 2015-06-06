@@ -275,14 +275,14 @@ $(document).ready( function(){
         text = {user_name:$('#users').attr('name'), form:$(this).attr('name')};
         $.post('php/examtype.php',{insert_data:text, insert_marks:data_field, total:total},function(result){
                 if (result == "success") {
-                    success_box("data Added Successfully");
+                    success_box("Data Added Successfully");
                     $('#display_form #form_box').html(' ');
                     //$('#form_box .overlay').remove();
                     //$(this).removeAttr('disabled');
                     //$('#add_data').html("Data Added Successfully");
                 }else{
                     $('#form_box .overlay').remove();
-                    warning_box("Something wrong");
+                    warning_box("Please add Data Again");
 					$(this).removeAttr('disabled');
                     $('#add_data').html("Add Data again");
                 }

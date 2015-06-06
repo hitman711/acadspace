@@ -21,3 +21,8 @@
 <script src="js/jquery-2.1.3.min.js"></script>
 <link rel="stylesheet/less" type="text/css" href="css/styles.less">
 <script type="text/javascript" src="js/less.min.js"></script>
+<script type="text/javascript">
+    $(document).ready( function(){
+        $.ajaxSetup({ cache: false });
+    });
+</script>
