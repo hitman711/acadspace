@@ -51,6 +51,8 @@ def operation(db,unique_code,match_code):
 					overall_university_marks =round((overal_university_data[0]['total']/overal_university_data[0]['filled_form']),2)
 				
 					graph_data.append({"sem_name":form_name,"overall_university_score":overall_university_marks,"overall_college_score":overall_total_marks,"user_marks":user_marks})
+					#print graph_data
+        			#print max([graph_data[i]['y-axis'] for i in range(0, len(graph_data))])
 					'''
 					print form_no
 					print user_marks
@@ -59,6 +61,7 @@ def operation(db,unique_code,match_code):
 					print overall_total_marks
 					print "..........................................."
 					'''
+				#print min([min(graph_data[i]['overall_university_score'],graph_data[i]['overall_college_score'],graph_data[i]['user_marks']) for i in range(0, len(graph_data))])
 				series.append({"valueField":"overall_university_score","name":"Avg univeristy score"})
 				series.append({"valueField":"overall_college_score","name":"Avg college score"})
 				series.append({"valueField":"user_marks","name":"Your Score"})
@@ -79,8 +82,8 @@ def operation(db,unique_code,match_code):
 						 "min-x":0,
 						 "max-x":8,
 						 "y-axis-name":"CGPA",
-						 "min-y":0,
-						 "max-y":9.99,
+						 "min-y":min([min(graph_data[i]['overall_university_score'],graph_data[i]['overall_college_score'],graph_data[i]['user_marks']) for i in range(0, len(graph_data))])-0.5,
+						 "max-y":max([max(graph_data[i]['overall_university_score'],graph_data[i]['overall_college_score'],graph_data[i]['user_marks']) for i in range(0, len(graph_data))])+0.5,
 						 "series":series
 						 }
 					  }

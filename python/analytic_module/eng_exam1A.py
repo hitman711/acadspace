@@ -21,6 +21,8 @@ def operation(db,unique_code,form_code):
             graph_data.sort()
 	total = round(total / len(results),2)
         #print graph_data
+        #print min([graph_data[i]['y-axis'] for i in range(0, len(graph_data))])
+        #print max([graph_data[i]['y-axis'] for i in range(0, len(graph_data))])
     except:
         print "Error: unable to fecth data"
 
@@ -42,8 +44,8 @@ def operation(db,unique_code,form_code):
             "min-x":0,
             "max-x":8,
             "y-axis-name":"CGPA",
-            "min-y":0,
-            "max-y":9.99,
+            "min-y":min([graph_data[i]['y-axis'] for i in range(0, len(graph_data))])-0.5,
+            "max-y":max([graph_data[i]['y-axis'] for i in range(0, len(graph_data))])+0.5,
             "avg":total
         }
     }
