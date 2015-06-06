@@ -98,6 +98,7 @@ try:
 #.................................YEARLY user Record with marks for both year wise stream user and there marks data.........
 			yearlyUser(streamlist[each_code],institute_code,streamlist[each_code],result4)
 			
+			
 			'''
 			for index in range(1,9):
 				query4 = "SELECT  STR_TO_DATE(`data_field_1`,'%s') AS `Date`,`form_code`,ROUND(SUM(`total`)/COUNT(`user_code`),2) AS `AVG` FROM `undergraduate_record` INNER JOIN `undergraduate` ON `undergraduate_record`.`user_code`=`undergraduate`.`unique_code` AND `university name`='%s' AND `institute name`='%s' AND `form_code` = '%s' GROUP BY YEAR(STR_TO_DATE(`data_field_1`,'%s'))"%('%Y-%m-%d',university_name,institute_name,int(each_code+"0")+index,'%Y-%m-%d')

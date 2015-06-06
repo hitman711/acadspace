@@ -29,18 +29,20 @@ $(document).ready(function(){
  adition(); 
  } 
  });
- 
+
+
  function adition(){
  total =0;
  outoff = 0;
- 
  for(i=1; i<=obj['Total_Fields']; i++){
  if($.isNumeric($('#data_field_'+i).val())){
  total =total+ parseFloat($('#data_field_'+i).val());
  outoff = parseFloat(outoff)+parseFloat(obj['Field_'+i]['limit']);
  }
  }
- total =((total/outoff)*100).toFixed(2);
+ if(total){
+ 	total =((total/outoff)*100).toFixed(2);
+ }
  $('#final').html(total);
  } 
  });

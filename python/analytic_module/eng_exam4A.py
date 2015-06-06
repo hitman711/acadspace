@@ -15,7 +15,6 @@ def operation(db,unique_code, match_code):
     i = 0
 
     sql = "SELECT * from `undergraduate` WHERE `unique_code`='%s'"%(unique_code)
-    print sql
     results = db.RunQueryColNameOnAcadspace(sql)
     try:
         del[results[0]['id']]
