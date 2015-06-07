@@ -33,12 +33,12 @@ def operation(db,unique_code,match_code):
 				results4 = db.RunQueryColNameOnAcadspace(sql4)
 				graph_data.append({"x-axis":results4[0]['form_title'],"y-axis1":float(user_total),"y-axis2":float(avg)})
 			
-			print graph_data
+			#print graph_data
 			series.append({"valueField":"y-axis1","name":"Your score"})
 			series.append({"valueField":"y-axis2","name":"Previous Batch avg"})
 			#print graph_data
-			print min([min(graph_data[i]['y-axis1'],graph_data[i]['y-axis2']) for i in range(0, len(graph_data))])
-			print max([max(graph_data[i]['y-axis1'],graph_data[i]['y-axis2']) for i in range(0, len(graph_data))])
+			#print min([min(graph_data[i]['y-axis1'],graph_data[i]['y-axis2']) for i in range(0, len(graph_data))])
+			#print max([max(graph_data[i]['y-axis1'],graph_data[i]['y-axis2']) for i in range(0, len(graph_data))])
 
 			related_data ={
 					 "Question":"Comparision with old batch?",

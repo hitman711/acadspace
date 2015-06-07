@@ -9,7 +9,7 @@ $(document).ready(function(){
             for (var i = 0; i < graph_list.length; i++) {
                 test =obj[graph_list[i]];
                 //alert(JSON.stringify(test['Titles']));
-                graphData(graph_list[i],JSON.stringify(test['dataSource']), JSON.stringify(test['Titles']));
+                graphData(graph_list[i],JSON.stringify(test['dataSource']), JSON.stringify(test['Titles']), test['graphType']);
             };
 
         });
@@ -18,11 +18,9 @@ $(document).ready(function(){
 });
 
 
-function graphData(graphSetLocation,dataSource,Titles){
-    graphlist = {"TotalUsers":"BarChart","YearlyUser":"YearlyBarChart"};
+function graphData(graphSetLocation,dataSource,Titles,graphType){
     setLocation = graphSetLocation;
-    graphName = graphlist[graphSetLocation];
-    eval(graphName+"('"+setLocation+"','"+graphName+"','"+dataSource+"','"+Titles+"')");
+    eval(graphType+"('"+setLocation+"','"+graphType+"','"+dataSource+"','"+Titles+"')");
 
 }
 
@@ -60,6 +58,7 @@ function BarChart(setLocation,graphName,graphData,Titles){
 
 
 function PieChart(setLocation,graphName,graphData){
+    alert(JSON.parse(graphData)[i]['total'])
     $("#"+setLocation+" #graphs").dxPieChart({
     dataSource: JSON.parse(graphData),
     legend: {
@@ -175,7 +174,6 @@ function SideBarChart(setLocation,graphName,graphData,titles){
         { valueField: "ELEX", name: "ELEX" },
         { valueField: "EXTC", name: "EXTC" }
     ],
-    title: "info",
     legend: {
         verticalAlignment: "bottom",
         horizontalAlignment: "center"
