@@ -4,29 +4,101 @@ $(document).ready(function(){
         result = result.substr(1);
         $.getJSON(result,function(data){
             obj =data;
+            functionList =[];
             //console.log(obj);
             graph_list =(Object.keys(obj));
+            //alert(graph_list);
             for (var i = 0; i < graph_list.length; i++) {
                 test =obj[graph_list[i]];
-                //alert(JSON.stringify(test['Titles']));
-                graphData(graph_list[i],JSON.stringify(test['dataSource']), JSON.stringify(test['Titles']), test['graphType']);
-            };
+                //alert(graph_list[i]);
+                
+                schema = "<div class='col-md-6'>";
+                schema +="<div class='box box-success box-solid'>";
+                schema +="<div class='box-header with-border'>";
+                schema +="<h3 class='box-title'>"+test['title']+"</h3>";
+                schema +="<div class='box-tools pull-right'>";
+                schema +="<button class='btn btn-box-tool' data-widget='collapse'><i class='fa fa-minus'></i></button>";
+                schema +="</div></div>";
+                schema +="<div class='box-body' id='"+graph_list[i]+"'>";
+                schema +="<div id='graphs' style='height: 350px; padding: 0px; position: relative;'></div>";
+                schema +="</div></div>";
 
+                $('#DashboardGraphs').append(schema);
+            
+                functions = test['graphFunction']+"('"+graph_list[i]+"','"+JSON.stringify(test)+"')";
+                //alert(functions);
+                functionList.push(functions);
+            };
+            //console.log(functionList);
+            for (var i = 0; i < functionList.length; i++) {
+                eval(functionList[i]);
+            };
         });
 
         });
 });
 
 
-function graphData(graphSetLocation,dataSource,Titles,graphType){
-    setLocation = graphSetLocation;
-    eval(graphType+"('"+setLocation+"','"+graphType+"','"+dataSource+"','"+Titles+"')");
 
+function NormalGraph(setLocation,data){
+    obj = JSON.parse(data);
+    console.log(obj);
+    $("#"+setLocation+" #graphs").dxChart({
+        dataSource: obj['dataSource'],
+         commonSeriesSettings:{
+            type: "bar"
+         },
+         series: {
+            argumentField: "stream",
+            valueField: "Total"
+        },
+        legend: {
+            verticalAlignment: "bottom",
+            horizontalAlignment: "center"
+        },
+        tooltip: {
+            enabled: true
+        },
+    valueAxis: {
+        max:obj['maximum']+5,
+        min:obj['minimum']-5
+        }
+        });
+}
+
+function ComparisionGraph(setLocation,data){
+    obj = JSON.parse(data);
+    $("#"+setLocation+" #graphs").dxChart({
+    dataSource: obj['dataSource'],
+    commonSeriesSettings: {
+        argumentField: "year",
+        type: "bar",
+        hoverMode: "allArgumentPoints",
+        selectionMode: "allArgumentPoints"
+    },
+    series:obj['series'],
+    legend: {
+        verticalAlignment: "bottom",
+        horizontalAlignment: "center"
+    },
+    tooltip: {
+        enabled: "true"
+    },
+    valueAxis: {
+        max:obj['maximum'],
+        min:obj['minimum']            
+        }
+    });
 }
 
 
-function BarChart(setLocation,graphName,graphData,Titles){
-    //alert(JSON.parse(Titles)['Title1']);
+
+
+
+/*
+function BarChart(setLocation,graphData){
+    alert(setLocation);
+    alert(graphData);
     schema = "<div class='col-md-6'>";
     schema +="<div class='box box-success box-solid'>";
     schema +="<div class='box-header with-border'>";
@@ -184,4 +256,4 @@ function SideBarChart(setLocation,graphName,graphData,titles){
     }
 });
 }
-
+*/

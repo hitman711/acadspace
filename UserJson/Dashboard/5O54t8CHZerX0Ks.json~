@@ -1,0 +1,252 @@
+{
+  "TotalUsers": {
+    "graphFunction": "NormalGraph",
+    "minimum": 10,
+    "graphName": "BarChart",
+    "dataSource": [
+      {
+        "Total": 19,
+        "stream": "ELEX"
+      },
+      {
+        "Total": 10,
+        "stream": "COMP"
+      },
+      {
+        "Total": 16,
+        "stream": "EXTC"
+      },
+      {
+        "Total": 16,
+        "stream": "IT"
+      }
+    ],
+    "maximum": 19
+  },
+  "YearlyUserMarks": {
+    "series": [
+      {
+        "valueField": "ELEX",
+        "name": "Electronic Engineering"
+      },
+      {
+        "valueField": "COMP",
+        "name": "Computer Programming"
+      },
+      {
+        "valueField": "EXTC",
+        "name": "Electronic & Telecommunication"
+      },
+      {
+        "valueField": "IT",
+        "name": "Information Technology"
+      }
+    ],
+    "maximum": 73.1,
+    "minimum": 63.5,
+    "dataSource": [
+      {
+        "COMP": 67.6,
+        "EXTC": 72,
+        "IT": 70.2,
+        "year": 2007
+      },
+      {
+        "ELEX": 73.1,
+        "COMP": 66,
+        "EXTC": 69.5,
+        "IT": 68.4,
+        "year": 2008
+      },
+      {
+        "ELEX": 70.6,
+        "COMP": 65.6,
+        "EXTC": 70.2,
+        "IT": 66.2,
+        "year": 2009
+      },
+      {
+        "ELEX": 70.4,
+        "COMP": 69.6,
+        "EXTC": 71.8,
+        "IT": 67.1,
+        "year": 2010
+      },
+      {
+        "ELEX": 69.2,
+        "COMP": 68.5,
+        "EXTC": 70.7,
+        "IT": 72,
+        "year": 2011
+      },
+      {
+        "ELEX": 71.3,
+        "COMP": 67.7,
+        "EXTC": 71.2,
+        "IT": 69,
+        "year": 2012
+      },
+      {
+        "ELEX": 67.9,
+        "COMP": 71.8,
+        "EXTC": 67.9,
+        "IT": 73,
+        "year": 2013
+      },
+      {
+        "COMP": 63.5,
+        "EXTC": 70,
+        "IT": 68.9,
+        "year": 2014
+      }
+    ],
+    "graphFunction": "ComparisionGraph",
+    "graphName": "YearlyUser1"
+  },
+  "YearlyUsers": {
+    "series": [
+      {
+        "valueField": "ELEX",
+        "name": "Electronic Engineering"
+      },
+      {
+        "valueField": "COMP",
+        "name": "Computer Programming"
+      },
+      {
+        "valueField": "EXTC",
+        "name": "Electronic & Telecommunication"
+      },
+      {
+        "valueField": "IT",
+        "name": "Information Technology"
+      }
+    ],
+    "maximum": 32,
+    "minimum": 3,
+    "dataSource": [
+      {
+        "total user": 6,
+        "year": 2008
+      },
+      {
+        "total user": 12,
+        "year": 2009
+      },
+      {
+        "total user": 25,
+        "year": 2010
+      },
+      {
+        "total user": 32,
+        "year": 2011
+      },
+      {
+        "total user": 26,
+        "year": 2012
+      },
+      {
+        "total user": 13,
+        "year": 2013
+      },
+      {
+        "total user": 3,
+        "year": 2007
+      },
+      {
+        "total user": 6,
+        "year": 2008
+      },
+      {
+        "total user": 6,
+        "year": 2009
+      },
+      {
+        "total user": 13,
+        "year": 2010
+      },
+      {
+        "total user": 17,
+        "year": 2011
+      },
+      {
+        "total user": 14,
+        "year": 2012
+      },
+      {
+        "total user": 14,
+        "year": 2013
+      },
+      {
+        "total user": 7,
+        "year": 2014
+      },
+      {
+        "total user": 5,
+        "year": 2007
+      },
+      {
+        "total user": 10,
+        "year": 2008
+      },
+      {
+        "total user": 10,
+        "year": 2009
+      },
+      {
+        "total user": 21,
+        "year": 2010
+      },
+      {
+        "total user": 27,
+        "year": 2011
+      },
+      {
+        "total user": 22,
+        "year": 2012
+      },
+      {
+        "total user": 22,
+        "year": 2013
+      },
+      {
+        "total user": 11,
+        "year": 2014
+      },
+      {
+        "total user": 8,
+        "year": 2007
+      },
+      {
+        "total user": 16,
+        "year": 2008
+      },
+      {
+        "total user": 16,
+        "year": 2009
+      },
+      {
+        "total user": 24,
+        "year": 2010
+      },
+      {
+        "total user": 24,
+        "year": 2011
+      },
+      {
+        "total user": 16,
+        "year": 2012
+      },
+      {
+        "total user": 16,
+        "year": 2013
+      },
+      {
+        "total user": 8,
+        "year": 2014
+      }
+    ],
+    "graphFunction": "ComparisionGraph",
+    "graphName": "YearlyUser2"
+  }
+}
