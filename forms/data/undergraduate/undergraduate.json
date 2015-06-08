@@ -7,6 +7,10 @@
     "Institute Name": {
       "ans": "",
       "placeholder": "Your College name"
+    },
+    "Goal": {
+      "ans": "",
+      "placeholder": "placed your final year goal"
     }
   }
 }

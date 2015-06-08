@@ -6,7 +6,8 @@ $check = array("Board Name"=>"../forms/data/$sub/board.php",
                "Institute Name"=>"../forms/data/$sub/institute.php",
                "University Name"=>"../forms/data/$sub/university.php",
                "College Name"=>"../forms/data/$sub/college.php",
-               "Stream Name"=>"../forms/data/$sub/stream.php",);
+               "Stream Name"=>"../forms/data/$sub/stream.php",
+               "Goal"=>"../forms/data/$sub/goal.php");
 
 $call = array("Board Name"=>'board_name',
                "Medium"=>'medium',
@@ -14,7 +15,8 @@ $call = array("Board Name"=>'board_name',
                "Institute Name"=>'institute_name',
                "University Name"=>'university_name',
                "College Name"=>'college_name',
-               "Stream Name"=>'stream_name');
+               "Stream Name"=>'stream_name',
+               "Goal"=>'goal');
                
 if(isset($_POST['list_name']) && isset($_POST['field_name'])){
     //echo array_key_exists($_POST['list_name'],$check);
@@ -42,15 +44,17 @@ class verify {
                "Institute Name"=>"../forms/data/$sub/institute.php",
                "University Name"=>"../forms/data/$sub/university.php",
                "College Name"=>"../forms/data/$sub/college.php",
-               "Stream Name"=>"../forms/data/$sub/stream.php",);
+               "Stream Name"=>"../forms/data/$sub/stream.php",
+               "Goal"=>"../forms/data/$sub/goal.php");
 
-	$call = array("Board Name"=>'board_name',
+  $call = array("Board Name"=>'board_name',
                "Medium"=>'medium',
                "Year of passing"=>'year_of_passing',
                "Institute Name"=>'institute_name',
                "University Name"=>'university_name',
                "College Name"=>'college_name',
-               "Stream Name"=>'stream_name');
+               "Stream Name"=>'stream_name',
+               "Goal"=>'goal');
 
         if(array_key_exists($key,$check)){
             include($check[$key]);
@@ -71,15 +75,17 @@ class verify {
                "Institute Name"=>"../forms/data/$sub/institute.php",
                "University Name"=>"../forms/data/$sub/university.php",
                "College Name"=>"../forms/data/$sub/college.php",
-               "Stream Name"=>"../forms/data/$sub/stream.php",);
+               "Stream Name"=>"../forms/data/$sub/stream.php",
+               "Goal"=>"../forms/data/$sub/goal.php");
 
-	$call = array("Board Name"=>'board_name',
+  $call = array("Board Name"=>'board_name',
                "Medium"=>'medium',
                "Year of passing"=>'year_of_passing',
                "Institute Name"=>'institute_name',
                "University Name"=>'university_name',
                "College Name"=>'college_name',
-               "Stream Name"=>'stream_name');
+               "Stream Name"=>'stream_name',
+               "Goal"=>'goal');
 
         if(array_key_exists($key,$check)){
             include($check[$key]);
@@ -101,7 +107,8 @@ class verify {
                "Institute Name"=>"../forms/data/$sub/institute.php",
                "University Name"=>"../forms/data/$sub/university.php",
                "College Name"=>"../forms/data/$sub/college.php",
-               "Stream Name"=>"../forms/data/$sub/stream.php",);
+               "Stream Name"=>"../forms/data/$sub/stream.php",
+               "Goal"=>"../forms/data/$sub/goal.php");
 
       $call = array("Board Name"=>'board_name',
                "Medium"=>'medium',
@@ -109,7 +116,8 @@ class verify {
                "Institute Name"=>'institute_name',
                "University Name"=>'university_name',
                "College Name"=>'college_name',
-               "Stream Name"=>'stream_name');
+               "Stream Name"=>'stream_name',
+               "Goal"=>'goal');
 
        $key =ucwords($key); 
         if(array_key_exists($key,$check)){

@@ -195,6 +195,37 @@ function Comparision_graph(data) {
 
 }
 
+function pie_graph(data){
+    obj =JSON.parse(data);
+    dataSource =obj['data'];
+    argumentField = obj['argumentField'];
+    graph_type =obj['graph_type'];
+    valueField = obj['valueField'];
+    title = obj['title'];
+    //alert(argumentField);
+    $(obj['set']).dxPieChart({
+        dataSource: dataSource,
+        series: [
+            {
+                argumentField: argumentField,
+                valueField: valueField
+            }
+        ],
+        tooltip: {
+            enabled: tooltip
+        },
+        legend: {
+            verticalAlignment: "bottom",
+            horizontalAlignment: "center"
+        },
+        title: title,
+        onPointClick: function(e) {
+            var point = e.target;
+            point.isVisible() ? point.hide() : point.show();
+        }
+    });
+}
+
 
 
 
