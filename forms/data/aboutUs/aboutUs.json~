@@ -1,6 +1,6 @@
 {
     "1":{
-        "Image":"forms/data/aboutUs/jonathan_joshi.jpg",
+        "Image":"../forms/data/aboutUs/jonathan_joshi.jpg",
         "Name":"Dr. Jonathan Joshi",
         "Designation":"CEO",
         "Social_link":{ "Facebook":"https://www.facebook.com/jonathan.joshi",
@@ -11,7 +11,7 @@
         "Description":"My info"
     },
     "2":{
-        "Image":"forms/data/aboutUs/ganesh_gore.jpg",
+        "Image":"../forms/data/aboutUs/ganesh_gore.jpg",
         "Name":"Ganesh Gore",
         "Designation":"CTO",
         "Social_link":{ "Facebook":"https://www.facebook.com/ganesh70508",
@@ -22,7 +22,7 @@
         "Description":"My info"
     },
     "3":{
-        "Image":"forms/data/aboutUs/zalak_dave.jpg",
+        "Image":"../forms/data/aboutUs/zalak_dave.jpg",
         "Name":"Zalak Dave",
         "Designation":"Tech Lead",
         "Social_link":{ "Facebook":"https://www.facebook.com/zalak.dave",
@@ -33,7 +33,7 @@
         "Description":"My info"
     },
     "4":{
-        "Image":"forms/data/aboutUs/zeeshan_anjum.jpg",
+        "Image":"../forms/data/aboutUs/zeeshan_anjum.jpg",
         "Name":"Zeeshan Anjum",
         "Designation":"Technical Intern",
         "Social_link":{ "Facebook":"https://www.facebook.com/zeeshan.anjum3?fref=ts",
