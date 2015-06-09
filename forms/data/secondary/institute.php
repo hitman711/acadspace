@@ -1,3 +1,3 @@
 <?php
-    $institute_name = array('CBSE'=>"cbse");
+    $institute_name = array("Ismail Yusuf College"=>"IY");
 ?>

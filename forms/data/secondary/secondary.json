@@ -1,5 +1,9 @@
 {
   "secondary": {
+    "Education Type": {
+      "ans": "",
+      "placeholder": "12th or Diploma"
+    },
     "Board Name": {
       "ans": "",
       "placeholder": "board name"

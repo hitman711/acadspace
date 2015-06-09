@@ -80,7 +80,8 @@ $(document).ready(function(){
         parent_name = $(this).parent().attr('name');
         list_name = $(this).attr('list');
         $.post("php/list.php",{list_name:list_name,field_name:parent_name}, function(result){
-            //alert(result);   
+            //alert(result);
+            console.log(result);   
            $(result).insertAfter($('.content'));
         });
     });
@@ -100,6 +101,7 @@ $(document).ready(function(){
         }
         if(!$.isEmptyObject(information)){
             $.post("php/function.php",{user:username,update_form:parent_name,info:JSON.stringify(information)}, function(result){
+                    console.log(result);
                     if (result== "success") {
                         success_box(add_info,result);
                     }else{

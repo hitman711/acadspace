@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 08, 2015 at 06:48 PM
+-- Generation Time: Jun 09, 2015 at 05:24 PM
 -- Server version: 5.5.43-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.9
 
@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `active_user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`,`unique_code`),
   UNIQUE KEY `acative_code` (`active_code`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=49 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=47 ;
 
 --
 -- Dumping data for table `active_user`
@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `active_user` (
 
 INSERT INTO `active_user` (`id`, `username`, `unique_code`, `active_code`) VALUES
 (45, 'compuser1', '03KsO9jZy3AOf25', 'FhOrVd7aGw'),
-(46, 'ituser1', 'j4mTjyjwzHqz0jp', 'PGha36Hgmr');
+(46, 'ituser1', 'j4mTjyjwzHqz0jp', 'r9iKJVHaOG');
 
 -- --------------------------------------------------------
 
@@ -704,16 +704,18 @@ CREATE TABLE IF NOT EXISTS `primary` (
   `unique_code` varchar(255) NOT NULL,
   `board name` varchar(255) NOT NULL,
   `institute name` varchar(255) NOT NULL,
+  `goal` varchar(155) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `primary`
 --
 
-INSERT INTO `primary` (`id`, `unique_code`, `board name`, `institute name`) VALUES
-(1, 'krT3QxCML5fGPDb', 'cbse', 'SSV'),
-(5, '6CzfTcQwIW8M42l', 'ssc', 'SSV');
+INSERT INTO `primary` (`id`, `unique_code`, `board name`, `institute name`, `goal`) VALUES
+(1, 'krT3QxCML5fGPDb', 'cbse', 'SSV', NULL),
+(5, '6CzfTcQwIW8M42l', 'ssc', 'SSV', NULL),
+(6, 'j4mTjyjwzHqz0jp', 'ssc', 'SSV', '70');
 
 -- --------------------------------------------------------
 
@@ -1261,8 +1263,45 @@ INSERT INTO `register` (`id`, `fname`, `lname`, `email`, `username`, `password`,
 CREATE TABLE IF NOT EXISTS `secondary` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
   `unique_code` varchar(255) NOT NULL,
+  `education type` varchar(100) NOT NULL,
   `board name` varchar(255) NOT NULL,
-  `institute name` int(255) NOT NULL,
+  `institute name` varchar(255) NOT NULL,
+  `goal` varchar(155) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `secondary`
+--
+
+INSERT INTO `secondary` (`id`, `unique_code`, `education type`, `board name`, `institute name`, `goal`) VALUES
+(1, 'j4mTjyjwzHqz0jp', 'HSC', 'hsc', 'IY', '70');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `secondary_record`
+--
+
+CREATE TABLE IF NOT EXISTS `secondary_record` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `user_code` char(255) NOT NULL,
+  `form_code` text NOT NULL,
+  `data_field_8` varchar(255) DEFAULT NULL,
+  `data_field_1` varchar(255) DEFAULT NULL,
+  `data_field_2` varchar(255) DEFAULT NULL,
+  `data_field_3` varchar(255) DEFAULT NULL,
+  `data_field_4` varchar(255) DEFAULT NULL,
+  `data_field_5` varchar(255) DEFAULT NULL,
+  `data_field_6` varchar(255) DEFAULT NULL,
+  `data_field_7` varchar(255) DEFAULT NULL,
+  `last_modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `data_field_9` varchar(255) DEFAULT NULL,
+  `data_field_10` varchar(255) DEFAULT NULL,
+  `data_field_11` varchar(255) DEFAULT NULL,
+  `data_field_12` varchar(255) DEFAULT NULL,
+  `attempt` int(30) DEFAULT '0',
+  `total` varchar(255) DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
