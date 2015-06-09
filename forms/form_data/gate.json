@@ -4,11 +4,12 @@
   "Total_Fields": 2,
   "header_field": [
     "Field Name",
-    "Computer Science"
+    "GATE 2015"
   ],
   "field_name": [
     "Field_Name",
-    "input"
+    "input",
+    "Total marks"
   ],
   "Field_1": {
     "Field_Name": "Attempt Date",
@@ -20,7 +21,7 @@
   "Field_2": {
     "Field_Name": "Marks Obtained",
     "input": "text",
-    "input_length": "3",
+    "input_length": "5",
     "input_type": "number",
     "limit": 100
   }

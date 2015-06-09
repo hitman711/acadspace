@@ -8,7 +8,8 @@
   ],
   "field_name": [
     "Field_Name",
-    "input"
+    "input",
+    "Total"
   ],
   "Field_1": {
     "Field_Name": "Attempt Date",
