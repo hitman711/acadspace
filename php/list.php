@@ -114,16 +114,18 @@ $call = array("Board Name"=>'board_name',
                "University Name"=>"../forms/data/$sub/university.php",
                "College Name"=>"../forms/data/$sub/college.php",
                "Stream Name"=>"../forms/data/$sub/stream.php",
-               "Goal"=>"../forms/data/$sub/goal.php");
+               "Goal"=>"../forms/data/$sub/goal.php",
+               "Education Type"=>"../forms/data/$sub/eduType.php");
 
-      $call = array("Board Name"=>'board_name',
+  $call = array("Board Name"=>'board_name',
                "Medium"=>'medium',
                "Year of passing"=>'year_of_passing',
                "Institute Name"=>'institute_name',
                "University Name"=>'university_name',
                "College Name"=>'college_name',
                "Stream Name"=>'stream_name',
-               "Goal"=>'goal');
+               "Goal"=>'goal',
+               "Education Type"=>"eduType");
 
        $key =ucwords($key); 
         if(array_key_exists($key,$check)){
