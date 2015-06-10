@@ -1,4 +1,4 @@
-#-------------------------------------------Pie Chart for count user performance in your university-----------------------
+#------------------------Pie Chart for count user performance in your university-----------------------
 import json
 
 def operation(db,unique_code,form_code):
