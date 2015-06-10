@@ -28,13 +28,13 @@ def operation(db,unique_code,form_code):
         #print graph_data
 
         related_data ={
-        "Question":"user performance range in your institute?",
+        "Question":"My institute student performance range",
         "Answer_Type":"pie_graph",
         "type":"graph",
-        "Description": "This graphs shows Semester wise performance of the student Compared with Average CPGA of its own performance in all exams" ,
+        "Description": "This pie-chart shows average CPGA of students in my institute" ,
         "Related_Data":{
             "set":"#7A",
-            "title":"Overall Performance Graph",
+            "title":"Overall institute performance Graph",
             "argumentField":"range",
             "valueField":"total",
             "graph_type":"pie",

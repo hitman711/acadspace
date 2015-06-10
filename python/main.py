@@ -126,6 +126,7 @@ for i in range(0,len(data)):            # Iterating over resulted records (users
     # update data in json file
     #print json.dumps(Completed_Analytics)
     #print json.dumps(Partial_Analytics)
+    '''
     open(Cfile_name,'w').write(json.dumps(Completed_Analytics))
     open(Pfile_name,'w').write(json.dumps(Partial_Analytics))
 
@@ -137,3 +138,4 @@ for i in range(0,len(data)):            # Iterating over resulted records (users
         user_id = str(MySQLdb.escape_string(user_id))
         Query = "UPDATE `user_analytic_stat` SET `record_update_stat`='0',`record_update_info`='%s', `Completed_Analytics`='%s',`Partial_Analytics`='%s' WHERE `user_id` = '%s'"%(record_update_info,Completed_Analytics,Partial_Analytics,user_id)
         db.RunQueryOnAcadspace(Query)
+    '''

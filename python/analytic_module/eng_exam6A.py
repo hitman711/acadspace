@@ -43,9 +43,9 @@ def operation(db,unique_code,match_code):
 			series.append({"valueField":"y-axis1","name":"my score"})
 			series.append({"valueField":"y-axis2","name":"current final year batch score"})
 			related_data ={
-					 "Question":"My score comparison with current final year batch performance?",
-					 "Answer_Type":"Comparision_graph",
-					 "Description": "This chart indicates user overall performance.",
+					 "Question":"How am i performing compare to current final year batch performance?",
+					 "Answer_Type":"Comparison_graph",
+					 "Description": "This chart indicates user overall performance compare with current final year batch.",
 					"type":"graph",
 					 "Related_Data":{
 						 "set":"#6A",

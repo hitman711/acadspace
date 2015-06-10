@@ -41,9 +41,9 @@ def operation(db,unique_code,match_code):
 			#print max([max(graph_data[i]['y-axis1'],graph_data[i]['y-axis2']) for i in range(0, len(graph_data))])
 
 			related_data ={
-					 "Question":"Comparision with old batch?",
-					 "Answer_Type":"Comparision_graph",
-					 "Description": "This chart indicates user overall performance.",
+					 "Question":"How am i performing compare with previous year Batch?",
+					 "Answer_Type":"Comparison_graph",
+					 "Description": "This chart indicates your overall performance compare to your previous batch performance.",
 					"type":"graph",
 					 "Related_Data":{
 						 "set":"#3A",

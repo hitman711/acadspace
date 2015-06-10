@@ -138,7 +138,7 @@ function normal_graph(data) {
 }
 
 
-function Comparision_graph(data) {
+function Comparison_graph(data) {
     obj = JSON.parse(data);
     dataSource =obj['data'];
     argumentField = obj['argumentField'];

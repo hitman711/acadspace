@@ -30,10 +30,10 @@ def operation(db,unique_code,form_code):
         "Question":"How I am performing in My Semester Examinations?",
         "Answer_Type":"normal_graph",
         "type":"graph",
-        "Description": "This graphs shows Semester wise performance of the student Compared with Average CPGA of its own performance in all exams" ,
+        "Description": "This Graph shows your semester performance. Upto current semester your CGPA will be <b>"+str(total)+"</b>." ,
         "Related_Data":{
             "set":"#1A",
-            "title":"Performance Graph",
+            "title":"Semester Performance Graph",
             "argumentField":"x-axis",
             "valueField":"y-axis",
             "graph_type":"line",

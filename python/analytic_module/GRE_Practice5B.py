@@ -18,21 +18,22 @@ def operation(db,unique_code,form_code):
 
             for user_data in results2:
                 totalCalc =totalCalc+1
-                graph_data.append({"x-axis":user_data['data_field_1'],"y-axis":int(user_data['total'])})
+                graph_data.append({"x-axis":user_data['data_field_1'],"total":int(user_data['total'])})
                 total = total +int(user_data['total'])
 #.....................SORT DATA BY NUMBER......................
         graph_data.sort()
 #.....................AVG NUMBER...............................
+        print totalCalc
         total = round(total / totalCalc,2)
 
 #releted DATA        
         related_data ={
-        "Question":"How I am performing in GRE Final Exam?",
+        "Question":"How I am performing in GRE practice Exams?",
         "Answer_Type":"normal_graph",
         "type":"graph",
-        "Description": "This graphs shows Semester wise performance of the student Compared with Average CPGA of its own performance in all exams" ,
+        "Description": "This graphs show users GRE Performance in practice exam attempts. According to available data your practice attempts average score is <b>"+str(total)+"</b>." ,
         "Related_Data":{
-            "set":"#5A",
+            "set":"#5B",
             "title":"Performance Graph",
             "argumentField":"x-axis",
             "valueField":"y-axis",
@@ -44,8 +45,8 @@ def operation(db,unique_code,form_code):
             "min-x":0,
             "max-x":10,
             "y-axis-name":"GRE Marks",
-            "min-y":0,
-            "max-y":339,
+            "min-y":min([graph_data[i]['total'] for i in range(0, len(graph_data))])-5,
+            "max-y":max([graph_data[i]['total'] for i in range(0, len(graph_data))])+5,
             "avg":total
             }
         }
@@ -57,7 +58,7 @@ def operation(db,unique_code,form_code):
 
 
 def dependancies():
-    dependent_forms = ['5010101*']
+    dependent_forms = ['5010102*']
     return dependent_forms
 
 
@@ -68,5 +69,5 @@ def execute(db,user_code,code):
     stat = "Failed"
     stat = "Success"
     data = operation(db,user_code, form_code)
-    result = {'5A':data}
+    result = {'5B':data}
     return [stat,result]
