@@ -35,7 +35,7 @@ def operation(db,unique_code,form_code):
             "set":"#5A",
             "title":"Gre performance Graph",
             "argumentField":"x-axis",
-            "valueField":"y-axis",
+            "valueField":"total",
             "graph_type":"line",
             "series_name":"GRE Attempt",
             "data":graph_data,

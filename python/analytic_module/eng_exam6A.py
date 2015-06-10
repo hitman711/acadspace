@@ -19,7 +19,9 @@ def operation(db,unique_code,match_code):
 		results2 = db.RunQueryColNameOnAcadspace(sql2)
 		if results2:
 			current_year = max(results2[i]['year'] for i in  range(0, len(results2)))
+			print current_year
 			sql3 = "SELECT `unique_code` from `undergraduate_record` INNER JOIN `undergraduate`ON `undergraduate_record`.`user_code` =`undergraduate`.`unique_code` AND `undergraduate_record`.`form_code` = '%s' AND `institute name`='%s' AND YEAR(STR_TO_DATE(`undergraduate_record`.`data_field_1`,'%s')) = '%s'"%(int(match_code+"08"),results[0]['institute name'],"%Y-%m-%d",current_year)
+			print sql3
 			results3 = db.RunQueryColNameOnAcadspace(sql3)
 
 			for each in range(0, len(results2)):
