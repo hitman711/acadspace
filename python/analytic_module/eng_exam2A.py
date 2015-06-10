@@ -16,6 +16,7 @@ def operation(db,unique_code,match_code):
 		try:
 			del[results[0]['id']]
 			del[results[0]['unique_code']]
+			del[results[0]['goal']]
 			for index in results:
 #get other students who are in the same college
 				column_name =index.keys()
@@ -53,14 +54,6 @@ def operation(db,unique_code,match_code):
 					graph_data.append({"sem_name":form_name,"overall_university_score":overall_university_marks,"overall_college_score":overall_total_marks,"user_marks":user_marks})
 					#print graph_data
         			#print max([graph_data[i]['y-axis'] for i in range(0, len(graph_data))])
-					'''
-					print form_no
-					print user_marks
-					print form_name
-					print overall_university_marks
-					print overall_total_marks
-					print "..........................................."
-					'''
 				#print min([min(graph_data[i]['overall_university_score'],graph_data[i]['overall_college_score'],graph_data[i]['user_marks']) for i in range(0, len(graph_data))])
 				series.append({"valueField":"overall_university_score","name":"Avg univeristy score"})
 				series.append({"valueField":"overall_college_score","name":"Avg college score"})
@@ -103,7 +96,6 @@ def dependancies():
 def execute(db,user_code,code):
 	#print "Engineering Rule 1 Running "+user_code
 	form_code = code.replace("*","")
-	print "form_no"+form_code
 	stat = "Partial"
 	stat = "Failed"
 	stat = "Success"

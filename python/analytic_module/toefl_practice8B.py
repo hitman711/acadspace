@@ -13,15 +13,14 @@ def operation(db,unique_code,form_code):
         for index in range(0,len(results)):
             table_name = results[index]['table_name']
             form_code = results[index]['form_code']
-            sql2 = "SELECT `data_field_1`,`total`,`attempt` FROM `%s` WHERE `user_code`='%s' AND `form_code`='%s'"%(table_name,unique_code,form_code)
+            sql2 = "SELECT `data_field_1`,`total`,`attempt` FROM `%s` WHERE `user_code`='%s' AND `form_code`='%s' ORDER BY STR_TO_DATE(`data_field_1`,'%s') ASC"%(table_name,unique_code,form_code,"%Y-%m-%d")
             results2 = db.RunQueryColNameOnAcadspace(sql2)
-
             for user_data in results2:
                 totalCalc =totalCalc+1
                 graph_data.append({"x-axis":user_data['data_field_1'],"total":int(user_data['total'])})
                 total = total +int(user_data['total'])
 #.....................SORT DATA BY NUMBER......................
-        graph_data.sort()
+        #graph_data.sort()
 #.....................AVG NUMBER...............................
         total = round(total / totalCalc,2)
 

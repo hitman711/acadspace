@@ -59,5 +59,12 @@
     "input_length": "3",
     "input_type": "number",
     "limit": 100
+  },
+  "Field_8": {
+    "Field_Name": "Environmental Studies",
+    "input": "text",
+    "input_length": "2",
+    "input_type": "number",
+    "limit": 50
   }
 }

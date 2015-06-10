@@ -1,3 +1,4 @@
+#----------------------------TOEFL FINAL EXAM REPORT------------
 import json
 
 def operation(db,unique_code,form_code):
@@ -13,7 +14,7 @@ def operation(db,unique_code,form_code):
 #.........LIST OF USER RECORD........................
         table_name = results[0]['table_name']
         form_code = results[0]['form_code']
-        sql2 = "SELECT `data_field_1`,`total`,`attempt` FROM `%s` WHERE `user_code`='%s' AND `form_code`='%s'"%(table_name,unique_code,form_code)
+        sql2 = "SELECT `data_field_1`,`total`,`attempt` FROM `%s` WHERE `user_code`='%s' AND `form_code`='%s' ORDER BY STR_TO_DATE(`data_field_1`,'%s') ASC"%(table_name,unique_code,form_code,"%Y-%m-%d")
         results2 = db.RunQueryColNameOnAcadspace(sql2)
 
         for user_data in results2:
@@ -22,7 +23,7 @@ def operation(db,unique_code,form_code):
             total = total +int(user_data['total'])
         
 #.....................SORT DATA BY NUMBER......................
-        graph_data.sort()
+        #graph_data.sort()
         #print graph_data
 #.....................AVG NUMBER...............................
         total = round(total / totalCalc,2)
@@ -61,7 +62,6 @@ def operation(db,unique_code,form_code):
 def dependancies():
     dependent_forms = ['50102']
     return dependent_forms
-
 
 def execute(db,user_code,code):
     #form_code = code.replace("*","")
