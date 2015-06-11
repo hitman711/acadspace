@@ -44,7 +44,7 @@ $(document).ready( function(){
             schema +="<p class='box-title'>"+pass['Question']+"</p>";
             schema +="<div class='box-tools pull-right'>";
             schema +="<button class='btn btn-box-tool' data-widget='collapse'><i class='fa fa-minus'></i></button></div>";
-            schema +="</div><div class='box-body' id='id_"+i+"'style='display:block'><div id='"+total_records[i]+"' style='height: 350px; padding: 0px; position: relative;'></div>";
+            schema +="</div><div class='box-body' id='id_"+i+"'style='display:block'><div id='"+total_records[i]+"' style='height: 450px; padding: 0px; position: relative;'></div>";
             schema +="<div><p>"+pass['Description']+"<p></div>";
             schema +="</div></div></div></div>";
             $('#graphs').append(schema);

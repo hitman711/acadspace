@@ -1,3 +1,4 @@
+#----------------------------------GRE FINAL PROCESS-------------
 import json
 
 def operation(db,unique_code,form_code):
@@ -57,7 +58,7 @@ def operation(db,unique_code,form_code):
 
 
 def dependancies():
-    dependent_forms = ['5010101*']
+    dependent_forms = ['50101010000']
     return dependent_forms
 
 

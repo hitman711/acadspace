@@ -20,7 +20,7 @@ $(document).ready(function(){
                 schema +="<button class='btn btn-box-tool' data-widget='collapse'><i class='fa fa-minus'></i></button>";
                 schema +="</div></div>";
                 schema +="<div class='box-body' id='"+graph_list[i]+"'>";
-                schema +="<div id='graphs' style='height: 350px; padding: 0px; position: relative;'></div>";
+                schema +="<div id='graphs' style='height: 450px; padding: 0px; position: relative;'></div>";
                 schema +="</div></div>";
 
                 $('#DashboardGraphs').append(schema);
