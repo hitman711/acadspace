@@ -71,14 +71,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 
 				<div>
 					<div class="row">
-                                          <div id='ranks'>
-                                          </div>
-                                        </div>
-                                        <div class="row">
-						<div id='graphs'>
-						</div>
-					</div>
-					
+            <div id='ranks'>
+              </div>
+            </div>
+            <div class="row">
+						  <div id='graphs'>
+						  </div>
+					  </div>
 				</div>
 					<!-- Your Page Content Here -->
 			</section><!-- /.content -->
