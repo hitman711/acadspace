@@ -1,22 +1,47 @@
-#----------------------------USER RANKING (INSTITTUTE AND UNIVERSITY )----------
-import json
-from datetime import datetime
+#-------------------------------------------------------------------------------
+# Name:        USER RANKING (INSTITTUTE AND UNIVERSITY )
+# Purpose:
+#
+# Author:      siddhesh
+#
+# Created:     12/06/2015
+# Copyright:   (c) siddhesh 2015
+# Licence:     <your licence>
+#-------------------------------------------------------------------------------
+#sql:- sql querys
+#result :- data of executed query 
+
+import json  #json lib     
+from datetime import datetime #datetime lib
+
+
+#db : database name
+#unique_code :user unique id
+#match_code :form code used for processing get from dependancies function
 
 def operation(db,unique_code, match_code):
+#engineering form numbers
     newlist =[1,2,3,4,5,6,7,8]
+#graph section list
     filed_list =["A","B","C","D","E","F","G","H"]
+#sort list
     newlist.sort()
+#processing veriables
     college_rank =0
     university_rank =0
     graph_data =[]
     series =[]
+    query = ''
     related_data ={}
     new =''
     total =0
     i = 0
 
     sql = "SELECT * from `undergraduate` WHERE `unique_code`='%s'"%(unique_code)
+#   above query get following data from undergraduate table
+#   id / unique code / institute name / university name
     results = db.RunQueryColNameOnAcadspace(sql)
+    #print results
     try:
         del[results[0]['id']]
         del[results[0]['unique_code']]
@@ -26,20 +51,24 @@ def operation(db,unique_code, match_code):
 #column value contain database column value of above columns
             column_value = index.values()
 
-        query = '';
         for column in column_name:
+#generate sql query for calculate user
             query = query+"`undergraduate`.`"+column+"` ='"+index[column]+"' AND "
+
             extract_query = "select count(`undergraduate_record`.`user_code`) AS `Rank` from `undergraduate_record` INNER JOIN `undergraduate` ON `undergraduate_record`.`user_code` =`undergraduate`.`unique_code` AND "+query+""
+            #print extract_query
             university_query ="select count(`undergraduate_record`.`user_code`) AS `Rank` from `undergraduate_record` INNER JOIN `undergraduate` ON `undergraduate_record`.`user_code` =`undergraduate`.`unique_code` AND "+"`undergraduate`.`"+column_name[1]+"` ='"+index[column_name[1]]+"' AND "+""
             #print university_query
         for form_code in newlist:
-
+#generate form code
             form_no =match_code+"0"+str(form_code)
 
 #User Marks
             sql2 ="SELECT `data_field_1`,`total` FROM `undergraduate_record` WHERE `user_code`='%s' AND `form_code` LIKE '%s'"%(unique_code,form_no)
+#   above query get following data from  undergraduate record
+#   data_field_1 :- date
+#   total:- total marks get in form field
             user_marks = db.RunQueryColNameOnAcadspace(sql2)
-
 #Available user marks
             if user_marks:
                 #print user_marks[0]['data_field_1']
@@ -85,6 +114,7 @@ def operation(db,unique_code, match_code):
                 #print related_data["4"+filed_list[i-1]]
 
             else:
+#return null related_data
                 related_data["4"+filed_list[i]]={
                     "type": "",
                     "college":""
@@ -92,6 +122,7 @@ def operation(db,unique_code, match_code):
                 i = i+1
 
     except:
+#return null related data
         print "Error: unable to fecth data"
         related_data["4A"]={
                     "type": "",
@@ -100,16 +131,19 @@ def operation(db,unique_code, match_code):
     return related_data
 
 def dependancies():
+# form no which is used to match and run script
     dependent_forms = ["3010101*","3010201*","3010301*","3010401*"]
+#return data to match
     return dependent_forms
 
 
 def execute(db,user_code,code):
-    #print "Engineering Rule 4 Running "+user_code
+#remove * from form code
     form_code = code.replace("*","")
     stat = "Partial"
     stat = "Failed"
     stat = "Success"
     data = operation(db,user_code, form_code)
+#return data in json format
     result = data
     return [stat,result]

@@ -19,19 +19,18 @@ def operation(db,unique_code,match_code):
         goal = goal*total_forms
         remaing_forms = int(match_code+"08") - int(results2[0]['last form'])
         remaing_goal = float(goal)-float(results2[0]['AVG'])
-        if remaing_forms is not 0:
+        if remaing_forms is not '0' and remaing_goal > '0':
             print total_forms
             print goal
             print remaing_forms
             print remaing_goal
         else:
-
-
+            raise
     except:
         print "Error: unable to fecth data"
 
 def dependancies():
-    dependent_forms = ["3010101000"]
+    dependent_forms = ["30101010000"]
     return dependent_forms
 
 
