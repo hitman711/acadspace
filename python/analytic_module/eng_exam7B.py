@@ -27,7 +27,8 @@ def operation(db,unique_code,form_code):
                 graph_data.append(jsonFormat)
         graph_data.sort()
         #print graph_data
-
+        #print min([graph_data[i]['total'] for i in range(0, len(graph_data))])-0.5
+        #print max([graph_data[i]['total'] for i in range(0, len(graph_data))])+0.5
         related_data ={
         "Question":"My institute student performance range",
         "Answer_Type":"pie_graph",
@@ -50,10 +51,12 @@ def operation(db,unique_code,form_code):
             "max-y":max([graph_data[i]['total'] for i in range(0, len(graph_data))])+0.5
             }
         }
+        #print related_data
         return related_data
 
     except:
-        print "Error: unable to fecth data"
+        print "Error: unable to fecth data = "+str(form_code)
+        return "null"
 
 
 def dependancies():

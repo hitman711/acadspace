@@ -26,11 +26,12 @@ for mod in allmodules:
         print "No Dependencies Mentioned in module %s . . . . .Skipping"%(mod)
 
 print "- - - - - - - - - - - Display Loaded Modules and Form Dependencies - - - - - - - - - - - - - -"
-for key, data in Dep_Dict.items():
-    print "%s Dependency -> %s"%(key,data)
 
-print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
+#for key, data in Dep_Dict.items():
+#    print "."
+    #print "%s Dependency -> %s"%(key,data)
 
+#print "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Searches for updated records
@@ -74,7 +75,7 @@ for i in range(0,len(data)):            # Iterating over resulted records (users
     print "- - - - - - Form updated for user %s - - - - - - - - - -"%user_id
 
     for edited_form in record_update_info["Edited_Form_List"]:        # Select each edited for one by one
-        print "Edited Form >> %s"%(edited_form)
+        #print "Edited Form >> %s"%(edited_form)
         for dict_key, dict_data in Dep_Dict.items():        # Iterate to find out affected analysis
             match_flag = False
             form_code =''
@@ -94,15 +95,15 @@ for i in range(0,len(data)):            # Iterating over resulted records (users
             #- - - If Analysis is affected - - - - - - -
             if match_flag == True:
                 exec("tempmod = %s"%dict_key)
-                print dict_key
+                #print dict_key
                 #print "list = "+form_code
                 # Load that module
                 # Execute that Module returns
                 # "Success","Failure","Partial" Status
                 [Stat,result] = tempmod.execute(db,user_id,form_code)
                 if Stat == "Success":                                # If Success add data to Suceeded_Analytic
-                    if result.keys()[0] in Completed_Analytics['Suceeded_Analytic']:
-                        print "Updating Record . . . . . . "
+                    #if result.keys()[0] in Completed_Analytics['Suceeded_Analytic']:
+                        #print "Updating Record . . . . . . "
                     Completed_Analytics['Suceeded_Analytic'].update(result)
 
                     if result.keys()[0] in Partial_Analytics['Partial_Analytic']:

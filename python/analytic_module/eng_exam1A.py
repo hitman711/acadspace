@@ -13,44 +13,52 @@ def operation(db,unique_code,form_code):
         for row in results:
             form_name = "SELECT `form_title` FROM `form_field` WHERE `form_id`='%s'"%(row['form_code'])
             result2 = db.RunQueryColNameOnAcademic(form_name)
+            #print result2
             for form_title in result2:
                 exam_name = form_title['form_title']
             marks = row['total']
+            #print "..........."
             #print marks
+            #print ".........."
 	    total += float(marks)
             graph_data.append({"x-axis":exam_name,"y-axis":float(marks)})
             graph_data.sort()
-	total = round(total / len(results),2)
+
+        total = round(total / len(results),2)
+
         #print graph_data
-        #print min([graph_data[i]['y-axis'] for i in range(0, len(graph_data))])
-        #print max([graph_data[i]['y-axis'] for i in range(0, len(graph_data))])
+        #print total
+        #print min([graph_data[i]['y-axis'] for i in range(0, len(graph_data))])-0.5
+        #print max([graph_data[i]['y-axis'] for i in range(0, len(graph_data))])+0.5
+        related_data = {
+            "Question":"How I am performing in My Semester Examinations?",
+            "Answer_Type":"normal_graph",
+            "type":"graph",
+            "Description": "This Graph shows your semester performance. Upto current semester your CGPA will be <b>"+str(total)+"</b>." ,
+            "Related_Data":{
+                "set":"#1A",
+                "title":"Semester Performance Graph",
+                "argumentField":"x-axis",
+                "valueField":"y-axis",
+                "graph_type":"line",
+                "series_name":"Semester",
+                "data":graph_data,
+                "tooltip":"true",
+                "x-axis-name":"Semester Name",
+                "min-x":0,
+                "max-x":8,
+                "y-axis-name":"CGPA",
+                "min-y":min([graph_data[i]['y-axis'] for i in range(0, len(graph_data))])-0.5,
+                "max-y":max([graph_data[i]['y-axis'] for i in range(0, len(graph_data))])+0.5,
+                "avg":total
+                }
+            }
+        #print related_data
+        return related_data
+
     except:
         print "Error: unable to fecth data"
-
-    related_data ={
-        "Question":"How I am performing in My Semester Examinations?",
-        "Answer_Type":"normal_graph",
-        "type":"graph",
-        "Description": "This Graph shows your semester performance. Upto current semester your CGPA will be <b>"+str(total)+"</b>." ,
-        "Related_Data":{
-            "set":"#1A",
-            "title":"Semester Performance Graph",
-            "argumentField":"x-axis",
-            "valueField":"y-axis",
-            "graph_type":"line",
-            "series_name":"Semester",
-            "data":graph_data,
-            "tooltip":"true",
-            "x-axis-name":"Semester Name",
-            "min-x":0,
-            "max-x":8,
-            "y-axis-name":"CGPA",
-            "min-y":min([graph_data[i]['y-axis'] for i in range(0, len(graph_data))])-0.5,
-            "max-y":max([graph_data[i]['y-axis'] for i in range(0, len(graph_data))])+0.5,
-            "avg":total
-        }
-    }
-    return related_data
+        return "null"
 
 def dependancies():
     dependent_forms = ["3010101*","3010201*","3010301*","3010401*"]

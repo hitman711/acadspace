@@ -83,8 +83,8 @@ def operation(db,unique_code,match_code):
 					  }
 				return related_data
 		except:
-		    print "Error: unable to fecth data"
-		    return "null"
+			print "Error: unable to fecth data = "+str(match_code)
+			return "null"
 
 
 

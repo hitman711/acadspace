@@ -45,6 +45,7 @@ def operation(db,unique_code, match_code):
     try:
         del[results[0]['id']]
         del[results[0]['unique_code']]
+        del[results[0]['goal']]
         for index in results:
 #column name contain database column names like college and university
             column_name =index.keys()
@@ -123,7 +124,7 @@ def operation(db,unique_code, match_code):
 
     except:
 #return null related data
-        print "Error: unable to fecth data"
+        print "Error: unable to fecth data 4A= "+str(match_code)
         related_data["4A"]={
                     "type": "",
                     "college":""

@@ -104,8 +104,7 @@ def operation(db,unique_code,match_code):
 
 			
 	except:
-#return null data
-		print "unable to update data"
+		print "Error: unable to fecth data = "+str(match_code)
 		return "null"
 
 
@@ -119,7 +118,7 @@ def dependancies():
 def execute(db,user_code,code):
 #remove * from form code
 	form_code = code.replace("*","")
-	print "form_no"+form_code
+	#print "form_no"+form_code
 	stat = "Partial"
 	stat = "Failed"
 	stat = "Success"

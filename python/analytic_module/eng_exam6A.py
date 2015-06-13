@@ -111,7 +111,8 @@ def operation(db,unique_code,match_code):
 
 	except:
 #return null data
-		print "unable to update data"
+		#print "unable to update data"
+		print "Error: unable to fecth data = "+str(match_code)
 		return "null"
 
 
