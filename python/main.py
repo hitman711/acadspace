@@ -1,3 +1,4 @@
+from datetime import datetime
 import database as db
 import MySQLdb
 import json
@@ -13,6 +14,7 @@ import re
 # Dep_Dict = Key as Module name
 # and Values as "Dependencies for list"
 # - - - - - - - - - - - - - - - - - - - - - - - - - -
+startTime = datetime.now()
 modules = glob.glob("analytic_module/*.py")
 allmodules = [ os.path.basename(f)[:-3] for f in modules]
 Dep_Dict = {}
@@ -74,6 +76,26 @@ for i in range(0,len(data)):            # Iterating over resulted records (users
 
     print "- - - - - - Form updated for user %s - - - - - - - - - -"%user_id
 
+#collect all  match codes and form name is Dep_Dict
+    for dict_key, dict_data in Dep_Dict.items():
+#initially set match flag False
+        match_flag = False
+        form_code = ''
+#get each form code from Dep_Dict list
+        for each_code in dict_data:
+#convert or remove special character
+            matching_regex = each_code.replace("*",'')
+#convert user edited form list into string and match process dict_data to string list
+#if match then set match flag True
+#and pass match form code and form name for further processing
+            if matching_regex in str(record_update_info["Edited_Form_List"]):
+
+                match_flag = True
+                form_code = each_code
+                #print matching_regex
+            else:
+                match_flag
+            '''
     for edited_form in record_update_info["Edited_Form_List"]:        # Select each edited for one by one
         #print "Edited Form >> %s"%(edited_form)
         for dict_key, dict_data in Dep_Dict.items():        # Iterate to find out affected analysis
@@ -86,47 +108,54 @@ for i in range(0,len(data)):            # Iterating over resulted records (users
                     form_code = each_code
                 else:
                     match_flag
-            '''
+        
             for each_code in dict_data:
                 matching_regex ="(%s\w+)"%each_code.replace("*",'')
                 # Convert to regex for comparison#- - - - - - Comparing edited form with analysis
                 match_flag = True if re.match(str(matching_regex), str(edited_form)) else match_flag
             '''
             #- - - If Analysis is affected - - - - - - -
-            if match_flag == True:
-                exec("tempmod = %s"%dict_key)
-                #print dict_key
-                #print "list = "+form_code
-                # Load that module
-                # Execute that Module returns
-                # "Success","Failure","Partial" Status
-                [Stat,result] = tempmod.execute(db,user_id,form_code)
-                if Stat == "Success":                                # If Success add data to Suceeded_Analytic
-                    #if result.keys()[0] in Completed_Analytics['Suceeded_Analytic']:
-                        #print "Updating Record . . . . . . "
-                    Completed_Analytics['Suceeded_Analytic'].update(result)
+        if match_flag == True:
+            exec("tempmod = %s"%dict_key)
+            print dict_key
+            print "list = "+form_code
+            # Load that module
+            # Execute that Module returns
+            # "Success","Failure","Partial" Status
+            [Stat,result] = tempmod.execute(db,user_id,form_code)
+            if Stat == "Success":                                # If Success add data to Suceeded_Analytic
+                #if result.keys()[0] in Completed_Analytics['Suceeded_Analytic']:
+                    #print "Updating Record . . . . . . "
+                Completed_Analytics['Suceeded_Analytic'].update(result)
 
-                    if result.keys()[0] in Partial_Analytics['Partial_Analytic']:
-                        Partial_Analytics['Partial_Analytic'].pop(result.keys()[0])
-                    Data_Update_Flag = True
+                if result.keys()[0] in Partial_Analytics['Partial_Analytic']:
+                    Partial_Analytics['Partial_Analytic'].pop(result.keys()[0])
+                Data_Update_Flag = True
 
-                elif Stat == "Partial":                                # If Partial add data to Partial_Analytics
-                    if result.keys()[0] in Partial_Analytics['Partial_Analytics']:
-                        print "Updating Partial Record. . . . . ."
-                    Partial_Analytics['Partial_Analytics'].update(result)
-                    if result.keys()[0] in Completed_Analytics['Suceeded_Analytic']:
-                        Completed_Analytics['Suceeded_Analytic'].pop(result.keys()[0])
-                    Data_Update_Flag = True
-                else:                                                # Failed
-                    if result.keys()[0] in Completed_Analytics['Suceeded_Analytic']:
-                        Completed_Analytics['Suceeded_Analytic'].pop(result.keys()[0])
-                    if result.keys()[0] in Partial_Analytics['Partial_Analytics']:
-                        Partial_Analytics['Partial_Analytics'].pop(result.keys()[0])
-                    Data_Update_Flag = True
-                    print "Failed Analysis Calculation. . . . . . Deleting"
+            elif Stat == "Partial":                                # If Partial add data to Partial_Analytics
+                if result.keys()[0] in Partial_Analytics['Partial_Analytics']:
+                    print "Updating Partial Record. . . . . ."
+                Partial_Analytics['Partial_Analytics'].update(result)
+                if result.keys()[0] in Completed_Analytics['Suceeded_Analytic']:
+                    Completed_Analytics['Suceeded_Analytic'].pop(result.keys()[0])
+                Data_Update_Flag = True
+            else:                                                 # Failed
+                if result.keys()[0] in Completed_Analytics['Suceeded_Analytic']:
+                    Completed_Analytics['Suceeded_Analytic'].pop(result.keys()[0])
+                #if result.keys()[0] in Partial_Analytics['Partial_Analytics']:
+                   # Partial_Analytics['Partial_Analytic'].pop(result.keys()[0])
+                Data_Update_Flag = True
+                print "Failed Analysis Calculation. . . . . . Deleting"
     # update data in json file
     #print json.dumps(Completed_Analytics)
     #print json.dumps(Partial_Analytics)
+    remove_list =[]
+    for each in Completed_Analytics['Suceeded_Analytic']:
+        if not Completed_Analytics['Suceeded_Analytic'][each]:
+            remove_list.append(each)
+    for each in remove_list:
+        del Completed_Analytics['Suceeded_Analytic'][each]
+    #print json.dumps(Completed_Analytics)
     open(Cfile_name,'w').write(json.dumps(Completed_Analytics))
     open(Pfile_name,'w').write(json.dumps(Partial_Analytics))
 
@@ -138,3 +167,5 @@ for i in range(0,len(data)):            # Iterating over resulted records (users
         user_id = str(MySQLdb.escape_string(user_id))
         Query = "UPDATE `user_analytic_stat` SET `record_update_stat`='0',`record_update_info`='%s', `Completed_Analytics`='%s',`Partial_Analytics`='%s' WHERE `user_id` = '%s'"%(record_update_info,Completed_Analytics,Partial_Analytics,user_id)
         db.RunQueryOnAcadspace(Query)
+
+print datetime.now() - startTime

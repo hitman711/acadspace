@@ -53,6 +53,7 @@ def operation(db,unique_code,form_code):
 
     except:
         print "Error: unable to fecth data = "+str(form_code)
+        return "null"
 
 
 def dependancies():

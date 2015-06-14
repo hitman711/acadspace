@@ -116,19 +116,13 @@ def operation(db,unique_code, match_code):
 
             else:
 #return null related_data
-                related_data["4"+filed_list[i]]={
-                    "type": "",
-                    "college":""
-                }
+                related_data["4"+filed_list[i]] = "null"
                 i = i+1
 
     except:
 #return null related data
         print "Error: unable to fecth data 4A= "+str(match_code)
-        related_data["4A"]={
-                    "type": "",
-                    "college":""
-                }
+        related_data["4A"]="null"
     return related_data
 
 def dependancies():

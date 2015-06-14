@@ -3,6 +3,7 @@ import json
 
 def operation(db,unique_code,form_code):
     #print "inside"+form_code
+    related_data = "null"
     graph_data =[]
     total =0
     sql = "SELECT `form_code`,`total` FROM `undergraduate_record` WHERE `user_code`='%s' AND `form_code` LIKE '%s'"%(unique_code,form_code+'%')
@@ -68,8 +69,6 @@ def dependancies():
 def execute(db,user_code,code):
     form_code = code.replace("*","")
     #print "form_code"+form_code
-    stat = "Partial"
-    stat = "Failed"
     stat = "Success"
     data = operation(db,user_code, form_code)
     result = {'1A':data}

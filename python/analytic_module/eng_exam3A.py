@@ -27,7 +27,7 @@ def operation(db,unique_code,match_code):
 #series only included if there is more than one data to represent like comparison graph
 	series =[]
 #related data collect frontend graph display information with series and graph_data
-	related_data =''
+	related_data = "null"
 #processing veriables
 	new =''
 	total =0
@@ -126,3 +126,4 @@ def execute(db,user_code,code):
 #return data in json format
 	result = {'3A':data}
 	return [stat,result]
+

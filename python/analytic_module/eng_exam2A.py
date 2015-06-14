@@ -7,7 +7,7 @@ def operation(db,unique_code,match_code):
 	newlist.sort()
 	graph_data =[]
 	series =[]
-	related_data =''
+	related_data = "null"
 	new =''
 	total =0
 #get current user college name and university name
