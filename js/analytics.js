@@ -50,7 +50,7 @@ $(document).ready( function(){
             $('#graphs').append(schema);
             
 //alert(data['Suceeded_Analytic'][total_records[i]]['Answer_Type']+"('"+JSON.stringify(pass['Related_Data'])+"')");
-            console.log(data['Suceeded_Analytic'][total_records[i]]['Answer_Type']+"('"+JSON.stringify(pass['Related_Data'])+"')");
+            //console.log(data['Suceeded_Analytic'][total_records[i]]['Answer_Type']+"('"+JSON.stringify(pass['Related_Data'])+"')");
             eval(data['Suceeded_Analytic'][total_records[i]]['Answer_Type']+"('"+JSON.stringify(pass['Related_Data'])+"')");
             schema ='';
             }
@@ -75,7 +75,6 @@ function normal_graph(data) {
     graph_type =obj['graph_type'];
     argumentField = obj['argumentField'];
     valueField = obj['valueField'];
-    tooltip = obj['tooltip'];
     x_axis_min_limit = obj['min-x'];
     x_axis_max_limit = obj['max-x'];
     y_axis_min_limit = obj['min-y'];
@@ -146,7 +145,6 @@ function Comparison_graph(data) {
     graph_type =obj['graph_type'];
     valueField = obj['valueField'];
     series =obj['series'];
-    tooltip = obj['tooltip'];
     title = obj['title'];
     x_axis_min_limit = obj['min-x'];
     x_axis_max_limit = obj['max-x'];
@@ -170,7 +168,7 @@ function Comparison_graph(data) {
         horizontalAlignment: "center"
     },
     tooltip: {
-        enabled: tooltip
+        enabled: "true"
     },
     valueAxis: {
             title: {
@@ -213,7 +211,7 @@ function pie_graph(data){
             }
         ],
         tooltip: {
-            enabled: tooltip
+            enabled: "true"
         },
         legend: {
             verticalAlignment: "bottom",
