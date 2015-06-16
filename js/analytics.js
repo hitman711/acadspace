@@ -99,7 +99,7 @@ function normal_graph(data) {
             horizontalAlignment: "center"
         },
         tooltip: {
-            enabled: true
+            enabled: "true"
         },
 	valueAxis: {
             title: {
