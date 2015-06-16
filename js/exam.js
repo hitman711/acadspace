@@ -335,7 +335,7 @@ $(document).ready( function(){
                 
                 if (result == "success") {
                         success_box("data Updated Successfully");
-                        ('#form_box .overlay').remove();   
+                        $('#form_box .overlay').remove();   
                     }
                     else{
                         $('#form_box .overlay').remove();

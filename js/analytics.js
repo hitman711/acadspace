@@ -99,7 +99,7 @@ function normal_graph(data) {
             horizontalAlignment: "center"
         },
         tooltip: {
-            enabled: "true"
+            enabled: true
         },
 	valueAxis: {
             title: {
@@ -168,7 +168,7 @@ function Comparison_graph(data) {
         horizontalAlignment: "center"
     },
     tooltip: {
-        enabled: "true"
+        enabled: true
     },
     valueAxis: {
             title: {
@@ -211,7 +211,7 @@ function pie_graph(data){
             }
         ],
         tooltip: {
-            enabled: "true"
+            enabled: true
         },
         legend: {
             verticalAlignment: "bottom",
