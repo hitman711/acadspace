@@ -153,9 +153,13 @@ for i in range(0,len(data)):            # Iterating over resulted records (users
     for each in Completed_Analytics['Suceeded_Analytic']:
         if not Completed_Analytics['Suceeded_Analytic'][each]:
             remove_list.append(each)
+    #print "...................."
+    #print remove_list
     for each in remove_list:
         del Completed_Analytics['Suceeded_Analytic'][each]
+    print "...................."
     #print json.dumps(Completed_Analytics)
+
     open(Cfile_name,'w').write(json.dumps(Completed_Analytics))
     open(Pfile_name,'w').write(json.dumps(Partial_Analytics))
 
